@@ -1,0 +1,997 @@
+{
+    "name": "Annotations",
+    "securityToken": "Annotations Token",
+    "sourceConnection": {
+        "name": "training_images",
+        "providerType": "localFileSystemProxy",
+        "providerOptions": {
+            "encrypted": "eyJjaXBoZXJ0ZXh0IjoiMDQwMWVjZWI1MDkxZjVkNTcxYmU5OTUyYjI1ZjEwMjNmZjg4ZTJlZThlNmJlNmI5YzlhMjEwMDAxY2VkNGEzYzkwY2U2OWMyMmQ4NmQ1NDI2Zjk5MWVkZGQ5NzI1ZTFjOTE2ZWRhNmZlNTQwOThmNjgwMTQ4NTRmYTkwYjVjMDVjNjdkMWJiZGFmNTk0Yjk4MjhkOGU2NjQ0YTM5NmY4ZDNhOGE3MGRhMThhNjE2Y2MzZWZkOWIyYjcyNTAwYzVmYmI1ZjYxM2I3NjBkZGZhMDgxZTNmYzFmOGZlNDc5NzAiLCJpdiI6IjkwMWQyYzFmOTkwZDI4OTliYzFlZjQ0NTk5Njk2NjU2OTM4MGE2YWFiYzU4YTM0NSJ9"
+        },
+        "id": "qnyibxZXO"
+    },
+    "targetConnection": {
+        "name": "training_images",
+        "providerType": "localFileSystemProxy",
+        "providerOptions": {
+            "encrypted": "eyJjaXBoZXJ0ZXh0IjoiZDU2ZjkxMjNjMzhkZWZhY2Y5NDU5YzFkZmIxYmJmOGZjYTgwZmNiYWM2MjRmNTc2ODYyMGIwNTRjODYwMWQ1N2VmZDEyNDJjZTEzY2UxNzZjYzI4NDhhMjk0NzcwMDg3MTIyZWY2NDRkNDdiMTIwZTU1MTI0NjRiYTljMDczMzAyZDNhMTFmZWQ5OTYwNGM4ODdkYzY3MzZhZTAwNDFkOGQ1NTE1NWY3ZWRhYThiNTJjNDI0NzZiMTVmMThjYjE3Mjg0NWZlZDI5MWY4ZTc5MDI3N2E5OGQyYjQ3YjNhYTgiLCJpdiI6ImI3MDUwYTMwYTQ0YzhkNDM5ZjE1NTc3YmE2OWE1MWY5ZDRkYmI2ODQ2OWRhYTQ2MiJ9"
+        },
+        "id": "qnyibxZXO"
+    },
+    "videoSettings": {
+        "frameExtractionRate": 15
+    },
+    "tags": [
+        {
+            "name": "Right Palm Up",
+            "color": "#800080"
+        },
+        {
+            "name": "Right Thumb Up",
+            "color": "#595959"
+        }
+    ],
+    "id": "zTxIN10tZ",
+    "activeLearningSettings": {
+        "autoDetect": false,
+        "predictTag": true,
+        "modelPathType": "coco"
+    },
+    "exportFormat": {
+        "providerType": "cntk",
+        "providerOptions": {
+            "encrypted": "eyJjaXBoZXJ0ZXh0IjoiMWU3MWI0ODA5M2EwY2NiMjIzM2RmNjEyZTEwMzhmY2FjMDJlNTNkNGVlMDlhMjIyMGIxZmIzM2JkZjk0NDdhNjYwMDIyNmY2NmYxZTNkYWFhYjA4YmM0ZDFiMmE2MjFiIiwiaXYiOiI2ODUyYzM4NjM5OTdiYTY2NGY3ZGY2ZTZiY2U1NjQ4MDk1OWE5M2U1NGE4YmNkMDUifQ=="
+        }
+    },
+    "version": "2.2.0",
+    "lastVisitedAssetId": "9f925c6506d07e59a08f47f53e9a28ff",
+    "assets": {
+        "027710e44faa623b65a3679269c558e6": {
+            "format": "jpg",
+            "id": "027710e44faa623b65a3679269c558e6",
+            "name": "WIN_20200605_15_54_17_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_17_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "77a0ddfbfa666a63de43e32f58686eea": {
+            "format": "jpg",
+            "id": "77a0ddfbfa666a63de43e32f58686eea",
+            "name": "WIN_20200605_15_54_20_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_20_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "edcc17e97aa7cabf12de72218cbdff7f": {
+            "format": "jpg",
+            "id": "edcc17e97aa7cabf12de72218cbdff7f",
+            "name": "WIN_20200605_15_54_24_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_24_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "8ad197cb110a25ad267727b59be02cde": {
+            "format": "jpg",
+            "id": "8ad197cb110a25ad267727b59be02cde",
+            "name": "WIN_20200605_15_54_26_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_26_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "3642ec0f0ba30b5395d10029dd96463f": {
+            "format": "jpg",
+            "id": "3642ec0f0ba30b5395d10029dd96463f",
+            "name": "WIN_20200605_15_54_27_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_27_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d8cf279f148ebd7bec058abd9787600e": {
+            "format": "jpg",
+            "id": "d8cf279f148ebd7bec058abd9787600e",
+            "name": "WIN_20200605_15_54_28_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_28_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2311195b3494d381f830ae36443697ac": {
+            "format": "jpg",
+            "id": "2311195b3494d381f830ae36443697ac",
+            "name": "WIN_20200605_15_54_29_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_29_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "801c8fa86139953ce2f170f23c8c99f2": {
+            "format": "jpg",
+            "id": "801c8fa86139953ce2f170f23c8c99f2",
+            "name": "WIN_20200605_15_54_30_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_30_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "59ab7aea4529bb71cb17206fe10b8895": {
+            "format": "jpg",
+            "id": "59ab7aea4529bb71cb17206fe10b8895",
+            "name": "WIN_20200605_15_54_32_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_32_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "cffddc3f92865e3aaa6e135696a22fe2": {
+            "format": "jpg",
+            "id": "cffddc3f92865e3aaa6e135696a22fe2",
+            "name": "WIN_20200605_15_54_33_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_33_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "e870ce1fc3bfa9b26b2ca12451e15b6f": {
+            "format": "jpg",
+            "id": "e870ce1fc3bfa9b26b2ca12451e15b6f",
+            "name": "WIN_20200605_15_54_35_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_35_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c3b0cc270351d33274d4a357868f3561": {
+            "format": "jpg",
+            "id": "c3b0cc270351d33274d4a357868f3561",
+            "name": "WIN_20200605_15_54_36_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_36_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "932905a4647b97f43e194028ce9c45f6": {
+            "format": "jpg",
+            "id": "932905a4647b97f43e194028ce9c45f6",
+            "name": "WIN_20200605_15_54_39_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_39_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d33ea93f7f04276b0531469913a6964d": {
+            "format": "jpg",
+            "id": "d33ea93f7f04276b0531469913a6964d",
+            "name": "WIN_20200605_15_54_40_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_40_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d439082522f9b08d713a8d1a54e0e4df": {
+            "format": "jpg",
+            "id": "d439082522f9b08d713a8d1a54e0e4df",
+            "name": "WIN_20200605_15_54_42_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_42_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d6c38195fbee2dca5cd2a0fd763acdfe": {
+            "format": "jpg",
+            "id": "d6c38195fbee2dca5cd2a0fd763acdfe",
+            "name": "WIN_20200605_15_54_44_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_44_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "94d346524b60c16f4e02a743363209af": {
+            "format": "jpg",
+            "id": "94d346524b60c16f4e02a743363209af",
+            "name": "WIN_20200605_15_54_45_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_45_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "3ff60ddb84b043e026c67d11b47c2c3a": {
+            "format": "jpg",
+            "id": "3ff60ddb84b043e026c67d11b47c2c3a",
+            "name": "WIN_20200605_15_54_46_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_46_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b846864c7a6eb091607aef4931bfe9ff": {
+            "format": "jpg",
+            "id": "b846864c7a6eb091607aef4931bfe9ff",
+            "name": "WIN_20200605_15_54_48_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_48_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "6878a0a930725c45d80cebaf4479b9cc": {
+            "format": "jpg",
+            "id": "6878a0a930725c45d80cebaf4479b9cc",
+            "name": "WIN_20200605_15_54_50_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_50_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "5e7ed101086e34d64500fea6148712e4": {
+            "format": "jpg",
+            "id": "5e7ed101086e34d64500fea6148712e4",
+            "name": "WIN_20200605_15_54_51_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_51_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f44d6907db6a6b10ba63c33db7a84809": {
+            "format": "jpg",
+            "id": "f44d6907db6a6b10ba63c33db7a84809",
+            "name": "WIN_20200605_15_54_52_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_52_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "6d5ef6e0035af727cf77d275bf18991c": {
+            "format": "jpg",
+            "id": "6d5ef6e0035af727cf77d275bf18991c",
+            "name": "WIN_20200605_15_54_53_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_54_53_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 1,
+            "type": 1
+        },
+        "46737494688f088f0144d1a48d9ea9c6": {
+            "format": "jpg",
+            "id": "46737494688f088f0144d1a48d9ea9c6",
+            "name": "WIN_20200605_15_55_00_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_00_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b8c6e6d972a18aa26c26cab4e1f667e5": {
+            "format": "jpg",
+            "id": "b8c6e6d972a18aa26c26cab4e1f667e5",
+            "name": "WIN_20200605_15_55_02_Pro%20(2).jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_02_Pro%20(2).jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "658da189cab864360e36dda637839454": {
+            "format": "jpg",
+            "id": "658da189cab864360e36dda637839454",
+            "name": "WIN_20200605_15_55_02_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_02_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "9824ca8a4659f274581f9305e7986075": {
+            "format": "jpg",
+            "id": "9824ca8a4659f274581f9305e7986075",
+            "name": "WIN_20200605_15_55_03_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_03_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "548981615528ecadbeb38c16598fe4b6": {
+            "format": "jpg",
+            "id": "548981615528ecadbeb38c16598fe4b6",
+            "name": "WIN_20200605_15_55_04_Pro%20(2).jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_04_Pro%20(2).jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "61e92be1e0c8f1c2236ce9f88f856540": {
+            "format": "jpg",
+            "id": "61e92be1e0c8f1c2236ce9f88f856540",
+            "name": "WIN_20200605_15_55_04_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_04_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "77769ffb90fee491d5914c222b7a0e0f": {
+            "format": "jpg",
+            "id": "77769ffb90fee491d5914c222b7a0e0f",
+            "name": "WIN_20200605_15_55_05_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_05_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 1,
+            "type": 1
+        },
+        "d24529fcbba817f1ba73c59669ec7bb8": {
+            "format": "jpg",
+            "id": "d24529fcbba817f1ba73c59669ec7bb8",
+            "name": "WIN_20200605_15_55_07_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_07_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "6d5fefdfd9a1daa48afa9da384452bc6": {
+            "format": "jpg",
+            "id": "6d5fefdfd9a1daa48afa9da384452bc6",
+            "name": "WIN_20200605_15_55_08_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_08_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "13bcc8cfe6fa26a1480c0cb454f39d54": {
+            "format": "jpg",
+            "id": "13bcc8cfe6fa26a1480c0cb454f39d54",
+            "name": "WIN_20200605_15_55_09_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_09_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "3ee58800b79870e3bb0ffef73d97df21": {
+            "format": "jpg",
+            "id": "3ee58800b79870e3bb0ffef73d97df21",
+            "name": "WIN_20200605_15_55_10_Pro%20(2).jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_10_Pro%20(2).jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "61a2e3aab5ae711a13bf0e8f9c5ae036": {
+            "format": "jpg",
+            "id": "61a2e3aab5ae711a13bf0e8f9c5ae036",
+            "name": "WIN_20200605_15_55_10_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_10_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "dd47f9a912b420a1b1168cf0b9c653d4": {
+            "format": "jpg",
+            "id": "dd47f9a912b420a1b1168cf0b9c653d4",
+            "name": "WIN_20200605_15_55_11_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_11_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7c45f6042533f6ac34cd0878215bbff5": {
+            "format": "jpg",
+            "id": "7c45f6042533f6ac34cd0878215bbff5",
+            "name": "WIN_20200605_15_55_12_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_12_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "5aa96f68ef2c98152b248d6c34b0573a": {
+            "format": "jpg",
+            "id": "5aa96f68ef2c98152b248d6c34b0573a",
+            "name": "WIN_20200605_15_55_13_Pro%20(2).jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_13_Pro%20(2).jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2231507b2f691e1e88caea865cb01b72": {
+            "format": "jpg",
+            "id": "2231507b2f691e1e88caea865cb01b72",
+            "name": "WIN_20200605_15_55_13_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_13_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "26a41944930273318969381ee53a84f2": {
+            "format": "jpg",
+            "id": "26a41944930273318969381ee53a84f2",
+            "name": "WIN_20200605_15_55_14_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_14_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2b180f1fe1195e939fe4591c42e2cfb4": {
+            "format": "jpg",
+            "id": "2b180f1fe1195e939fe4591c42e2cfb4",
+            "name": "WIN_20200605_15_55_31_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_31_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "0c3576be0327cad0dfe451f08f169b6d": {
+            "format": "jpg",
+            "id": "0c3576be0327cad0dfe451f08f169b6d",
+            "name": "WIN_20200605_15_55_34_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_34_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b2696e99141f1329ca4728a2427a7222": {
+            "format": "jpg",
+            "id": "b2696e99141f1329ca4728a2427a7222",
+            "name": "WIN_20200605_15_55_36_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_36_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "8efd2013c83bc0d06e5130d873f614ce": {
+            "format": "jpg",
+            "id": "8efd2013c83bc0d06e5130d873f614ce",
+            "name": "WIN_20200605_15_55_37_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_37_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "146ede8c2f8c721e6e7c11cc51e45f0f": {
+            "format": "jpg",
+            "id": "146ede8c2f8c721e6e7c11cc51e45f0f",
+            "name": "WIN_20200605_15_55_38_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_38_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c860ce5fb2634c1c86265dbcbaa87346": {
+            "format": "jpg",
+            "id": "c860ce5fb2634c1c86265dbcbaa87346",
+            "name": "WIN_20200605_15_55_40_Pro%20(2).jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_40_Pro%20(2).jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "65a370295f29356094a2743575f95ab9": {
+            "format": "jpg",
+            "id": "65a370295f29356094a2743575f95ab9",
+            "name": "WIN_20200605_15_55_40_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_40_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 1,
+            "type": 1
+        },
+        "5a452075c4c8c8f570417f7965355f69": {
+            "format": "jpg",
+            "id": "5a452075c4c8c8f570417f7965355f69",
+            "name": "WIN_20200605_15_55_42_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_42_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "cf3b8e54fa41ce56ac050071f2fcaca3": {
+            "format": "jpg",
+            "id": "cf3b8e54fa41ce56ac050071f2fcaca3",
+            "name": "WIN_20200605_15_55_53_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_53_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "2080a817c440b74a5ea74080f64ba090": {
+            "format": "jpg",
+            "id": "2080a817c440b74a5ea74080f64ba090",
+            "name": "WIN_20200605_15_55_55_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_55_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c2b7daf0b45f6cbe4af3d11472b18731": {
+            "format": "jpg",
+            "id": "c2b7daf0b45f6cbe4af3d11472b18731",
+            "name": "WIN_20200605_15_55_56_Pro%20(2).jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_56_Pro%20(2).jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "0157ce51bf05977565166518edc299d6": {
+            "format": "jpg",
+            "id": "0157ce51bf05977565166518edc299d6",
+            "name": "WIN_20200605_15_55_56_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_56_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "fdbe225cb856ea9842c5e5618516c081": {
+            "format": "jpg",
+            "id": "fdbe225cb856ea9842c5e5618516c081",
+            "name": "WIN_20200605_15_55_57_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_57_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "a4ccf23dd797bbc5780fd90c950ec56e": {
+            "format": "jpg",
+            "id": "a4ccf23dd797bbc5780fd90c950ec56e",
+            "name": "WIN_20200605_15_55_58_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_58_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "1d989b913536aa00d7590fa2f9721007": {
+            "format": "jpg",
+            "id": "1d989b913536aa00d7590fa2f9721007",
+            "name": "WIN_20200605_15_55_59_Pro%20(2).jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_59_Pro%20(2).jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "f8920ed55d063c5b041aafe12f8ca03f": {
+            "format": "jpg",
+            "id": "f8920ed55d063c5b041aafe12f8ca03f",
+            "name": "WIN_20200605_15_55_59_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_59_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "76608bf4b04656dbcf409e4267a3c5f4": {
+            "format": "jpg",
+            "id": "76608bf4b04656dbcf409e4267a3c5f4",
+            "name": "WIN_20200605_15_56_00_Pro%20(2).jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_00_Pro%20(2).jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "24bd47cd64ab2bb9a6e168422594f9d1": {
+            "format": "jpg",
+            "id": "24bd47cd64ab2bb9a6e168422594f9d1",
+            "name": "WIN_20200605_15_56_00_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_00_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ae218f538d2267816b0c429ebe51037b": {
+            "format": "jpg",
+            "id": "ae218f538d2267816b0c429ebe51037b",
+            "name": "WIN_20200605_15_56_08_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_08_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "0cf78a8bf6b0ab6b1ffc68cf7ca77f00": {
+            "format": "jpg",
+            "id": "0cf78a8bf6b0ab6b1ffc68cf7ca77f00",
+            "name": "WIN_20200605_15_56_09_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_09_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c60d69699cd1be5993c2c1bf2e64e4ed": {
+            "format": "jpg",
+            "id": "c60d69699cd1be5993c2c1bf2e64e4ed",
+            "name": "WIN_20200605_15_56_16_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_16_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "67b33aeda5017b2b27e4ccca0d75b18d": {
+            "format": "jpg",
+            "id": "67b33aeda5017b2b27e4ccca0d75b18d",
+            "name": "WIN_20200605_15_56_19_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_19_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "5c1fd3eaa1397fb103c8c5d1866ba0f1": {
+            "format": "jpg",
+            "id": "5c1fd3eaa1397fb103c8c5d1866ba0f1",
+            "name": "WIN_20200605_15_56_22_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_22_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c8af8f113a9634bb38491d38e11ede67": {
+            "format": "jpg",
+            "id": "c8af8f113a9634bb38491d38e11ede67",
+            "name": "WIN_20200605_15_56_23_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_23_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "381060822a521d969a1b017f6ece6117": {
+            "format": "jpg",
+            "id": "381060822a521d969a1b017f6ece6117",
+            "name": "WIN_20200605_15_56_24_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_24_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c30e753d96f27fd3e61487e915f9745a": {
+            "format": "jpg",
+            "id": "c30e753d96f27fd3e61487e915f9745a",
+            "name": "WIN_20200605_15_56_26_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_26_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "6e1c5c6f532834019515a1479e5736d0": {
+            "format": "jpg",
+            "id": "6e1c5c6f532834019515a1479e5736d0",
+            "name": "WIN_20200605_15_56_29_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_29_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "ae242b04de9a21f5ac2f3f6981148169": {
+            "format": "jpg",
+            "id": "ae242b04de9a21f5ac2f3f6981148169",
+            "name": "WIN_20200605_15_56_38_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_38_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "57626c4186c1e97cf159f3c81c86394a": {
+            "format": "jpg",
+            "id": "57626c4186c1e97cf159f3c81c86394a",
+            "name": "WIN_20200605_15_56_39_Pro%20(2).jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_39_Pro%20(2).jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "27004e19bdde760ca73e4da6c818cb69": {
+            "format": "jpg",
+            "id": "27004e19bdde760ca73e4da6c818cb69",
+            "name": "WIN_20200605_15_56_39_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_39_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "4ae6575f03cc03bb6630ea2373d501f2": {
+            "format": "jpg",
+            "id": "4ae6575f03cc03bb6630ea2373d501f2",
+            "name": "WIN_20200605_15_56_40_Pro%20(2).jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_40_Pro%20(2).jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "7641c54df716bbb053690c8d127c8913": {
+            "format": "jpg",
+            "id": "7641c54df716bbb053690c8d127c8913",
+            "name": "WIN_20200605_15_56_40_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_40_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "3dd30e1a4c72ee22235897498c5572cb": {
+            "format": "jpg",
+            "id": "3dd30e1a4c72ee22235897498c5572cb",
+            "name": "WIN_20200605_15_56_41_Pro%20(2).jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_41_Pro%20(2).jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "c81f07627750096b21f74938f7010f68": {
+            "format": "jpg",
+            "id": "c81f07627750096b21f74938f7010f68",
+            "name": "WIN_20200605_15_56_41_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_41_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "e67e7ee660b1e7d96cecae6cb1745b32": {
+            "format": "jpg",
+            "id": "e67e7ee660b1e7d96cecae6cb1745b32",
+            "name": "WIN_20200605_15_56_42_Pro%20(2).jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_42_Pro%20(2).jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "fcc391fa29ba5123fa8ba49608ccb6a3": {
+            "format": "jpg",
+            "id": "fcc391fa29ba5123fa8ba49608ccb6a3",
+            "name": "WIN_20200605_15_56_42_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_42_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "262ae7eef30fac15560afb18865c79b5": {
+            "format": "jpg",
+            "id": "262ae7eef30fac15560afb18865c79b5",
+            "name": "WIN_20200605_15_56_43_Pro%20(2).jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_43_Pro%20(2).jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "d7b3b0d3c43f976400e1fdfb9d20061e": {
+            "format": "jpg",
+            "id": "d7b3b0d3c43f976400e1fdfb9d20061e",
+            "name": "WIN_20200605_15_56_43_Pro%20(3).jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_43_Pro%20(3).jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        },
+        "9f925c6506d07e59a08f47f53e9a28ff": {
+            "format": "jpg",
+            "id": "9f925c6506d07e59a08f47f53e9a28ff",
+            "name": "WIN_20200605_15_56_43_Pro.jpg",
+            "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_43_Pro.jpg",
+            "size": {
+                "width": 1920,
+                "height": 1080
+            },
+            "state": 2,
+            "type": 1
+        }
+    }
+}

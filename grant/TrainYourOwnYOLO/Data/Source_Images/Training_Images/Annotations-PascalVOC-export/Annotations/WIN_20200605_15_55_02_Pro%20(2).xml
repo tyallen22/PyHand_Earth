@@ -1,0 +1,26 @@
+<annotation verified="yes">
+    <folder>Annotation</folder>
+    <filename>WIN_20200605_15_55_02_Pro%20(2).jpg</filename>
+    <path>Annotations-PascalVOC-export/Annotations/WIN_20200605_15_55_02_Pro%20(2).jpg</path>
+    <source>
+        <database>Unknown</database>
+    </source>
+    <size>
+        <width>1920</width>
+        <height>1080</height>
+        <depth>3</depth>
+    </size>
+    <segmented>0</segmented>
+    <object>
+    <name>Right Palm Up</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+        <xmin>202.45348035837355</xmin>
+        <ymin>263.5064338235294</ymin>
+        <xmax>907.7325982081323</xmax>
+        <ymax>1041.7417279411766</ymax>
+    </bndbox>
+</object>
+</annotation>

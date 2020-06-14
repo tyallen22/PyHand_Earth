@@ -1,0 +1,26 @@
+<annotation verified="yes">
+    <folder>Annotation</folder>
+    <filename>WIN_20200605_15_56_41_Pro.jpg</filename>
+    <path>Annotations-PascalVOC-export/Annotations/WIN_20200605_15_56_41_Pro.jpg</path>
+    <source>
+        <database>Unknown</database>
+    </source>
+    <size>
+        <width>1920</width>
+        <height>1080</height>
+        <depth>3</depth>
+    </size>
+    <segmented>0</segmented>
+    <object>
+    <name>Right Thumb Up</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+        <xmin>1181.6402481047553</xmin>
+        <ymin>336.30055147058823</ymin>
+        <xmax>1471.4266023432115</xmax>
+        <ymax>692.3299632352941</ymax>
+    </bndbox>
+</object>
+</annotation>

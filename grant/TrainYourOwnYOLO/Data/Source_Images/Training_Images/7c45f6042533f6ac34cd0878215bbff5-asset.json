@@ -1,0 +1,48 @@
+{
+    "asset": {
+        "format": "jpg",
+        "id": "7c45f6042533f6ac34cd0878215bbff5",
+        "name": "WIN_20200605_15_55_12_Pro.jpg",
+        "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_55_12_Pro.jpg",
+        "size": {
+            "width": 1920,
+            "height": 1080
+        },
+        "state": 2,
+        "type": 1
+    },
+    "regions": [
+        {
+            "id": "H_mXFduAq",
+            "type": "RECTANGLE",
+            "tags": [
+                "Right Palm Up"
+            ],
+            "boundingBox": {
+                "height": 403.6764705882353,
+                "width": 359.9172984148863,
+                "left": 938.1667815299794,
+                "top": 459.38878676470586
+            },
+            "points": [
+                {
+                    "x": 938.1667815299794,
+                    "y": 459.38878676470586
+                },
+                {
+                    "x": 1298.0840799448656,
+                    "y": 459.38878676470586
+                },
+                {
+                    "x": 1298.0840799448656,
+                    "y": 863.0652573529411
+                },
+                {
+                    "x": 938.1667815299794,
+                    "y": 863.0652573529411
+                }
+            ]
+        }
+    ],
+    "version": "2.2.0"
+}

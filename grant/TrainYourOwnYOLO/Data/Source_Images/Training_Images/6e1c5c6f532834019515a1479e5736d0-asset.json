@@ -1,0 +1,48 @@
+{
+    "asset": {
+        "format": "jpg",
+        "id": "6e1c5c6f532834019515a1479e5736d0",
+        "name": "WIN_20200605_15_56_29_Pro.jpg",
+        "path": "file:D:/Code/School/Python/AnotherTry/TrainYourOwnYOLO/Data/Source_Images/Training_Images/WIN_20200605_15_56_29_Pro.jpg",
+        "size": {
+            "width": 1920,
+            "height": 1080
+        },
+        "state": 2,
+        "type": 1
+    },
+    "regions": [
+        {
+            "id": "RBrDVR1_W",
+            "type": "RECTANGLE",
+            "tags": [
+                "Right Thumb Up"
+            ],
+            "boundingBox": {
+                "height": 340.1470588235294,
+                "width": 348.0082701585114,
+                "left": 977.8635423845624,
+                "top": 370.71231617647055
+            },
+            "points": [
+                {
+                    "x": 977.8635423845624,
+                    "y": 370.71231617647055
+                },
+                {
+                    "x": 1325.871812543074,
+                    "y": 370.71231617647055
+                },
+                {
+                    "x": 1325.871812543074,
+                    "y": 710.859375
+                },
+                {
+                    "x": 977.8635423845624,
+                    "y": 710.859375
+                }
+            ]
+        }
+    ],
+    "version": "2.2.0"
+}
