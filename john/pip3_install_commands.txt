@@ -1,0 +1,17 @@
+# These are the commands I used
+# Some may be unnecessary for you
+
+sudo apt update
+sudo apt install python3-pip
+pip3 --version
+sudo apt install python3-virtualenv
+virtualenv earth01
+source earth01/bin/activate
+
+# Virtual environment now activated
+
+pip3 install opencv-python3
+	# automatically installs numpy
+pip3 install matplotlib
+pip3 install --upgrade tensorflow
+pip3 install Keras
