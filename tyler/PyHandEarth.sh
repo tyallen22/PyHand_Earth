@@ -26,7 +26,7 @@ sudo apt install curl
 
 echo Downloading Model
 curl -c /tmp/cookies "https://drive.google.com/uc?export=download&id=18oXums8kjOF6iPw9iMwdXVlqqxswEiRm" > /tmp/intermezzo.html
-curl -L -b /tmp/cookies "https://drive.google.com$(cat /tmp/intermezzo.html | grep -Po 'uc-download-link" [^>]* href="\K[^"]*' | sed 's/\&amp;/\&/g')" > ~/Desktop/PyHand_Earth/john/test_run_02/pyearth_cnn_model_200612_1744.h5
+curl -L -b /tmp/cookies "https://drive.google.com$(cat /tmp/intermezzo.html | grep -Po 'uc-download-link" [^>]* href="\K[^"]*' | sed 's/\&amp;/\&/g')" > ~/Desktop/PyHand_Earth/tyler/testing/pyearth_cnn_model_200612_1744.h5
 
 #echo Downloading Python Project File - Won't work unless file is public
 #wget https://raw.githubusercontent.com/liujohnj/PyHand_Earth/master/john/test_run_02/hand_recognition_a.py
