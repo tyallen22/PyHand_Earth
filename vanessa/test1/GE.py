@@ -1,10 +1,10 @@
 import psutil
 import os
+import time
 
 def checkIfProcessRunning(processName):
-    '''
-    Check if there is any running process that contains the given name processName.
-    '''
+    
+    #Check if there is any running process that contains the given name processName.
     #Iterate over the all the running process
     for proc in psutil.process_iter():
         try:
@@ -16,19 +16,20 @@ def checkIfProcessRunning(processName):
     return False
 
 def startGE():
+
+    #Checking if Google Earth is already running
     if checkIfProcessRunning('google-earth'):
-    # print('Yes google-earth process was running')
-        try:
-            os.system("wmctrl -a Google Earth Pro")
-        except:
-            print('something went wrong')
+        #resize window
+        os.system("wmctrl -r 'Google Earth' -e 0,0,0,600,450")
+        
 
     else:
-        # print('No google-earth process was running')
+        #Start Google Earth if it is not already running and resize window
         os.system("nohup google-earth-pro &")
-        os.system("wmctrl -a Google Earth Pro")
-        # os.system("exit")
+        time.sleep(2)
+        os.system("wmctrl -r 'Google Earth' -e 0,0,0,600,450")
 
+#Basic commands for buttons
 def commands():
     print("q to quit s to start\n")
 
@@ -41,12 +42,15 @@ if __name__ == "__main__":
         choice = input("\ncommand: ")
 
         if choice in ("s", "q"):
-            if choice == "q":
-                os.system("pkill google")
-                break
 
+            #Closes Google Earth window
+            if choice == "q":
+                os.system("wmctrl -c 'Google Earth'")
+                break
+            
+            #Starts Google Earth
             elif choice == "s":
                 startGE()
 
-        else: 
-            print("invalid choice")
+        #else: 
+            #print("invalid choice")
