@@ -20,7 +20,10 @@ from PyQt5.QtCore import QTimer
 
 
 # import "helper" module, which must be present in same directory
-from ui2 import *
+###### 6/23 @ 12:07 A.M.#### CORRECTED MISTAKE BELOW.  SHOULD BE "from interface import *".
+###### interface is the other python program in the same directory ##########
+# from ui2 import *  <-----wrong!!!!  Sorry!
+from interface import *
 
 # import multiple modules used in earlier deep learning program
 import os
