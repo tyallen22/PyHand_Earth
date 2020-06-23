@@ -1,6 +1,11 @@
 #!/bin/bash
 echo Update Packages
 sudo apt update
+# Dependencies for PyQt
+sudo apt-get install python3-tk
+sudo apt install libxcb-xinerama0
+# Dependency for window control
+sudo apt-get install wmctrl
 
 echo Installing Google Earth
 cd ~
@@ -20,6 +25,9 @@ pip3 install opencv-python==4.2.0.34
 pip3 install matplotlib==3.2.2
 pip3 install --upgrade tensorflow==2.2.0
 pip3 install Keras==2.4.2
+pip3 install pyautogui==0.9.50
+pip3 install PyQt5
+pip3 install psutil==5.7.0
 
 echo Install Curl to handle Google Drive redirects
 sudo apt install curl
