@@ -4,6 +4,7 @@ import time
 
 def checkIfProcessRunning(processName):
     
+    #testing
     #Check if there is any running process that contains the given name processName.
     #Iterate over the all the running process
     for proc in psutil.process_iter():
