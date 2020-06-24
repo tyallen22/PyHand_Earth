@@ -33,14 +33,9 @@ class GoogleEarth():
             time.sleep(2)
             os.system("wmctrl -r 'Google Earth' -e 0,900,300,-1,-1")
 
-    #Enable this to constantly set Google Earth Pro window as focused window
-    #def set_window(self):
-         # Would probably work better if check for active window first, then set if not active
-    #    os.system("wmctrl -a Google Earth Pro")
-
-    #Basic commands for buttons
-    def commands(self):
-        print("q to quit s to start\n")
+#   #Basic commands for buttons
+#   def commands(self):
+#       print("q to quit s to start\n")
 
 
 #if __name__ == "__main__":

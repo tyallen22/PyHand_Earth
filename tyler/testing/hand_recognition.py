@@ -1,26 +1,9 @@
 """Stand-alone program that uses OpenCV to capture live webcam images
 and test TensorFlow model predictions using saved model"""
 
-#import os
-#import random
-#import time
-#from glob import glob
-
 import cv2
 import numpy as np
-#import matplotlib.pyplot as plt
-#from keras import preprocessing
-
-# %matplotlib inline
-
-#from keras.models import Sequential
-#from keras.layers.core import Activation, Dropout, Flatten, Dense
-#from keras.layers.convolutional import Convolution2D, MaxPooling2D
-#from keras.optimizers import Adam
 from keras.models import load_model
-
-#import pyautogui                        # For keyboard shortcuts
-#import pydirectinput                    # For keyboard shortcuts
 
 class HandRecognition(object):
 

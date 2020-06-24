@@ -1,15 +1,16 @@
-import time
+#import time
+import os
 import pyautogui
 
 class KeyboardCommands():
 
     def __init__(self):
-        self.current_command = ''
+        self.__current_command = ''
 
     def set_command(self, cmd):
-        self.current_command = cmd
+        self.__current_command = cmd
 
     def send_command(self):
         #time.sleep(1)
-        #print('HERE!' + self.current_command)
-        pyautogui.press(self.current_command)
+        os.system("wmctrl -a Google Earth Pro")
+        pyautogui.press(self.__current_command)
