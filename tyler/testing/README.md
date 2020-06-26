@@ -1,27 +1,29 @@
 # Current Status
 
-As of the latest push: 
-1) When the main.py file is run within the virtual environment it opens Google Earth, repositions it, starts the opencv window, and outputs commands.
+As of the latest push:
 
-2) When the qt_overlay.py file is run within the virtual environment, it opens a borderless window below the position of the Google Earth window.
+There are now two different versions:
+
+1) Old Version (Two seperate .py files need to be run in different command terminals)
+
+   - When the main.py file is run within the virtual environment it opens Google Earth, repositions it, starts the opencv window, and outputs commands.
+   
+   - When the qt_overlay.py file is run within the virtual environment, it opens a borderless window below the position of the Google Earth window.
+
+2) New Version (One main .py file runs everything in a Qt app)
+
+   - When main_qt.py runs, it starts a Qt application, opens Google Earth, and opens a Qt window below Google Earth with 6 hand gestures and a start and stop button
 
 ### To-Do
-1) Find a way to run the Qt window inside of main. Right now, there are problems in this area that need addressing:
+1) The Qt app has to be run in main, so here is what's left:
 
-   - I don't know if the Qt window can be run as a class instance. It may need to actually run in the main file which might be a problem since it can't be threaded.
-
-   - If Qt has to run in main, it has options for threading within the Qt app that can replace the current threading being used. I don't know how to use these yet.
-
-   - It may be possible to bring a seperate app into PyQt. I don't know for sure and I don't know how it would impact performance. It seems like the way to do this has changed a lot over time (different function names, etc.). As of right now, I think it is called QWidget::createWindowContainer(). 
-
-2) Right now, the program can repeatedly focus the Google Earth window if the comments on Start.set_window() and the set_window() function in main.py and google_earth.py are removed. However, there are a couple of issues:
-
-   - Just focusing Google Earth does not seem to be enough. A click has to be made inside the inner window that contains the globe. Using pyautogui.click() can be problematic because it takes over the mouse and seems to cause some unusual side effects. (If you decide to test this, there is a fail safe to get control back: move your mouse pointer to the corners of the screen)
-
-   - Repeatedly focusing the Google Earth window without any other sort of checks technically works but can cause issues running other windows. It may not be a big deal if everything is run in one go with main. However, this might impact clicking buttons on the Qt window.
-
-3) Qt UI elements still need to be implemented inside the borderless window:
+   - Since Qt has to run in main, there are multiple options for threading within the Qt app that can replace the current threading being used in main.py. QThreadPool, QRunnable, QThread, and QObject are what I'm looking at here. The regular Python Thread class can also be used but I haven't looked into this yet.
    
-   - Icons/Drawings should be added to the window to explain the commands. There should be enough horizontal space for this. I think each instruction can be inside a window (widget) that is a child of the main parent window below Google Earth.
+   - With everything inside a Qt app, it seems to want the opencv window to be rendered with PyQt. I don't know if this absolutely required but it is throwing a lot of errors for me. Here is a couple of things I found on this, so I think it should be possible to convert the window to PyQt:
+     - https://iosoft.blog/2019/07/31/rpi-camera-display-pyqt-opencv/
+     
+     - https://stackoverflow.com/questions/44404349/pyqt-showing-video-stream-from-opencv
+
+2) Qt UI elements still needing to be implemented:
    
-   - A start/stop button needs to be added. The functionality shouldn't be too difficult once the Qt window is integrated with the other threads.
+   - Start/stop button needs to be functional. The functionality shouldn't be too difficult once the Qt window is integrated with the other threads.
