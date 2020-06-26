@@ -29,7 +29,7 @@ class GoogleEarth():
 
         else:
             #Start Google Earth if it is not already running and resize window
-            os.system("nohup google-earth-pro &")
+            os.system("nohup google-earth-pro </dev/null >/dev/null 2>&1 &")
             time.sleep(2)
             os.system("wmctrl -r 'Google Earth' -e 0,900,300,-1,-1")
 

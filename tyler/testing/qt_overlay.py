@@ -11,11 +11,7 @@ class MainWindow(QMainWindow):
         self.initUI()
 
     def initUI(self):
-        self.setWindowFlags(
-        #   QtCore.Qt.WindowStaysOnTopHint |
-            QtCore.Qt.FramelessWindowHint
-        #   QtCore.Qt.X11BypassWindowManagerHint
-            )
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.setGeometry(QtWidgets.QStyle.alignedRect(
             QtCore.Qt.LeftToRight, QtCore.Qt.AlignCenter,
             QtCore.QSize(900, 100),

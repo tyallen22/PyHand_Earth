@@ -1,6 +1,8 @@
 """Stand-alone program that uses OpenCV to capture live webcam images
 and test TensorFlow model predictions using saved model"""
-
+import os
+# Suppress TensorFlow info and warnings. Errors still displayed.
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import cv2
 import numpy as np
 from keras.models import load_model
@@ -10,6 +12,7 @@ class HandRecognition(object):
     def __init__(self):
         self.model = load_model('pyearth_cnn_model_200612_1744.h5')
         self.class_names = ['INDEX_UP', 'FIST', 'PALM', 'THUMB_LEFT', 'THUMB_RIGHT', 'FIVE_WIDE']
+        # For some reason for me VideoCapture(1) is needed when running this in a Qt app
         self.camera = cv2.VideoCapture(0)
         self.camera_height = 500
         self.width = 96
