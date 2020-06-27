@@ -2,6 +2,7 @@ import os
 import time
 import psutil
 import pyautogui
+import subprocess
 
 class GoogleEarth():
 
@@ -21,20 +22,19 @@ class GoogleEarth():
                 pass
         return False
 
+
     def start_google_earth(self):
 
         #Checking if Google Earth is already running
         if self.check_process_running('google-earth'):
             #resize window
-            os.system("wmctrl -r 'Google Earth' -e 0,900,300,-1,-1")
-            time.sleep(2)
+            start_google_earth()
 
         else:
             #Start Google Earth if it is not already running and resize window
             os.system("nohup google-earth-pro </dev/null >/dev/null 2>&1 &")
             time.sleep(2)
-            os.system("wmctrl -r 'Google Earth' -e 0,900,300,-1,-1")
-            time.sleep(2)
+            start_google_earth()
             
             sidebarCoords = pyautogui.locateOnScreen('clicked_sidebar.png')
 
@@ -50,6 +50,22 @@ class GoogleEarth():
                 pyautogui.moveTo(Coords)
                 pyautogui.dragRel(80,200, duration = 1)
                 pyautogui.click()
+
+def get_screen_resolution():
+    output = subprocess.Popen('xrandr | grep "\*" | cut -d" " -f4',shell=True, stdout=subprocess.PIPE).communicate()[0]
+    resolution = output.split()[0].split(b'x')     
+    return resolution
+
+def start_google_earth():
+    res = get_screen_resolution()
+    ge = []
+    ge.append(int((int(res[0])*(1/2))))
+    ge.append(int((int(res[1])*(2/3))))
+    res[0] = (int(res[0])/2)-(ge[0]/2)
+    res[1] = (int(res[1])/2)-(ge[1]/2)
+    comm = "wmctrl -r 'Google Earth' -e 0,"+str(int(res[0]))+","+str(int(res[1]))+","+str(ge[0])+","+str(ge[1])
+    os.system(comm)
+    time.sleep(2)
 
 #   #Basic commands for buttons
 #   def commands(self):
