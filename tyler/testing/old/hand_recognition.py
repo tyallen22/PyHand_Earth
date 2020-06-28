@@ -12,8 +12,20 @@ class HandRecognition(object):
     def __init__(self):
         self.model = load_model('pyearth_cnn_model_200612_1744.h5')
         self.class_names = ['INDEX_UP', 'FIST', 'PALM', 'THUMB_LEFT', 'THUMB_RIGHT', 'FIVE_WIDE']
+        
         # For some reason for me VideoCapture(1) is needed when running this in a Qt app
-        self.camera = cv2.VideoCapture(0)
+        try:
+            self.camera = cv2.VideoCapture(-1)
+            # This doesn't work. Always returns true even if camera is not found.
+            # Need a better way to handle camera not being found
+            if self.camera.isOpened:
+                pass
+            else:
+                raise ValueError
+        except ValueError:
+            print('No camera found!')
+            raise
+        
         self.camera_height = 500
         self.width = 96
         self.height = 96

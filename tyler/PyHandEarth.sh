@@ -3,9 +3,10 @@ echo Update Packages
 sudo apt update
 # Dependencies for PyQt
 sudo apt-get install python3-tk
-sudo apt install libxcb-xinerama0
-# Dependency for window control
+sudo apt-get install libxcb-xinerama0
+# Dependencies for window control
 sudo apt-get install wmctrl
+sudo apt-get install scrot
 
 echo Installing Google Earth
 cd ~
