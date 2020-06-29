@@ -2,7 +2,7 @@
 
 As of the latest push:
 
-There are now two different versions:
+There are two different versions:
 
 1) Old Version (Two seperate .py files need to be run in different command terminals)
 
@@ -13,17 +13,23 @@ There are now two different versions:
 2) New Version (One main .py file runs everything in a Qt app)
 
    - When main_qt.py runs, it starts a Qt application, opens Google Earth, and opens a Qt window below Google Earth with 6 hand gestures and a start and stop button
+   
+   - When start is pressed, it opens a Qt window with the opencv window inside of it. The commands from this window are recognized and sent as outputs to the Google Earth window
+   
+   - When stop is pressed, it freezes the Qt opencv window video feed on the last captured frame and stops sending commands to the Google Earth window
+   
+   - When start is pressed again, video processing resumes and commands start being sent to the Google Earth window again
 
 ### To-Do
-1) The Qt app has to be run in main, so here is what's left:
 
-   - Since Qt has to run in main, there are multiple options for threading within the Qt app that can replace the current threading being used in main.py. QThreadPool, QRunnable, QThread, and QObject are what I'm looking at here. The regular Python Thread class can also be used but I haven't looked into this yet.
-   
-   - With everything inside a Qt app, it seems to want the opencv window to be rendered with PyQt. I don't know if this absolutely required but it is throwing a lot of errors for me. Here is a couple of things I found on this, so I think it should be possible to convert the window to PyQt:
-     - https://iosoft.blog/2019/07/31/rpi-camera-display-pyqt-opencv/
-     
-     - https://stackoverflow.com/questions/44404349/pyqt-showing-video-stream-from-opencv
+1) The commands don't seem to be issuing as quickly to the Google Earth window now. This is likely a side effect of the opencv window now running inside the Qt app using the Qt timers.
 
-2) Qt UI elements still needing to be implemented:
-   
-   - Start/stop button needs to be functional. The functionality shouldn't be too difficult once the Qt window is integrated with the other threads.
+2) The Qt window wrapping the opencv video capture doesn't look quite the same as it did before. At the very least, the inner box is cut off but there may be other details I've missed because I don't know the opencv stuff as well. Some details of this window need adjustment.
+
+2) Need an exit button that closes the entire app down. Probably trivial to implement.
+
+3) Gesture icons should be replaced with icons that match the gestures we are using. Once we are settled on the final gestures, we just need to replace the current placeholder images and add labels to each image.
+
+4) Right now the Qt opencv window opens in a random location. This should probably be opened in a location using an offset from the screen calculations.
+
+5) There should be error checking for when the camera is not located. It sends an opencv warning when the camera is not found by index, so we might need to throw an exception based on this warning.

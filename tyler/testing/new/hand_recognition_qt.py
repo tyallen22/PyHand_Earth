@@ -109,7 +109,7 @@ class QtCapture(QtWidgets.QWidget):
         if type_1_pred > 0.90:
             self.output = 'up'
         elif type_2_pred > 0.90:
-            self.output = '='
+            self.output = '+'
         elif type_3_pred > 0.90:
             pass
         elif type_4_pred > 0.90:

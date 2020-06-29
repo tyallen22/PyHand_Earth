@@ -39,7 +39,7 @@ class Worker(QRunnable):
 
 class MainWindow(QMainWindow):
 
-    def __init__(self, ge, *args, **kwargs):
+    def __init__(self, earth, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
         # Instantiate KeyboardCommands class
         self.commands = KeyboardCommands()
@@ -49,47 +49,61 @@ class MainWindow(QMainWindow):
         self.capture = None
         # Make Qt gesture icon window frameless
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-        # Set geometry of Qt gesture icon window 
+        # Get resolution, window size, and offsets for positioning
+        self.earth_commands = earth
+        self.new_position = self.earth_commands.get_screen_position()
+        self.new_resolution = self.earth_commands.get_screen_resolution()
+        self.title_bar_offset = 35
+        # Set geometry of Qt gesture icon window
         # (this window is the parent of all other Qt windows)
-        new_position = ge.get_screen_position()
         self.setGeometry(QtWidgets.QStyle.alignedRect(
             QtCore.Qt.LeftToRight, QtCore.Qt.AlignCenter,
             # Width of Qt gesture window based on width of GE window
-            QtCore.QSize(new_position[0], 100),
+            QtCore.QSize(self.new_position[0], 100),
             QtWidgets.qApp.desktop().availableGeometry()))
-
-        # self.setWindowTitle("Google Earth Hand Recognition")
 
         # Initialize threadpool object
         self.threadpool = QThreadPool()
         # Create layouts for organizing Qt gesture icon window
         self.layout = QVBoxLayout()
+        self.layout1 = QHBoxLayout()
         self.layout2 = QHBoxLayout()
         self.layout3 = QHBoxLayout()
 
         self.label_dict = dict()
+        self.image_list = ['index_up.png', 'fist.png', 'palm.png', 'thumb_left.png', \
+                           'thumb_right.png', 'five_wide.png']
+        self.title_list = ['Move Up', 'Zoom In', 'Placeholder', 'Move Left', 'Move Right', 'Zoom Out']
         # Create and add 6 labels containing hand gesture image
         # to layout2. Need different images for all gestures
         for x in range(0, 6):
 
             self.label = QLabel(self)
-            self.pixmap = QPixmap('click.png')
+            self.pixmap = QPixmap(self.image_list[x])
             self.pixmap = self.pixmap.scaledToWidth(100)
             self.label.setPixmap(self.pixmap)
 
             self.label_dict[x] = self.label
 
             self.layout2.addWidget(self.label_dict[x])
+
+            self.label_title = QLabel(self.title_list[x])
+            self.layout1.addWidget(self.label_title)
         # Create start button and connect it to start_opencv function
-        self.start_button = QPushButton("Start")
+        self.start_button = QPushButton("Start Video")
         self.start_button.pressed.connect(self.start_opencv)
         # Create stop button and connect it to stop_opencv function
-        self.stop_button = QPushButton("Stop")
+        self.stop_button = QPushButton("Stop Video")
         self.stop_button.pressed.connect(self.stop_opencv)
+        # Create stop button and connect it to stop_opencv function
+        self.exit_button = QPushButton("Exit Program")
+        self.exit_button.pressed.connect(self.exit)
         # Add start and stop button to layout 3
         self.layout3.addWidget(self.start_button)
         self.layout3.addWidget(self.stop_button)
+        self.layout3.addWidget(self.exit_button)
         # Add layout 2 and 3 to layout 1
+        self.layout.addLayout(self.layout1)
         self.layout.addLayout(self.layout2)
         self.layout.addLayout(self.layout3)
         # Create widget to hold layout 1, add layout to widget
@@ -105,6 +119,12 @@ class MainWindow(QMainWindow):
             self.capture = QtCapture()
             self.capture.setParent(self)
             self.capture.setWindowFlags(QtCore.Qt.Tool)
+            self.capture.setWindowTitle("OpenCV Recording Window")
+            self.capture.setGeometry(self.new_resolution[0] + self.new_position[0], \
+                              self.new_resolution[1] + self.title_bar_offset, \
+                              (self.new_resolution[0] * 1/4), (self.new_resolution[1] * 1/4))
+            # self.capture.move(self.new_resolution[0] + self.new_position[0], \
+            #                   self.new_resolution[1] + self.title_bar_offset)
         # Start video capture and show it
         self.capture.start()
         self.capture.show()
@@ -119,6 +139,11 @@ class MainWindow(QMainWindow):
         self.capture.stop()
         self.stop_commands = True
 
+    def exit(self):
+        self.stop_commands = True
+        self.earth_commands.close_earth()
+        QtCore.QCoreApplication.instance().quit()
+
     def send_output(self):
         # While stop command false, get commands from hand_recognition
         # and send commands to Google Earth window
@@ -129,28 +154,14 @@ class MainWindow(QMainWindow):
             if self.stop_commands:
                 break
 
-# class Output():
-
-#     def __init__(self, cv_window):
-#         self.commands = KeyboardCommands()
-#         self.cv_window = cv_window
-
-#     def send_output(self):
-#         try:
-#             while True:
-#                 self.commands.set_command(self.cv_window.get_output())
-#                 self.commands.send_command()
-#         except KeyboardInterrupt:
-#             pass
-
 def main():
     # Create QApp
     app = QApplication(sys.argv)
-    
+
     # Start Google Earth
     google_earth = GoogleEarth()
     google_earth.initialize_google_earth()
-    
+
     # Create Main Window and show it
     window = MainWindow(google_earth)
     window.show()
@@ -158,9 +169,14 @@ def main():
     # Reposition main window
     screen_pos = google_earth.get_screen_position()
     screen_res = google_earth.get_screen_resolution()
-    # Window moved to x position of GE window, 
+
+    x_position = int(screen_res[0])
+    y_position = int(screen_res[1]) + int(screen_pos[1])
+    title_offset = 38
+
+    # Window moved to x position of GE window,
     # y position of GE window + height of GE window
-    window.move(screen_res[0], screen_res[1] + screen_pos[1])
+    window.move(x_position, y_position + title_offset)
 
     app.exec_()
 

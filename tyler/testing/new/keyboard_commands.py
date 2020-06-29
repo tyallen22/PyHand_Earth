@@ -15,8 +15,12 @@ class KeyboardCommands():
         pyautogui.press(self.__current_command)
 
     def locate_image(self, img):
-        location = pyautogui.locateOnScreen(img)
-        return location
+        try:
+            location = pyautogui.locateOnScreen(img)
+            return location
+        except OSError:
+            print(img + " Not Found")
+            return False
 
     def click_with_location(self, location):
         pyautogui.click(location)
