@@ -24,9 +24,14 @@ There are two different versions:
 
 ### To-Do
 
-1) The Qt window wrapping the opencv video capture doesn't look quite the same as it did before. At the very least, the inner box is cut off but there may be other details I've missed because I don't know the opencv stuff as well.
-   - The window is now being resized programatically based on the resolution of the monitor. The roi window will likely need to be resized in the same way.
+1) **Please test out the gesture recognition in the Qt opencv window, especially if you are more familiar with the opencv/image recognition stuff.** The Qt opencv window and the corresponding ROI frame are now resized based on monitor resolution. I don't know if this impacted the accuracy of the hand recognition.
 
-2) The commands don't seem to be issuing as quickly to the Google Earth window now. This is likely a side effect of the opencv window now running inside the Qt app using the Qt timers.
+2) **Please look at the positioning of all three windows on your monitors.** All three windows now resize and position themselves based on monitor resolution. They look reasonable on my 2560x1440 and 1920x1080 monitors but further testing is needed.
+
+   - The Google Earth window should be in the middle of the screen 
+   
+   - The gesture icon window should be flush below the Google Earth window with the same width 
+   
+   - The opencv window should be in the top right next to the Google Earth window and should be a reasonable size for your monitor (not massive, not too tiny, clearly visible)
 
 3) There should be error checking for when the camera is not located. It sends an opencv warning when the camera is not found by index, so we might need to throw an exception based on this warning.
