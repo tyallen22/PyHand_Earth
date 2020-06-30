@@ -71,9 +71,10 @@ class MainWindow(QMainWindow):
         self.layout3 = QHBoxLayout()
 
         self.label_dict = dict()
-        self.image_list = ['index_up.png', 'fist.png', 'palm.png', 'thumb_left.png', \
+        self.image_list = ['index_up.png', 'fist.png', 'palm.png', 'thumb_left.png',
                            'thumb_right.png', 'five_wide.png']
-        self.title_list = ['Move Up', 'Zoom In', 'Placeholder', 'Move Left', 'Move Right', 'Zoom Out']
+        self.title_list = ['Move Up', 'Zoom In', 'Placeholder', 'Move Left', 'Move Right',
+                           'Zoom Out']
         # Create and add 6 labels containing hand gesture image
         # to layout2. Need different images for all gestures
         for x in range(0, 6):
@@ -120,9 +121,9 @@ class MainWindow(QMainWindow):
             self.capture.setParent(self)
             self.capture.setWindowFlags(QtCore.Qt.Tool)
             self.capture.setWindowTitle("OpenCV Recording Window")
-            self.capture.setGeometry(int(self.new_resolution[0] + self.new_position[0]), 
-                                     int(self.new_resolution[1] + self.title_bar_offset), 
-                                     -1,-1)
+            self.capture.setGeometry(int(self.new_resolution[0] + self.new_position[0]),
+                                     int(self.new_resolution[1] + self.title_bar_offset),
+                                     -1, -1)
 
         # Start video capture and show it
         self.capture.start()

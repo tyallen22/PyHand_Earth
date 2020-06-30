@@ -32,7 +32,7 @@ class QtCapture(QtWidgets.QWidget):
 
         self.text_start = (int(self.frame_width * 1/32), int(self.frame_height * 1/4))
 
-        self.fps = 24
+        self.fps = 30
         self.camera = cv2.VideoCapture(-1)
 
         self.video_frame = QLabel(self)
@@ -56,15 +56,14 @@ class QtCapture(QtWidgets.QWidget):
         frame = cv2.flip(frame, 1)
 
         # Rescaling camera output
-        # aspect = frame.shape[1] / float(frame.shape[0])
-        # res = int(aspect * self.camera_height) # landscape orientation - wide image
         frame = cv2.resize(frame, (self.frame_width, self.frame_height))
 
         # Add rectangle
         cv2.rectangle(frame, self.rectangle_start, self.rectangle_end, (240, 100, 0), 2)
 
         # Get ROI
-        roi = frame[self.rectangle_start[1]:self.rectangle_end[1], self.rectangle_start[0]:self.rectangle_end[0]]
+        roi = frame[self.rectangle_start[1]:self.rectangle_end[1],
+                    self.rectangle_start[0]:self.rectangle_end[0]]
 
         # Parse BRG to RGB
         roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)

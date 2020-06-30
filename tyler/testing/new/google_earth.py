@@ -41,6 +41,11 @@ class GoogleEarth():
         if sidebar_coords:
             self.keyboard_commands.click_with_location(sidebar_coords)
             time.sleep(2)
+
+            # These don't need to be executed immediately after the toolbar is disabled
+            # now because the user has to click start before commands start being sent.
+            # Possibly move this to after user has clicked start video???
+
             # self.keyboard_commands.drag_mouse(80, 200, 1)
             # self.keyboard_commands.click_without_location()
 
@@ -49,8 +54,6 @@ class GoogleEarth():
             sidebar_coords = self.keyboard_commands.locate_image('unclicked_sidebar.png')
             if sidebar_coords:
                 self.keyboard_commands.move_mouse_to_coords(sidebar_coords)
-                # self.keyboard_commands.drag_mouse(80, 200, 1)
-                # self.keyboard_commands.click_without_location()
 
     def start_google_earth(self):
         self.set_screen_resolution()
@@ -64,12 +67,6 @@ class GoogleEarth():
         output = subprocess.Popen('xrandr | grep "\*" | cut -d" " -f4', shell=True, stdout=subprocess.PIPE).communicate()[0]
         self.resolution = output.split()[0].split(b'x')
 
-        # if (int(self.resolution[0])) <= 1920:
-        #     self.screen_position.append(int((int(self.resolution[0])*(1/2))))
-        #     self.screen_position.append(int((int(self.resolution[1])*(2/3))))
-        #     self.resolution[0] = (int(self.resolution[0])/2)-(self.screen_position[0]/2)
-        #     self.resolution[1] = (int(self.resolution[1])/2)-(self.screen_position[1]/2)
-        # else:
         self.screen_position.append(int((int(self.resolution[0])*(2/5))))
         self.screen_position.append(int((int(self.resolution[1])*(2/5))))
         self.resolution[0] = (int(self.resolution[0])/2)-(self.screen_position[0]/2)
