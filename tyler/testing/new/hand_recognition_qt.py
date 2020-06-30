@@ -14,11 +14,23 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 class QtCapture(QtWidgets.QWidget):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, earth, *args, **kwargs):
         super(QtCapture, self).__init__(*args, **kwargs)
 
         self.model = load_model('pyearth_cnn_model_200612_1744.h5')
         self.class_names = ['INDEX_UP', 'FIST', 'PALM', 'THUMB_LEFT', 'THUMB_RIGHT', 'FIVE_WIDE']
+
+        self.earth_commands = earth
+        self.new_position = self.earth_commands.get_screen_position()
+        self.new_resolution = self.earth_commands.get_screen_resolution()
+
+        self.frame_width = int(self.new_resolution[0] * 3/4)
+        self.frame_height = int(self.new_resolution[1] * 7/8)
+
+        self.rectangle_start = (int(self.frame_width * 1/2), int(self.frame_height * 1/8))
+        self.rectangle_end = (int(self.frame_width * 31/32), int(self.frame_height * 7/8))
+
+        self.text_start = (int(self.frame_width * 1/32), int(self.frame_height * 1/4))
 
         self.fps = 24
         self.camera = cv2.VideoCapture(-1)
@@ -43,16 +55,16 @@ class QtCapture(QtWidgets.QWidget):
 
         frame = cv2.flip(frame, 1)
 
-        # # Rescaling camera output
+        # Rescaling camera output
         # aspect = frame.shape[1] / float(frame.shape[0])
         # res = int(aspect * self.camera_height) # landscape orientation - wide image
-        # frame = cv2.resize(frame, (res, self.camera_height))
+        frame = cv2.resize(frame, (self.frame_width, self.frame_height))
 
         # Add rectangle
-        cv2.rectangle(frame, (300, 75), (650, 425), (240, 100, 0), 2)
+        cv2.rectangle(frame, self.rectangle_start, self.rectangle_end, (240, 100, 0), 2)
 
         # Get ROI
-        roi = frame[75+2:425-2, 300+2:650-2]
+        roi = frame[self.rectangle_start[1]:self.rectangle_end[1], self.rectangle_start[0]:self.rectangle_end[0]]
 
         # Parse BRG to RGB
         roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
@@ -68,32 +80,32 @@ class QtCapture(QtWidgets.QWidget):
 
         # Add text
         type_1_text = '{}: {}%'.format(self.class_names[0], int(type_1_pred*100))
-        cv2.putText(frame, type_1_text, (70, 170),
+        cv2.putText(frame, type_1_text, self.text_start,
                     cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
         # Add text
         type_2_text = '{}: {}%'.format(self.class_names[1], int(type_2_pred*100))
-        cv2.putText(frame, type_2_text, (70, 200),
+        cv2.putText(frame, type_2_text, (self.text_start[0], self.text_start[1] + 30),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
         # Add text
         type_3_text = '{}: {}%'.format(self.class_names[2], int(type_3_pred*100))
-        cv2.putText(frame, type_3_text, (70, 230),
+        cv2.putText(frame, type_3_text, (self.text_start[0], self.text_start[1] + 60),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
         # Add text
         type_4_text = '{}: {}%'.format(self.class_names[3], int(type_4_pred*100))
-        cv2.putText(frame, type_4_text, (70, 260),
+        cv2.putText(frame, type_4_text, (self.text_start[0], self.text_start[1] + 90),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
         # Add text
         type_5_text = '{}: {}%'.format(self.class_names[4], int(type_5_pred*100))
-        cv2.putText(frame, type_5_text, (70, 290),
+        cv2.putText(frame, type_5_text, (self.text_start[0], self.text_start[1] + 120),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
         # Add text
         type_6_text = '{}: {}%'.format(self.class_names[5], int(type_6_pred*100))
-        cv2.putText(frame, type_6_text, (70, 320),
+        cv2.putText(frame, type_6_text, (self.text_start[0], self.text_start[1] + 150),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
         # Show the frame

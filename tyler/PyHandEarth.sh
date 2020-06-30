@@ -4,13 +4,18 @@ sudo apt update
 # Dependencies for PyQt
 sudo apt-get install python3-tk
 sudo apt-get install libxcb-xinerama0
+# Needed for python3 header files, psutil?
+sudo apt-get install python3-dev
 # Dependencies for window control
 sudo apt-get install wmctrl
 sudo apt-get install scrot
+# Needed for venv on Ubuntu, for some reason
+sudo apt-get install python3-venv
 
 echo Installing Google Earth
 cd ~
-mkdir google-earth && cd google-earth
+mkdir google-earth
+cd google-earth
 wget https://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb
 sudo dpkg -i google-earth-stable*.deb
 
@@ -31,7 +36,7 @@ pip3 install PyQt5
 pip3 install psutil==5.7.0
 
 echo Install Curl to handle Google Drive redirects
-sudo apt install curl
+sudo apt-get install curl
 
 echo Downloading Model
 curl -c /tmp/cookies "https://drive.google.com/uc?export=download&id=18oXums8kjOF6iPw9iMwdXVlqqxswEiRm" > /tmp/intermezzo.html

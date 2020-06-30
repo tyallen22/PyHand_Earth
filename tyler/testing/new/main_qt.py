@@ -116,15 +116,14 @@ class MainWindow(QMainWindow):
         # If opencv window not initialized,
         if not self.capture:
             # Instantiate QtCapture class, set parent and window flags
-            self.capture = QtCapture()
+            self.capture = QtCapture(self.earth_commands)
             self.capture.setParent(self)
             self.capture.setWindowFlags(QtCore.Qt.Tool)
             self.capture.setWindowTitle("OpenCV Recording Window")
-            self.capture.setGeometry(self.new_resolution[0] + self.new_position[0], \
-                              self.new_resolution[1] + self.title_bar_offset, \
-                              (self.new_resolution[0] * 1/4), (self.new_resolution[1] * 1/4))
-            # self.capture.move(self.new_resolution[0] + self.new_position[0], \
-            #                   self.new_resolution[1] + self.title_bar_offset)
+            self.capture.setGeometry(int(self.new_resolution[0] + self.new_position[0]), 
+                                     int(self.new_resolution[1] + self.title_bar_offset), 
+                                     -1,-1)
+
         # Start video capture and show it
         self.capture.start()
         self.capture.show()
