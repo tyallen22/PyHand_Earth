@@ -22,7 +22,7 @@ class QtCapture(QtWidgets.QWidget):
 
         self.earth_commands = earth
         self.new_position = self.earth_commands.get_screen_position()
-        self.new_resolution = self.earth_commands.get_screen_resolution()
+        self.new_resolution = self.earth_commands.get_screen_resize()
 
         self.frame_width = int(self.new_resolution[0] * 3/4)
         self.frame_height = int(self.new_resolution[1] * 7/8)

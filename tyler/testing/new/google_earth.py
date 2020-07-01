@@ -1,6 +1,8 @@
+"""
+Implements the Google Earth class for interacting with Google Earth program.
+"""
 import os
 import time
-import subprocess
 import psutil
 from keyboard_commands import KeyboardCommands
 
@@ -11,18 +13,19 @@ class GoogleEarth():
 
     Attributes:
         keyboard_commands : Instantiates keyboard command class object for sending
-                            commands to Google Earth
+            commands to Google Earth
         screen_position (list) : Position values for moving and resizing windows based
-                                 on screen resolution
+            on screen resolution
         resolution (string) : Resolution of the current monitor
     """
-    def __init__(self):
+    def __init__(self, desktop_geometry):
         """
         Please see help(GoogleEarth) for more info
         """
         self.keyboard_commands = KeyboardCommands()
         self.screen_position = []
-        self.resolution = ''
+        self.screen_resize = []
+        self.desktop_geometry = desktop_geometry
 
     def check_process_running(self, process_name):
         """
@@ -34,6 +37,8 @@ class GoogleEarth():
         Returns:
         bool: Returns True if process found, else returns False
         """
+        # Check if there is any running process that contains the given name processName.
+        # Iterate over the all the running process
         for proc in psutil.process_iter():
             try:
                 if process_name.lower() in proc.name().lower():
@@ -65,24 +70,27 @@ class GoogleEarth():
         in the center of the screen with a size determined by the current screen resolution.
         """
         self.set_screen_resolution()
-        comm = "wmctrl -r 'Google Earth' -e 0," + str(int(self.resolution[0])) + "," + \
-                str(int(self.resolution[1])) + "," + str(self.screen_position[0]) + "," + \
-                str(self.screen_position[1])
+        comm = "wmctrl -r 'Google Earth' -e 0," + str(int(self.screen_position[0])) + "," + \
+                str(int(self.screen_position[1])) + "," + str(int(self.screen_resize[0])) + "," + \
+                str(int(self.screen_resize[1]))
         os.system(comm)
         time.sleep(2)
 
     def set_screen_resolution(self):
         """
-        Sets the current screen resolution and screen position.
+        Sets the Google Earth window resize and screen position based on monitor resolution.
         """
-        output = subprocess.Popen('xrandr | grep "\*" | cut -d" " -f4', shell=True,
-                                  stdout=subprocess.PIPE).communicate()[0]
-        self.resolution = output.split()[0].split(b'x')
+        #print(self.desktop_geometry.width(), self.desktop_geometry.height())
+        self.screen_resize.append(self.desktop_geometry.width() * (2/5))
+        self.screen_resize.append(self.desktop_geometry.height() * (2/5))
 
-        self.screen_position.append(int((int(self.resolution[0])*(2/5))))
-        self.screen_position.append(int((int(self.resolution[1])*(2/5))))
-        self.resolution[0] = (int(self.resolution[0])/2)-(self.screen_position[0]/2)
-        self.resolution[1] = (int(self.resolution[1])/2)-(self.screen_position[1]/2)
+        #print(self.screen_resize[0], self.screen_resize[1])
+
+        self.screen_position.append((self.desktop_geometry.width()/2)-(self.screen_resize[0]/2))
+        self.screen_position.append((self.desktop_geometry.height()/2)-(self.screen_resize[1]/2))
+
+        #print(self.screen_position[0], self.screen_position[1])
+
 
     def toggle_buttons_off(self):
         """
@@ -101,19 +109,18 @@ class GoogleEarth():
             self.keyboard_commands.click_with_location(sidebar_coords)
             time.sleep(2)
 
-    def get_screen_resolution(self):
+    def get_screen_resize(self):
         """
-        Returns the current screen resolution.
+        Returns the values used to resize the Google Earth window.
 
         Returns:
-            resolution (str) : Current monitor resolution.
+            resolution (str) : Current Google Earth window size.
         """
-        return self.resolution
+        return self.screen_resize
 
     def get_screen_position(self):
         """
-        Returns the current screen position markers based on current screen resolution. Used
-        for positioning windows.
+        Returns the Google Earth window X and Y positions.
 
         Returns:
             screen_position (list) : X and Y positions determined by current screen resolution.
