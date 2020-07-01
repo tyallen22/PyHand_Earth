@@ -89,7 +89,6 @@ class GoogleEarth():
         self.screen_position.append((self.desktop_geometry.width()/2)-(self.screen_resize[0]/2))
         self.screen_position.append((self.desktop_geometry.height()/2)-(self.screen_resize[1]/2))
 
-        #print(self.screen_position[0], self.screen_position[1])
 
 
     def toggle_buttons_off(self):

@@ -202,8 +202,11 @@ def main():
     # Create QApp
     app = QApplication(sys.argv)
 
-    # Download .h5 model
+    # Download Google Earth
     file_download = FileDownload()
+    file_download.get_google_earth()
+
+    # Download .h5 model
     file_download.get_drive_file()
 
     # Get desktop resolution
