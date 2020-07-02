@@ -3,6 +3,7 @@ import os
 import pyautogui
 
 class KeyboardCommands():
+    pyautogui.FAILSAFE = False
 
     def __init__(self):
         self.__current_command = ''
