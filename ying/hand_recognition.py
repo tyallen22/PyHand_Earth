@@ -1,5 +1,5 @@
-"""Stand-alone program that uses OpenCV to capture live webcam images
-and test TensorFlow model predictions using saved model"""
+'''Stand-alone program that uses OpenCV to capture live webcam images
+and test TensorFlow model predictions using saved model'''
 
 import cv2
 import numpy as np
@@ -8,8 +8,7 @@ from keras.models import load_model
 class HandRecognition(object):
 
     def __init__(self):
-        #self.model = load_model('pyearth_cnn_model_200612_1744.h5')
-        self.model = load_model('pyearth_cnn_model_new.h5')
+        self.model = load_model('pyearth_cnn_model_0712.h5')
         self.class_names = ['INDEX_UP', 'V_SIGN', 'THUMB_LEFT', 'THUMB_RIGHT', 'FIST', 'FIVE_WIDE', 'PALM', 'SHAKA', 'NOTHING']
         self.camera = cv2.VideoCapture(0)
         self.camera_height = 500
@@ -23,7 +22,7 @@ class HandRecognition(object):
             # Read a new frame
             _, frame = self.camera.read()
 
-            # Flip the frameq
+            # Flip the frame
             frame = cv2.flip(frame, 1)
 
             # Rescaling camera output
@@ -31,11 +30,17 @@ class HandRecognition(object):
             res = int(aspect * self.camera_height) # landscape orientation - wide image
             frame = cv2.resize(frame, (res, self.camera_height))
 
-            # Add rectangle
-            cv2.rectangle(frame, (300, 75), (650, 425), (240, 100, 0), 2)
+            # Set coordinates of the ROI
+            x1 = 270
+            y1 = 115
+            x2 = x1+336
+            y2 = y1+336
 
-            # Get ROI
-            roi = frame[75+2:425-2, 300+2:650-2]
+            # Draw the ROI
+            cv2.rectangle(frame, (x1-2, y1-2), (x2+2, y2+2), (0, 255, 0), 2)
+
+            # Extract the ROI
+            roi = frame[y1:y2, x1:x2]
 
             # Parse BGR to RGB
             roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
@@ -43,11 +48,10 @@ class HandRecognition(object):
             # Resize
             roi = cv2.resize(roi, (self.width, self.height))
 
-            # Predict!
+            # Predict!
             roi_x = np.expand_dims(roi, axis=0)
 
             predictions = self.model.predict(roi_x)
-            print(predictions)
             INDEX_UP_pred, V_SIGN_pred, THUMB_LEFT_pred, THUMB_RIGHT_pred, FIST_pred, FIVE_WIDE_pred, PALM_pred, SHAKA_pred, NOTHING_pred = predictions[0]
 
             # Add text
@@ -95,11 +99,11 @@ class HandRecognition(object):
             cv2.putText(frame, NOTHING_text, (70, 380),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
-            # Show the frame
-            cv2.imshow("Test out", frame)
+            # Show the frame
+            cv2.imshow('Test out', frame)
 
             #=======================================================
-            # Below code section is for output to pautogui keyboard shortcuts
+            # Below code section is for output to pyautogui keyboard shortcuts
 
             if INDEX_UP_pred > 0.90:
                 self.output = 'up'
@@ -125,7 +129,7 @@ class HandRecognition(object):
             key = cv2.waitKey(1)
 
             # Quit camera if 'q' key is pressed
-            if key & 0xFF == ord("q"):
+            if key & 0xFF == ord('q'):
                 break
 
         self.camera.release()
@@ -133,3 +137,4 @@ class HandRecognition(object):
 
     def get_output(self):
         return self.output
+        

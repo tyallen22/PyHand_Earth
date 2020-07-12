@@ -25,36 +25,36 @@ class GoogleEarth():
         #Checking if Google Earth is already running
         if self.check_process_running('google-earth'):
             #resize window
-            os.system("wmctrl -r 'Google Earth' -e 0,900,300,-1,-1")
+            os.system('wmctrl -r "Google Earth" -e 0,900,300,-1,-1')
 
         else:
             #Start Google Earth if it is not already running and resize window
-            os.system("nohup google-earth-pro &")
+            os.system('nohup google-earth-pro &')
             time.sleep(2)
-            os.system("wmctrl -r 'Google Earth' -e 0,900,300,-1,-1")
+            os.system('wmctrl -r "Google Earth" -e 0,900,300,-1,-1')
 
     #Basic commands for buttons
     def commands(self):
-        print("q to quit s to start\n")
+        print('q to quit s to start\n')
 
 
-#if __name__ == "__main__":
+#if __name__ == '__main__':
 #
 #    while True:
 #
 #       commands()
-#       choice = input("\ncommand: ")
+#       choice = input('\ncommand: ')
 #
-#        if choice in ("s", "q"):
+#        if choice in ('s', 'q'):
 #
 #            #Closes Google Earth window
-#            if choice == "q":
-#                os.system("wmctrl -c 'Google Earth'")
+#            if choice == 'q':
+#                os.system('wmctrl -c 'Google Earth'')
 #                break
 #
 #           #Starts Google Earth
-#            elif choice == "s":
+#            elif choice == 's':
 #                start_google_earth()
 #
 #        #else:
-#            #print("invalid choice")
+#            #print('invalid choice')

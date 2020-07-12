@@ -1,3 +1,5 @@
+# IGNORE THIS FILE FOR NOW
+
 import os
 import numpy as np
 from glob import glob
@@ -5,13 +7,14 @@ from keras import preprocessing
 from keras.preprocessing.image import ImageDataGenerator
 from keras.utils import to_categorical
 from keras.models import Sequential
-from keras.layers import BatchNormalization
+#from keras.layers import BatchNormalization
 from keras.layers.core import Activation, Dropout, Flatten, Dense
-from keras.layers.convolutional import Convolution2D, MaxPooling2D
-from keras.optimizers import Adam
-from tensorflow.keras import regularizers
+from keras.layers.convolutional import Convolution2D, MaxPooling2D, ZeroPadding2D
+from keras.optimizers import Adam, SGD
+#from tensorflow.keras import regularizers
 #from tensorflow.keras.callbacks import ReduceLROnPlateau
 from sklearn.model_selection import train_test_split
+from matplotlib.pyplot import imread, imshow, subplots, show
 
 class_names = ['INDEX_UP', 'V_SIGN', 'THUMB_LEFT', 'THUMB_RIGHT', 'FIST', 'FIVE_WIDE', 'PALM', 'SHAKA', 'NOTHING']
 
@@ -86,48 +89,37 @@ y_train_one_hot = to_categorical(y_train, num_classes=len(class_names))
 # CONFIGURE CONVOLUTIONAL NETWORK
 # =======================================================
 
-# Default parameters
-# conv_1 = 16
-# conv_1_drop = 0.2
-# conv_2 = 32
-# conv_2_drop = 0.2
-# dense_1_n = 1024
-# dense_1_drop = 0.2
-# dense_2_n = 512
-# dense_2_drop = 0.2
-# lr = 0.001
 
 def build_model():
     model = Sequential()
 
-    # First four layers with depth 32
     # model.add(Convolution2D(32, (3, 3),
     #                         input_shape=(width, height, color_channels),
     #                         activation='relu',
     #                         padding='same',
     #                         kernel_regularizer=regularizers.l2(0.01)))
-    model.add(Convolution2D(32, (3, 3),
+    model.add(Convolution2D(16, (3, 3),
                             input_shape=(width, height, color_channels),
-                            activation='relu',
                             padding='same'))
+    model.add(Activation('relu'))
+    model.add(Convolution2D(32, (3, 3), activation='relu', padding='same'))
+    model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Convolution2D(64, (3, 3), activation='relu', padding='same'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Convolution2D(64, (3, 3), activation='relu', padding='same'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    #model.add(Dropout(0.2))
+    model.add(Dropout(0.5))
     
     # Flatten cube-like format of neurons into one row
     model.add(Flatten())
-
-    #model.add(Dropout(0.25))
         
     # Dense FC layer
-    model.add(Dense(128, activation='relu'))
-    #model.add(BatchNormalization())
-    #model.add(Dropout(0.5))
+    model.add(Dense(128))
 
-    model.add(Dense(len(class_names), activation='softmax'))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.5))
+
+    #model.add(BatchNormalization())
+
+    model.add(Dense(len(class_names)))
+    model.add(Activation('softmax'))
 
     model.compile(loss='categorical_crossentropy',
                   optimizer=Adam(learning_rate=0.001),
@@ -139,11 +131,12 @@ def build_model():
 np.random.seed(1)  # For reproducibility
 
 model = build_model()
+#model = test_build()
 model.summary()
 
 #reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=5, verbose=1, min_lr=0.001)
 #model.fit(X, y_train_one_hot, batch_size=32, epochs=20, validation_split=0.2, callbacks=[reduce_lr])
 
-model.fit(X, y_train_one_hot, batch_size=32, epochs=20, validation_split=0.2, verbose=1)
+model.fit(X, y_train_one_hot, batch_size=1, epochs=20, validation_split=0.15, verbose=1)
 
 model.save('pyearth_cnn_model_new.h5')

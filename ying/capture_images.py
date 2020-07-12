@@ -9,20 +9,46 @@ from keras import preprocessing
 
 class_names = ['INDEX_UP', 'V_SIGN', 'THUMB_LEFT', 'THUMB_RIGHT', 'FIST', 'FIVE_WIDE', 'PALM', 'SHAKA', 'NOTHING']
 
+# Create directories to store image data
+for counter, gesture in enumerate(class_names):
+    training = f'./data/training/{counter+1}-{gesture}'
+    os.makedirs(training, exist_ok = True)
+    validation = f'./data/validation/{counter+1}-{gesture}'
+    os.makedirs(validation, exist_ok = True)
+    testing = f'./data/testing/{counter+1}-{gesture}'
+    os.makedirs(testing, exist_ok = True)
+
 camera = cv2.VideoCapture(0)
-camera_height = 500
-raw_frames_INDEX_UP = []
-raw_frames_V_SIGN = []
-raw_frames_THUMB_LEFT = []
-raw_frames_THUMB_RIGHT = []
-raw_frames_FIST = []
-raw_frames_FIVE_WIDE = []
-raw_frames_PALM = []
-raw_frames_SHAKA = []
-raw_frames_NOTHING = []
+mode = 'training'
+# bg = None
+# accumWeight = 0.5
+# num_frames = 0
+# calibrated = False
 
 
-# Captures hand gesture images to create dataset
+# # Find running average over background
+# def run_avg(frame, accumWeight):
+#     global bg
+#     if bg is None:
+#         bg = frame.copy().astype('float')
+#     cv2.accumulateWeighted(frame, bg, accumWeight)
+
+
+# # Segment region of hand in frame
+# def segment(frame, threshold=30):
+#     global bg
+#     diff = cv2.absdiff(bg.astype('uint8'), frame)
+#     th = cv2.threshold(diff, threshold, 255, cv2.THRESH_BINARY)[1]
+#     contours, _ = cv2.findContours(th.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+#     if len(contours) == 0:
+#         return
+#     else:
+#         segmented = max(contours, key=cv2.contourArea)
+#         return th, segmented
+
+
+# Capture hand gesture images to create dataset
 while(True):
     # Read a new frame
     _, frame = camera.read()
@@ -30,113 +56,91 @@ while(True):
     # Flip the frame
     frame = cv2.flip(frame, 1)
 
-    # Rescale camera output
-    aspect = frame.shape[1] / float(frame.shape[0])
-    res = int(aspect * camera_height) # landscape orientation - wide image
-    frame = cv2.resize(frame, (res, camera_height))
+    # # Clone a copy
+    # clone = frame.copy()
 
-    # Add rectangle
-    cv2.rectangle(frame, (300, 75), (650, 425), (0, 255, 0), 2)
+    # Text for instructions
+    cv2.putText(frame, 'Press "a" to capture images for TRAINING SET', (10, 30), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 0), 1)
+    cv2.putText(frame, 'Press "b" to capture images for VALIDATION SET', (10, 50), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 0), 1)
+    cv2.putText(frame, 'Press "c" to capture images for TESTING SET', (10, 70), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 0), 1)
+    cv2.putText(frame, 'Press "q" to quit', (10, 90), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 0), 1)
+    cv2.putText(frame, 'Press "1-9" to capture images for corresponding hand gesture', (10, 110), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 0), 1)
+
+    cv2.putText(frame, f'{mode.upper()} SET', (10, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 255, 255), 2)
+
+    # Get count of existing images and print to the screen
+    count = {}
+    y_coord = 180
+    for counter, gesture in enumerate(class_names):
+        count.update({gesture : len(os.listdir(f'./data/{mode}/{counter+1}-{gesture}'))})
+        cv2.putText(frame, f'{counter+1} - {gesture}: {count[gesture]}', (10, y_coord), cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1)
+        y_coord += 20
+
+    # Set coordinates of the ROI
+    x1 = 270
+    y1 = 115
+    x2 = x1+336
+    y2 = y1+336
+
+    # Draw the ROI
+    cv2.rectangle(frame, (x1-2, y1-2), (x2+2, y2+2), (0, 255, 0), 2)
+
+    # Extract the ROI
+    roi = frame[y1:y2, x1:x2]
+    roi = cv2.resize(roi, (96, 96))
 
     # Show the frame
-    cv2.imshow("Capturing frames", frame)
+    cv2.imshow('Capturing dataset', frame)
 
+    # # Image processing
+    # roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+    # roi = cv2.GaussianBlur(roi, (7, 7), 0)
+
+    # if num_frames < 30:
+    #     run_avg(roi, accumWeight)
+    # else:
+    #     hand = segment(roi)
+        
+    #     if hand is not None:
+    #         th, segmented = hand
+    #         cv2.imshow('Thresholded', th)
+
+    # # Draw segmented hand
+    # cv2.rectangle(clone, (x1, y1), (x2, y2), (0, 255, 0), 2)
+    
+    # num_frames += 1
+
+    # cv2.imshow('ROI', roi)
+
+    # Data collection
     key = cv2.waitKey(1)
 
-    # Wait for user to press a key, at which point program captures static webcam image
-    #  and classifies it under one of the n types of classifications depending on which
-    #  number user types.  Camera quits collection process if user presses 'q' key.
-    #  Program outputs a message indicating number key user typed.
-    if key & 0xFF == ord("q"):
+    if key & 0xFF == ord('q'):
         break
-    elif key & 0xFF == ord("1"):
-        raw_frames_INDEX_UP.append(frame)
-        print('1 key pressed - saved INDEX_UP frame')
-    elif key & 0xFF == ord("2"):
-        raw_frames_V_SIGN.append(frame)
-        print('2 key pressed - Saved V_SIGN frame')
-    elif key & 0xFF == ord("3"):
-        raw_frames_THUMB_LEFT.append(frame)
-        print('3 key pressed - Saved THUMB_LEFT frame')
-    elif key & 0xFF == ord("4"):
-        raw_frames_THUMB_RIGHT.append(frame)
-        print('4 key pressed - Saved THUMB_RIGHT frame')
-    elif key & 0xFF == ord("5"):
-        raw_frames_FIST.append(frame)
-        print('5 key pressed - Saved FIST frame')
-    elif key & 0xFF == ord("6"):
-        raw_frames_FIVE_WIDE.append(frame)
-        print('6 key pressed - Saved FIVE_WIDE frame') 
-    elif key & 0xFF == ord("7"):
-        raw_frames_PALM.append(frame)
-        print('7 key pressed - Saved PALM frame')    
-    elif key & 0xFF == ord("8"):
-        raw_frames_SHAKA.append(frame)
-        print('8 key pressed - Saved SHAKA frame')    
-    elif key & 0xFF == ord("9"):
-        raw_frames_NOTHING.append(frame)
-        print('9 key pressed - Saved NOTHING frame')       
+    elif key & 0xff == ord('a'):
+        mode = 'training'
+    elif key & 0xff == ord('b'):
+        mode = 'validation'
+    elif key & 0xff == ord('c'):
+        mode = 'testing'
+    elif key & 0xFF == ord('1'):
+        cv2.imwrite(f'./data/{mode}/1-{class_names[0]}/{str(count[class_names[0]])}.png', roi)
+    elif key & 0xFF == ord('2'):
+        cv2.imwrite(f'./data/{mode}/2-{class_names[1]}/{str(count[class_names[1]])}.png', roi)
+    elif key & 0xFF == ord('3'):
+        cv2.imwrite(f'./data/{mode}/3-{class_names[2]}/{str(count[class_names[2]])}.png', roi)
+    elif key & 0xFF == ord('4'):
+        cv2.imwrite(f'./data/{mode}/4-{class_names[3]}/{str(count[class_names[3]])}.png', roi)
+    elif key & 0xFF == ord('5'):
+        cv2.imwrite(f'./data/{mode}/5-{class_names[4]}/{str(count[class_names[4]])}.png', roi)
+    elif key & 0xFF == ord('6'):
+        cv2.imwrite(f'./data/{mode}/6-{class_names[5]}/{str(count[class_names[5]])}.png', roi)
+    elif key & 0xFF == ord('7'):
+        cv2.imwrite(f'./data/{mode}/7-{class_names[6]}/{str(count[class_names[6]])}.png', roi) 
+    elif key & 0xFF == ord('8'):
+        cv2.imwrite(f'./data/{mode}/8-{class_names[7]}/{str(count[class_names[7]])}.png', roi)
+    elif key & 0xFF == ord('9'):
+        cv2.imwrite(f'./data/{mode}/9-{class_names[8]}/{str(count[class_names[8]])}.png', roi)
 
 camera.release()
 cv2.destroyAllWindows()
-
-save_width = 399
-save_height = 399
-
-# for gesture in class_names:
-#     name = './data/images_' + gesture
-#     os.makedirs(name, exist_ok = True)
-
-for i, frame in enumerate(raw_frames_INDEX_UP):
-    roi = frame[75+2:425-2, 300+2:650-2]
-    roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
-    roi = cv2.resize(roi, (save_width, save_height))
-    cv2.imwrite('./data/images_INDEX_UP/{}.png'.format(i+90), cv2.cvtColor(roi,cv2.COLOR_BGR2RGB))
-
-for i, frame in enumerate(raw_frames_V_SIGN):
-    roi = frame[75+2:425-2, 300+2:650-2]
-    roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
-    roi = cv2.resize(roi, (save_width, save_height))
-    cv2.imwrite('./data/images_V_SIGN/{}.png'.format(i+90), cv2.cvtColor(roi,cv2.COLOR_BGR2RGB))
-    
-for i, frame in enumerate(raw_frames_THUMB_LEFT):
-    roi = frame[75+2:425-2, 300+2:650-2]
-    roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
-    roi = cv2.resize(roi, (save_width, save_height))
-    cv2.imwrite('./data/images_THUMB_LEFT/{}.png'.format(i+90), cv2.cvtColor(roi,cv2.COLOR_BGR2RGB))
-
-for i, frame in enumerate(raw_frames_THUMB_RIGHT):
-    roi = frame[75+2:425-2, 300+2:650-2]
-    roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
-    roi = cv2.resize(roi, (save_width, save_height))
-    cv2.imwrite('./data/images_THUMB_RIGHT/{}.png'.format(i+90), cv2.cvtColor(roi,cv2.COLOR_BGR2RGB))
-    
-for i, frame in enumerate(raw_frames_FIST):
-    roi = frame[75+2:425-2, 300+2:650-2]
-    roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
-    roi = cv2.resize(roi, (save_width, save_height))
-    cv2.imwrite('./data/images_FIST/{}.png'.format(i+90), cv2.cvtColor(roi,cv2.COLOR_BGR2RGB))
-    
-for i, frame in enumerate(raw_frames_FIVE_WIDE):
-    roi = frame[75+2:425-2, 300+2:650-2]
-    roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
-    roi = cv2.resize(roi, (save_width, save_height))
-    cv2.imwrite('./data/images_FIVE_WIDE/{}.png'.format(i+90), cv2.cvtColor(roi,cv2.COLOR_BGR2RGB))
-
-for i, frame in enumerate(raw_frames_PALM):
-    roi = frame[75+2:425-2, 300+2:650-2]
-    roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
-    roi = cv2.resize(roi, (save_width, save_height))
-    cv2.imwrite('./data/images_PALM/{}.png'.format(i+90), cv2.cvtColor(roi,cv2.COLOR_BGR2RGB))
-
-for i, frame in enumerate(raw_frames_SHAKA):
-    roi = frame[75+2:425-2, 300+2:650-2]
-    roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
-    roi = cv2.resize(roi, (save_width, save_height))
-    cv2.imwrite('./data/images_SHAKA/{}.png'.format(i+90), cv2.cvtColor(roi,cv2.COLOR_BGR2RGB))
-
-for i, frame in enumerate(raw_frames_NOTHING):
-    roi = frame[75+2:425-2, 300+2:650-2]
-    roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
-    roi = cv2.resize(roi, (save_width, save_height))
-    cv2.imwrite('./data/images_NOTHING/{}.png'.format(i+90), cv2.cvtColor(roi,cv2.COLOR_BGR2RGB))

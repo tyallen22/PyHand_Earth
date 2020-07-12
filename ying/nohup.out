@@ -1,0 +1,12 @@
+Google Earth has caught signal 11.
+
+
+
+We apologize for the inconvenience, but Google Earth has crashed.
+ This is a bug in the program, and should never happen under normal
+ circumstances. A bug report and debugging data have been written
+ to this text file:
+
+    /home/yingxu/.googleearth/crashlogs/crashlog-5f033cec.txt
+
+Please include this file if you submit a bug report to Google.

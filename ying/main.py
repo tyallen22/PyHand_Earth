@@ -10,7 +10,7 @@ def send_output():
         commands.set_command(cv_window.get_output())
         commands.send_command()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     # Instantiate classes
     google_earth = GoogleEarth()
     cv_window = HandRecognition()
