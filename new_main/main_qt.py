@@ -185,7 +185,7 @@ class MainWindow(QMainWindow):
         """
         # While stop command false, get commands from hand_recognition
         # and send commands to Google Earth window
-        while True:
+        while self.capture.get_output() != 'none':
             self.commands.set_command(self.capture.get_output())
             self.commands.send_command()
 
