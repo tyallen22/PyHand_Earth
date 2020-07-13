@@ -25,8 +25,8 @@ class FileDownload():
         """
         Please see help(FileDownload) for more info
         """
-        self.model_url = 'https://drive.google.com/uc?export=download&id=18oXums8kjOF6iPw9iMwdXVlqqxswEiRm'
-        self.model_name = '/pyearth_cnn_model_200612_1744.h5'
+        self.model_url = 'https://drive.google.com/file/d/1A3eDzy-1cJiadcE8arPyZJepxoRfoZGl/view?usp=sharing'
+        self.model_name = '/pyearth_cnn_model_0712.h5'
         self.earth_url = 'https://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb'
         self.earth_name = '/google-earth-stable_current_amd64.deb'
         self.current_directory = ''
@@ -51,11 +51,11 @@ class FileDownload():
         # from this warning and stores it.
         for key, value in self.response.cookies.items():
             if key.startswith('download_warning'):
-                token = value
+                self.token = value
                 break
         # If the token exists, uses token to confirm large download.
-        if token:
-            params = {'confirm' : token}
+        if self.token:
+            params = {'confirm' : self.token}
             self.response = self.session.get(self.model_url, params=params, stream=True)
         # Opens current directory and saves model to it
         with open(self.current_directory, "wb") as my_file:

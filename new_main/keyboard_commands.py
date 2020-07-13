@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import time
+>>>>>>> Alter code to adjust to second model
 import os
 import pyautogui
 
