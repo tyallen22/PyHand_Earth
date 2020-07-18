@@ -174,7 +174,7 @@ class MainWindow(QMainWindow):
         # Send last command as space to prevent continuous command in GE
         self.commands.set_command("space")
         self.commands.send_command()
-        self.commands.end_command()
+        #self.commands.end_command()
         # Stop timer in hand_recognition, set flag to kill worker thread
         self.capture.stop()
         self.capture.hide()
@@ -188,7 +188,7 @@ class MainWindow(QMainWindow):
         # Make sure a single command is sent and ended before exit
         self.commands.set_command("space")
         self.commands.send_command()
-        self.commands.end_command()
+        #self.commands.end_command()
         # Stop threads, close GE, and exit application
         self.stop_commands = True
         self.google_earth.close_earth()
