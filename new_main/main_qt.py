@@ -20,7 +20,7 @@ class MainWindow(QMainWindow):
     """
     This is a class that creates a PyQt5 window containing start, stop, and exit buttons as
     well as gesture icons. The window is the main window for our program.
-
+    
     Attributes:
         commands: Instantiate keyboard command class object for sending commands to Google Earth
         stop_commands (bool) : Flag for enabling and disabling worker thread
@@ -39,10 +39,10 @@ class MainWindow(QMainWindow):
         label : Instantiate QLabel class, labels used to hold gesture icon images and text
         button : Instantiate QPushButton class, buttons used to start, stop, and exit program
         widget : Insantiate QWidget class, contains and displays labels and buttons
-
+    
     Args:
         earth : GoogleEarth class object
-
+   
     """
     def __init__(self, earth, *args, **kwargs):
         """
@@ -78,7 +78,7 @@ class MainWindow(QMainWindow):
         self.layout1 = QHBoxLayout()
         self.layout2 = QHBoxLayout()
         self.layout3 = QHBoxLayout()
-
+        
         self.label_dict = dict()
         self.image_list = ['index_up.png', 'fist.png', 'palm.png', 'thumb_left.png',
                            'thumb_right.png', 'five_wide.png']
@@ -87,12 +87,12 @@ class MainWindow(QMainWindow):
         # Create and add 6 labels containing hand gesture image to layout2 and 6
         # labels with the gesture descriptions to layout1
         for num in range(0, 6):
-
+            
             self.label = QLabel(self)
             self.pixmap = QPixmap(self.image_list[num])
             self.pixmap = self.pixmap.scaledToWidth(100)
             self.label.setPixmap(self.pixmap)
-
+            
             self.label_title = QLabel(self.title_list[num])
             # Modify left margins for images and labels positioning
             if num == 0:
@@ -104,13 +104,13 @@ class MainWindow(QMainWindow):
             else:
                 self.label.setContentsMargins(15, 0, 0, 0)
                 self.label_title.setContentsMargins(25, 0, 0, 0)
-
+            
             self.label_dict[num] = self.label
-
+            
             self.layout2.addWidget(self.label_dict[num])
-
+            
             self.layout1.addWidget(self.label_title)
-
+        
         # Create start button and connect it to start_opencv function
         self.start_button = QPushButton("Start Video")
         self.start_button.setStyleSheet("background-color: silver")
@@ -136,7 +136,7 @@ class MainWindow(QMainWindow):
         self.widget.setLayout(self.layout)
         # Set widget with layouts as central widget
         self.setCentralWidget(self.widget)
-
+    
     def create_opencv(self):
         # Create QtCapture window for rendering opencv window
         self.capture = QtCapture(self.google_earth)
@@ -146,7 +146,7 @@ class MainWindow(QMainWindow):
         self.capture.setGeometry(int(self.window_resize[0] + self.new_position[0]),
                                  int(self.window_resize[1] + self.title_bar_offset),
                                  -1, -1)
-
+    
     def start_opencv(self):
         """
         Slot function for the start button signal. Instantiates Qt opencv window if not created,
@@ -164,7 +164,7 @@ class MainWindow(QMainWindow):
         self.stop_commands = False
         self.worker_one = Worker(self.send_output)
         self.threadpool.start(self.worker_one)
-
+    
     def stop_opencv(self):
         """
         Slot function for stop button signal. Stops Qt timer in opencv loop and sets
@@ -175,10 +175,10 @@ class MainWindow(QMainWindow):
         self.commands.set_command("space")
         self.commands.send_command()
         #self.commands.end_command()
-        # Stop timer in hand_recognition, set flag to kill worker thread
+         # Stop timer in hand_recognition, set flag to kill worker thread
         self.capture.stop()
         self.capture.hide()
-
+    
     def exit(self):
         """
         Slot function for exit button signal. Sets stop_commands to True to kill worker
@@ -193,7 +193,7 @@ class MainWindow(QMainWindow):
         self.stop_commands = True
         self.google_earth.close_earth()
         QtCore.QCoreApplication.instance().quit()
-
+    
     def send_output(self):
         """
         Gets current output from opencv window and sends the command to the Google Earth window
@@ -206,7 +206,7 @@ class MainWindow(QMainWindow):
         while True:
             self.commands.set_command(self.capture.get_output())
             self.commands.send_command()
-
+            
             if self.stop_commands:
                 return
 
@@ -219,39 +219,40 @@ def main():
     """
     # Create QApp
     app = QApplication(sys.argv)
-
+    
     # Download and install Google Earth
     file_download = FileDownload()
     file_download.get_google_earth()
-
+    
     # Download .h5 model
     file_download.get_drive_file()
-
+    
     # Get desktop resolution
     desktop_widget = app.desktop()
     desktop_geometry = desktop_widget.screenGeometry()
-
+    
     # Start Google Earth
     google_earth = GoogleEarth(desktop_geometry)
     google_earth.initialize_google_earth()
-
+    
     # Create Main Window and show it
     window = MainWindow(google_earth)
     window.show()
-
+    
     # Reposition main window
     screen_pos = google_earth.get_screen_position()
     screen_res = google_earth.get_screen_resize()
-
+    
     x_position = int(screen_pos[0])
     y_position = int(screen_res[1]) + int(screen_pos[1])
     title_offset = 38
-
+    
     # Window moved to x position of GE window,
     # y position of GE window + height of GE window
     window.move(x_position, y_position + title_offset)
-
+    
     app.exec_()
 
 if __name__ == '__main__':
     main()
+    
