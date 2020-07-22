@@ -7,13 +7,13 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QHBoxLayout, QLabel, \
      QPushButton, QWidget, QApplication
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import QThreadPool
+from PyQt5.QtCore import QThreadPool, QStateMachine, QState
 
 from keyboard_commands import KeyboardCommands
 from google_earth import GoogleEarth
-from hand_recognition_qt import QtCapture
+from capture_window import QtCapture
 from file_download import FileDownload
-from worker import Worker
+from command_thread import CommandThread
 
 class MainWindow(QMainWindow):
     """
@@ -54,6 +54,8 @@ class MainWindow(QMainWindow):
         self.stop_commands = False
         # Will hold hand_recognition QtCapture class
         self.capture = None
+        # Will hold thread for issuing GE commands
+        self.command_thread = None
         # Make Qt gesture icon window frameless
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         # Get resolution, window size, and offsets for positioning
@@ -68,7 +70,8 @@ class MainWindow(QMainWindow):
             # Width of Qt gesture window based on width of GE window
             QtCore.QSize(int(self.window_resize[0]), 100),
             QtWidgets.qApp.desktop().availableGeometry()))
-
+        # Create empty worker object
+        self.worker_one = None
         # Initialize threadpool object
         self.threadpool = QThreadPool()
         # Create layouts for organizing Qt gesture icon window
@@ -78,8 +81,8 @@ class MainWindow(QMainWindow):
         self.layout3 = QHBoxLayout()
 
         self.label_dict = dict()
-        self.image_list = ['images/index_up.png', 'images/fist.png', 'images/palm.png', 'images/thumb_left.png',
-                           'images/thumb_right.png', 'images/five_wide.png']
+        self.image_list = ['index_up.png', 'fist.png', 'palm.png', 'thumb_left.png',
+                           'thumb_right.png', 'five_wide.png']
         self.title_list = ['Move Up', 'Zoom In', 'Placeholder', 'Move Left', 'Move Right',
                            'Zoom Out']
         # Create and add 6 labels containing hand gesture image to layout2 and 6
@@ -108,12 +111,13 @@ class MainWindow(QMainWindow):
             self.layout2.addWidget(self.label_dict[num])
 
             self.layout1.addWidget(self.label_title)
+
         # Create start button and connect it to start_opencv function
-        self.start_button = QPushButton("Start Video")
+        self.start_button = QPushButton("Start Gesture Navigation")
         self.start_button.setStyleSheet("background-color: silver")
         self.start_button.pressed.connect(self.start_opencv)
         # Create stop button and connect it to stop_opencv function
-        self.stop_button = QPushButton("Stop Video")
+        self.stop_button = QPushButton("Stop Gesture Navigation")
         self.stop_button.setStyleSheet("background-color: silver")
         self.stop_button.pressed.connect(self.stop_opencv)
         # Create stop button and connect it to stop_opencv function
@@ -140,34 +144,47 @@ class MainWindow(QMainWindow):
         then starts and shows the window. Once the window is opened, starts worker thread to send
         commands to Google Earth.
         """
-        # If opencv window not initialized,
+        # If opencv window not created, create it
         if not self.capture:
-            # Instantiate QtCapture class, set parent and window flags
-            self.capture = QtCapture(self.google_earth)
-            self.capture.setParent(self)
-            self.capture.setWindowFlags(QtCore.Qt.Tool)
-            self.capture.setWindowTitle("OpenCV Recording Window")
-            self.capture.setGeometry(int(self.window_resize[0] + self.new_position[0]),
-                                     int(self.window_resize[1] + self.title_bar_offset),
-                                     -1, -1)
-
+            self.create_opencv()
+        else:
+            self.capture = None
+            self.create_opencv()
         # Start video capture and show it
-        self.capture.start()
         self.capture.show()
-        # Set stop command flag, create worker attached to send_output
-        # function, start worker as new thread
-        self.stop_commands = False
-        worker_one = Worker(self.send_output)
-        self.threadpool.start(worker_one)
+        # If command thread exists, remove it
+        if self.command_thread:
+            self.command_thread = None
+        # Start command thread for sending commands to GE
+        self.command_thread = CommandThread(self.capture, self.commands)
+        self.command_thread.start()
+
+    def create_opencv(self):
+        # Create QtCapture window for rendering opencv window
+        self.capture = QtCapture(self.google_earth)
+        self.capture.setParent(self.widget)
+        self.capture.setWindowFlags(QtCore.Qt.Tool)
+        self.capture.setWindowTitle("OpenCV Recording Window")
+        self.capture.setGeometry(int(self.window_resize[0] + self.new_position[0]),
+                                 int(self.window_resize[1] + self.title_bar_offset),
+                                 -1, -1)
 
     def stop_opencv(self):
         """
         Slot function for stop button signal. Stops Qt timer in opencv loop and sets
         stop_commands to True to kill worker thread.
         """
-        # Stop timer in hand_recognition, set flag to kill worker thread
-        self.capture.stop()
-        self.stop_commands = True
+        # Set flag to kill GE command thread
+        self.command_thread.end_thread()
+        # If capture object exists, end thread, release camera, and close window
+        if self.capture:
+            self.capture.stop_thread()
+            self.capture.delete()
+            self.capture.setParent(None)
+        # Send last command as space to prevent continuous command in GE
+        self.commands.set_command("space")
+        self.commands.send_command()
+        self.commands.end_command()
 
     def exit(self):
         """
@@ -175,22 +192,15 @@ class MainWindow(QMainWindow):
         thread, then calls close_earth to close Google Earth window, and finally terminates
         the QApplication.
         """
-        self.stop_commands = True
+        # Make sure a single command is sent and ended before exit
+        self.commands.set_command("space")
+        self.commands.send_command()
+        self.commands.end_command()
+        # Stop threads, close GE, and exit application
+        if self.capture:
+            self.capture.stop_thread()
         self.google_earth.close_earth()
         QtCore.QCoreApplication.instance().quit()
-
-    def send_output(self):
-        """
-        Gets current output from opencv window and sends the command to the Google Earth window
-        """
-        # While stop command false, get commands from hand_recognition
-        # and send commands to Google Earth window
-        while True:
-            self.commands.set_command(self.capture.get_output())
-            self.commands.send_command()
-
-            if self.stop_commands:
-                break
 
 def main():
     """

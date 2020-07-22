@@ -96,13 +96,13 @@ class GoogleEarth():
         Toggles two toolbars in Google Earth that cause problems when sending commands
         to the Google Earth window.
         """
-        sidebar_coords = self.keyboard_commands.locate_image('images/close.png')
+        sidebar_coords = self.keyboard_commands.locate_image('close.png')
 
         if sidebar_coords:
             self.keyboard_commands.click_with_location(sidebar_coords)
             time.sleep(2)
 
-        sidebar_coords = self.keyboard_commands.locate_image('images/clicked_sidebar.png')
+        sidebar_coords = self.keyboard_commands.locate_image('clicked_sidebar.png')
 
         if sidebar_coords:
             self.keyboard_commands.click_with_location(sidebar_coords)
