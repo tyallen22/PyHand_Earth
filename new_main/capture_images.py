@@ -18,7 +18,7 @@ for counter, gesture in enumerate(class_names):
     testing = f'./data/testing/{counter+1}-{gesture}'
     os.makedirs(testing, exist_ok = True)
 
-camera = cv2.VideoCapture(-1)
+camera = cv2.VideoCapture(2)
 mode = 'training'
 # bg = None
 # accumWeight = 0.5
