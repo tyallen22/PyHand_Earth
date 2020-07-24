@@ -202,6 +202,34 @@ class MainWindow(QMainWindow):
         self.google_earth.close_earth()
         QtCore.QCoreApplication.instance().quit()
 
+<<<<<<< HEAD
+||||||| 8b4a22b9
+    def send_output(self):
+        """
+        Gets current output from opencv window and sends the command to the Google Earth window
+        """
+        # While stop command false, get commands from hand_recognition
+        # and send commands to Google Earth window
+        while True:
+            self.commands.set_command(self.capture.get_output())
+            self.commands.send_command()
+
+            if self.stop_commands:
+                break
+=======
+    def send_output(self):
+        """
+        Gets current output from opencv window and sends the command to the Google Earth window
+        """
+        # While stop command false, get commands from hand_recognition
+        # and send commands to Google Earth window
+        while self.capture.get_output() != 'none':
+            self.commands.set_command(self.capture.get_output())
+            self.commands.send_command()
+
+            if self.stop_commands:
+                break
+>>>>>>> 58f9f9d7960b32958f6a32b2a8fc7973a37ad788
 
 def main():
     """

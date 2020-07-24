@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+||||||| 8b4a22b9
+#import time
+=======
+import time
+>>>>>>> 58f9f9d7960b32958f6a32b2a8fc7973a37ad788
 import os
 import pyautogui
 
@@ -12,6 +18,7 @@ class KeyboardCommands():
 
     def send_command(self):
         os.system("wmctrl -a Google Earth Pro")
+<<<<<<< HEAD
         if self.__current_command == 'tilt_up':
             pyautogui.keyDown('shift')
             pyautogui.keyDown('up')
@@ -31,6 +38,26 @@ class KeyboardCommands():
             pyautogui.keyUp('down')
         else:
             pyautogui.keyUp(self.__current_command)
+||||||| 8b4a22b9
+        pyautogui.press(self.__current_command)
+=======
+        if self.__current_command == 'tilt_up':
+            pyautogui.keyDown('shift')
+            pyautogui.keyDown('up')
+            time.sleep(1)
+            pyautogui.keyUp('up')
+            pyautogui.keyUp('shift')
+        elif self.__current_command == 'tilt_down':
+            pyautogui.keyDown('shift')
+            pyautogui.keyDown('down')
+            time.sleep(1)
+            pyautogui.keyUp('down')
+            pyautogui.keyUp('shift')
+        else:
+            pyautogui.keyDown(self.__current_command)
+            time.sleep(2)
+            pyautogui.keyUp(self.__current_command)
+>>>>>>> 58f9f9d7960b32958f6a32b2a8fc7973a37ad788
 
     def locate_image(self, img):
         try:

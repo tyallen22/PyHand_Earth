@@ -2,6 +2,7 @@
 <a  href="https://pypi.org/project/PyHand-Earth"><img  src="https://i.ibb.co/X8KY0Ry/TopImg.png"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
   
 
+<<<<<<< HEAD
 # PyHand-Earth 
 
   
@@ -190,3 +191,10 @@ $ python3 main_qt.py
 -  **[MIT license](http://opensource.org/licenses/mit-license.php)**
 
 - Copyright 2020 © 
+||||||| 8b4a22b9
+To test the second model, switch to "ying/testing-expanded-model" branch in the new_main folder. Some code is tweaked and the model would not work with the current master branch.
+=======
+To test the second model, switch to "ying/testing-expanded-model" branch in the new_main folder. Some code is tweaked and the model would not work with the current master branch.
+
+Please download the h5 model file at https://drive.google.com/file/d/1A3eDzy-1cJiadcE8arPyZJepxoRfoZGl/view?usp=sharing. file_download.py is not downloading correctly for me right now.
+>>>>>>> 58f9f9d7960b32958f6a32b2a8fc7973a37ad788
