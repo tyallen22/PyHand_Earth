@@ -55,7 +55,7 @@ class CaptureThread(QThread):
                             self.rectangle_start[0]:self.rectangle_end[0]]
 
                 # Parse BRG to RGB
-                roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
+                #roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB) #AHHHHHHHHHHHHHHHHHH
 
                 # Resize
                 roi = cv2.resize(roi, (self.width, self.height))
@@ -64,36 +64,51 @@ class CaptureThread(QThread):
                 roi_x = np.expand_dims(roi, axis=0)
 
                 predictions = self.model.predict(roi_x)
-                type_1_pred, type_2_pred, type_3_pred, type_4_pred, type_5_pred, type_6_pred = predictions[0]
+                INDEX_UP_pred, V_SIGN_pred, THUMB_LEFT_pred, THUMB_RIGHT_pred, FIST_pred, FIVE_WIDE_pred, PALM_pred, SHAKA_pred, NOTHING_pred = predictions[0]
 
                 # Add text
-                type_1_text = '{}: {}%'.format(self.class_names[0], int(type_1_pred*100))
-                cv2.putText(frame, type_1_text, self.text_start,
+                INDEX_UP_text = '{}: {}%'.format(self.class_names[0], int(INDEX_UP_pred*100))
+                cv2.putText(frame, INDEX_UP_text, self.text_start,
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
                 # Add text
-                type_2_text = '{}: {}%'.format(self.class_names[1], int(type_2_pred*100))
-                cv2.putText(frame, type_2_text, (self.text_start[0], self.text_start[1] + 30),
+                V_SIGN_text = '{}: {}%'.format(self.class_names[1], int(V_SIGN_pred*100))
+                cv2.putText(frame, V_SIGN_text, (self.text_start[0], self.text_start[1] + 30),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
                 # Add text
-                type_3_text = '{}: {}%'.format(self.class_names[2], int(type_3_pred*100))
-                cv2.putText(frame, type_3_text, (self.text_start[0], self.text_start[1] + 60),
+                THUMB_LEFT_text = '{}: {}%'.format(self.class_names[2], int(THUMB_LEFT_pred*100))
+                cv2.putText(frame, THUMB_LEFT_text, (self.text_start[0], self.text_start[1] + 60),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
                 # Add text
-                type_4_text = '{}: {}%'.format(self.class_names[3], int(type_4_pred*100))
-                cv2.putText(frame, type_4_text, (self.text_start[0], self.text_start[1] + 90),
+                THUMB_RIGHT_text = '{}: {}%'.format(self.class_names[3], int(THUMB_RIGHT_pred*100))
+                cv2.putText(frame, THUMB_RIGHT_text, (self.text_start[0], self.text_start[1] + 90),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
                 # Add text
-                type_5_text = '{}: {}%'.format(self.class_names[4], int(type_5_pred*100))
-                cv2.putText(frame, type_5_text, (self.text_start[0], self.text_start[1] + 120),
+                FIST_text = '{}: {}%'.format(self.class_names[4], int(FIST_pred*100))
+                cv2.putText(frame, FIST_text, (self.text_start[0], self.text_start[1] + 120),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
                 # Add text
-                type_6_text = '{}: {}%'.format(self.class_names[5], int(type_6_pred*100))
-                cv2.putText(frame, type_6_text, (self.text_start[0], self.text_start[1] + 150),
+                FIVE_WIDE_text = '{}: {}%'.format(self.class_names[5], int(FIVE_WIDE_pred*100))
+                cv2.putText(frame, FIVE_WIDE_text, (self.text_start[0], self.text_start[1] + 150),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
+
+                # Add text
+                PALM_text = '{}: {}%'.format(self.class_names[6], int(PALM_pred*100))
+                cv2.putText(frame, PALM_text, (self.text_start[0], self.text_start[1] + 180),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
+
+                # Add text
+                SHAKA_text = '{}: {}%'.format(self.class_names[7], int(SHAKA_pred*100))
+                cv2.putText(frame, SHAKA_text, (self.text_start[0], self.text_start[1] + 210),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
+
+                # Add text
+                NOTHING_text = '{}: {}%'.format(self.class_names[8], int(NOTHING_pred*100))
+                cv2.putText(frame, NOTHING_text, (self.text_start[0], self.text_start[1] + 240),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
                 # Convert frame to PyQt format
@@ -104,20 +119,26 @@ class CaptureThread(QThread):
                 self.updatePixmap.emit(pix)
 
                 #=======================================================
-                # Below code section is for output to pautogui keyboard shortcuts
-
-                if type_1_pred > 0.90:
+                # Below code section is for output to pyautogui keyboard shortcuts
+                
+                if INDEX_UP_pred > 0.90:
                     self.updateOutput.emit('up')
-                elif type_2_pred > 0.90:
-                    self.updateOutput.emit('=')
-                elif type_3_pred > 0.90:
-                    pass
-                elif type_4_pred > 0.90:
+                elif V_SIGN_pred > 0.90:
+                    self.updateOutput.emit('down')
+                elif THUMB_LEFT_pred > 0.90:
                     self.updateOutput.emit('left')
-                elif type_5_pred > 0.90:
+                elif THUMB_RIGHT_pred > 0.90:
                     self.updateOutput.emit('right')
-                elif type_6_pred > 0.90:
-                    self.updateOutput.emit('-')
+                elif FIST_pred > 0.90:
+                    self.updateOutput.emit('=')  # ZOOM IN
+                elif FIVE_WIDE_pred > 0.90:
+                    self.updateOutput.emit('-')  # ZOOM OUT
+                elif PALM_pred > 0.90:
+                    self.updateOutput.emit('tilt_up')
+                elif SHAKA_pred > 0.90:
+                    self.updateOutput.emit('tilt_down')
+                else:
+                    self.updateOutput.emit('none')
 
     def stop_thread(self):
         self.thread_running = False

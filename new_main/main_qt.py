@@ -202,22 +202,7 @@ class MainWindow(QMainWindow):
         self.google_earth.close_earth()
         QtCore.QCoreApplication.instance().quit()
 
-<<<<<<< HEAD
-=======
-    def send_output(self):
-        """
-        Gets current output from opencv window and sends the command to the Google Earth window
-        """
-        # While stop command false, get commands from hand_recognition
-        # and send commands to Google Earth window
-        while self.capture.get_output() != 'none':
-            self.commands.set_command(self.capture.get_output())
-            self.commands.send_command()
 
-            if self.stop_commands:
-                break
-
->>>>>>> Alter code to adjust to second model
 def main():
     """
     Main program loop. Instantiates QApplication and downloads machine learning model.
