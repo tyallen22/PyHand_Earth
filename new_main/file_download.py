@@ -25,16 +25,8 @@ class FileDownload():
         """
         Please see help(FileDownload) for more info
         """
-<<<<<<< HEAD
         self.model_url = 'https://drive.google.com/file/d/1k4QdDUidCckbX9bQ6JP-9oZ-dso74i8D/view?usp=sharing'
         self.model_name = '/pyearth_cnn_model_0724.h5'
-||||||| 8b4a22b9
-        self.model_url = 'https://drive.google.com/uc?export=download&id=18oXums8kjOF6iPw9iMwdXVlqqxswEiRm'
-        self.model_name = '/pyearth_cnn_model_200612_1744.h5'
-=======
-        self.model_url = 'https://drive.google.com/file/d/1A3eDzy-1cJiadcE8arPyZJepxoRfoZGl/view?usp=sharing'
-        self.model_name = '/pyearth_cnn_model_0712.h5'
->>>>>>> 58f9f9d7960b32958f6a32b2a8fc7973a37ad788
         self.earth_url = 'https://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb'
         self.earth_name = '/google-earth-stable_current_amd64.deb'
         self.current_directory = ''
