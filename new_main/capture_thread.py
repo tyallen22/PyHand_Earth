@@ -64,37 +64,65 @@ class CaptureThread(QThread):
                 roi_x = np.expand_dims(roi, axis=0)
 
                 predictions = self.model.predict(roi_x)
-                type_1_pred, type_2_pred, type_3_pred, type_4_pred, type_5_pred, type_6_pred = predictions[0]
+
+                type_1_pred, type_2_pred, type_3_pred, \
+                type_4_pred, type_5_pred, type_6_pred, \
+                type_7_pred, type_8_pred, type_9_pred = predictions[0]
 
                 # Add text
                 type_1_text = '{}: {}%'.format(self.class_names[0], int(type_1_pred*100))
+                
                 cv2.putText(frame, type_1_text, self.text_start,
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
                 # Add text
                 type_2_text = '{}: {}%'.format(self.class_names[1], int(type_2_pred*100))
+
                 cv2.putText(frame, type_2_text, (self.text_start[0], self.text_start[1] + 30),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
                 # Add text
                 type_3_text = '{}: {}%'.format(self.class_names[2], int(type_3_pred*100))
+
                 cv2.putText(frame, type_3_text, (self.text_start[0], self.text_start[1] + 60),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
                 # Add text
                 type_4_text = '{}: {}%'.format(self.class_names[3], int(type_4_pred*100))
+
                 cv2.putText(frame, type_4_text, (self.text_start[0], self.text_start[1] + 90),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
                 # Add text
                 type_5_text = '{}: {}%'.format(self.class_names[4], int(type_5_pred*100))
+
                 cv2.putText(frame, type_5_text, (self.text_start[0], self.text_start[1] + 120),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
                 # Add text
                 type_6_text = '{}: {}%'.format(self.class_names[5], int(type_6_pred*100))
+
                 cv2.putText(frame, type_6_text, (self.text_start[0], self.text_start[1] + 150),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
+
+                # Add text
+                type_7_text = '{}: {}%'.format(self.class_names[6], int(type_7_pred*100))
+
+                cv2.putText(frame, type_7_text, (self.text_start[0], self.text_start[1] + 180),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
+
+                # Add text
+                type_8_text = '{}: {}%'.format(self.class_names[7], int(type_8_pred*100))
+
+                cv2.putText(frame, type_8_text, (self.text_start[0], self.text_start[1] + 210),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
+
+                # Add text
+                type_9_text = '{}: {}%'.format(self.class_names[8], int(type_9_pred*100))
+
+                cv2.putText(frame, type_9_text, (self.text_start[0], self.text_start[1] + 240),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
+
 
                 # Convert frame to PyQt format
                 img = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
@@ -109,15 +137,21 @@ class CaptureThread(QThread):
                 if type_1_pred > 0.90:
                     self.updateOutput.emit('up')
                 elif type_2_pred > 0.90:
-                    self.updateOutput.emit('=')
+                    self.updateOutput.emit('down')
                 elif type_3_pred > 0.90:
-                    pass
-                elif type_4_pred > 0.90:
                     self.updateOutput.emit('left')
-                elif type_5_pred > 0.90:
+                elif type_4_pred > 0.90:
                     self.updateOutput.emit('right')
+                elif type_5_pred > 0.90:
+                    self.updateOutput.emit('=')
                 elif type_6_pred > 0.90:
                     self.updateOutput.emit('-')
+                elif type_7_pred > 0.90:
+                    pass
+                elif type_8_pred > 0.90:
+                    pass
+                elif type_9_pred > 0.90:
+                    pass
 
     def stop_thread(self):
         self.thread_running = False

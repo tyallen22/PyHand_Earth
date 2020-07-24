@@ -16,9 +16,13 @@ class QtCapture(QtWidgets.QWidget):
 
     def __init__(self, earth, *args, **kwargs):
         super(QtCapture, self).__init__(*args, **kwargs)
-
-        self.model = load_model('pyearth_cnn_model_200612_1744.h5')
-        self.class_names = ['INDEX_UP', 'FIST', 'PALM', 'THUMB_LEFT', 'THUMB_RIGHT', 'FIVE_WIDE']
+        
+        #Old Model Name
+        #self.model = load_model('pyearth_cnn_model_200612_1744.h5')
+        #New Model Name
+        self.model = load_model('pyearth_cnn_model_0724.h5')
+        self.class_names = ['INDEX_UP', 'PALM', 'THUMB_LEFT', 'THUMB_RIGHT', 'FIST', 'FIVE_WIDE',
+                            'V_SIGN', 'SHAKA', 'NOTHING']
         self.earth = earth
 
         self.video_frame = QLabel(self)
