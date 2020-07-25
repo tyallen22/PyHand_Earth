@@ -70,7 +70,7 @@ class GoogleEarth():
         in the center of the screen with a size determined by the current screen resolution.
         """
         self.set_screen_resolution()
-        comm = "wmctrl -r 'Google Earth' -e 0,0,0" + str(int(self.screen_resize[0])) + "," + \
+        comm = "wmctrl -r 'Google Earth' -e 0,0,0," + str(int(self.screen_resize[0])) + "," + \
                 str(int(self.screen_resize[1]))
         os.system(comm)
         time.sleep(2)
