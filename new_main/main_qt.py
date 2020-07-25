@@ -89,7 +89,7 @@ class MainWindow(QMainWindow):
         self.label_dict = dict()
         self.image_list = ['images/index_up.png', 'images/palm.png', 'images/thumb_left.png',
                            'images/thumb_right.png', 'images/fist.png', 'images/five_wide.png',
-                           'placeholder1.png', 'placeholder2.png']
+                           'images/placeholder1.png', 'images/placeholder2.png']
         self.title_list = ['Move Up', 'Move Down', 'Move Left', 'Move Right', 'Zoom In',
                            'Zoom Out', 'Tilt Up', 'Tilt Down']
         # Create and add 6 labels containing hand gesture image to layout2 and 6
@@ -107,22 +107,12 @@ class MainWindow(QMainWindow):
             self.label.setPixmap(self.pixmap)
 
             self.label_title = QLabel(self.title_list[num])
-            # Modify left margins for images and labels positioning
-            if num == 0:
-                self.label.setContentsMargins(25, 0, 0, 0)
-                self.label_title.setContentsMargins(35, 0, 0, 0)
-            elif num == 5:
-                self.label.setContentsMargins(25, 0, 0, 0)
-                self.label_title.setContentsMargins(35, 0, 0, 0)
-            else:
-                self.label.setContentsMargins(15, 0, 0, 0)
-                self.label_title.setContentsMargins(25, 0, 0, 0)
 
             self.label_dict[num] = self.label
 
-            self.layout2.addWidget(self.label_dict[num])
+            self.layout2.addWidget(self.label_dict[num], alignment=QtCore.Qt.AlignCenter)
 
-            self.layout1.addWidget(self.label_title)
+            self.layout1.addWidget(self.label_title, alignment=QtCore.Qt.AlignCenter)
 
         # Create start button and connect it to start_opencv function
         self.start_button = QPushButton("Start Gesture Navigation")
