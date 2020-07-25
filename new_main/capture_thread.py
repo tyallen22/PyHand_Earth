@@ -7,9 +7,10 @@ class CaptureThread(QThread):
     updatePixmap = pyqtSignal(QPixmap)
     updateOutput = pyqtSignal(str)
 
-    def __init__(self, earth, model, class_names, camera):
+    def __init__(self, earth, model, class_names, camera, desktop):
         super(CaptureThread, self).__init__()
 
+        self.desktop = desktop
         self.camera = camera
         self.output = ""
         self.thread_running = True
@@ -18,11 +19,13 @@ class CaptureThread(QThread):
         self.class_names = class_names
 
         self.earth_commands = earth
-        self.new_position = self.earth_commands.get_screen_position()
-        self.new_resolution = self.earth_commands.get_screen_resize()
 
-        self.frame_width = int(self.new_resolution[0] * 3/4)
-        self.frame_height = int(self.new_resolution[1] * 7/8)
+        self.new_width = desktop.width() * 1/2
+        self.new_height = desktop.height() * 3/4
+        self.toolbar_offset = 50
+
+        self.frame_width = int(self.new_width)
+        self.frame_height = int(self.new_height)
 
         self.rectangle_start = (int(self.frame_width * 1/2), int(self.frame_height * 1/8))
         self.rectangle_end = (int(self.frame_width * 31/32), int(self.frame_height * 7/8))
@@ -67,7 +70,9 @@ class CaptureThread(QThread):
 
                 type_1_pred, type_2_pred, type_3_pred, \
                 type_4_pred, type_5_pred, type_6_pred, \
-                type_7_pred, type_8_pred, type_9_pred = predictions[0]
+                type_7_pred, type_8_pred = predictions[0]
+
+                #, type_9_pred
 
                 # Add text
                 type_1_text = '{}: {}%'.format(self.class_names[0], int(type_1_pred*100))
@@ -117,11 +122,11 @@ class CaptureThread(QThread):
                 cv2.putText(frame, type_8_text, (self.text_start[0], self.text_start[1] + 210),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
-                # Add text
-                type_9_text = '{}: {}%'.format(self.class_names[8], int(type_9_pred*100))
+                # # Add text
+                # type_9_text = '{}: {}%'.format(self.class_names[8], int(type_9_pred*100))
 
-                cv2.putText(frame, type_9_text, (self.text_start[0], self.text_start[1] + 240),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
+                # cv2.putText(frame, type_9_text, (self.text_start[0], self.text_start[1] + 240),
+                #             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
 
                 # Convert frame to PyQt format
@@ -147,11 +152,11 @@ class CaptureThread(QThread):
                 elif type_6_pred > 0.90:
                     self.updateOutput.emit('-')
                 elif type_7_pred > 0.90:
-                    pass
+                    self.updateOutput.emit('n')
                 elif type_8_pred > 0.90:
-                    pass
-                elif type_9_pred > 0.90:
-                    pass
+                    self.updateOutput.emit('u')
+                # elif type_9_pred > 0.90:
+                #     pass
 
     def stop_thread(self):
         self.thread_running = False

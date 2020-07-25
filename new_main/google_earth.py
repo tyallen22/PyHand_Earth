@@ -70,8 +70,7 @@ class GoogleEarth():
         in the center of the screen with a size determined by the current screen resolution.
         """
         self.set_screen_resolution()
-        comm = "wmctrl -r 'Google Earth' -e 0," + str(int(self.screen_position[0])) + "," + \
-                str(int(self.screen_position[1])) + "," + str(int(self.screen_resize[0])) + "," + \
+        comm = "wmctrl -r 'Google Earth' -e 0,0,0" + str(int(self.screen_resize[0])) + "," + \
                 str(int(self.screen_resize[1]))
         os.system(comm)
         time.sleep(2)
@@ -81,15 +80,39 @@ class GoogleEarth():
         Sets the Google Earth window resize and screen position based on monitor resolution.
         """
         #print(self.desktop_geometry.width(), self.desktop_geometry.height())
-        self.screen_resize.append(self.desktop_geometry.width() * (2/5))
-        self.screen_resize.append(self.desktop_geometry.height() * (2/5))
+        self.screen_resize.append(self.desktop_geometry.width())
+        self.screen_resize.append(self.desktop_geometry.height() * (3/4))
 
         #print(self.screen_resize[0], self.screen_resize[1])
 
-        self.screen_position.append((self.desktop_geometry.width()/2)-(self.screen_resize[0]/2))
-        self.screen_position.append((self.desktop_geometry.height()/2)-(self.screen_resize[1]/2))
+        self.screen_position.append((self.desktop_geometry.width() / 2))
+        self.screen_position.append((self.desktop_geometry.height() / 2))
 
+    def reposition_earth_small(self):
+        # REPLACE with hotkey for ALT + F10 to toggle full screen
+        sidebar_coords = self.keyboard_commands.locate_image('fullscreen.png')
 
+        if sidebar_coords:
+            self.keyboard_commands.click_with_location(sidebar_coords)
+            time.sleep(2)
+
+        comm = "wmctrl -r 'Google Earth' -e 0,0,0," + str(int(self.screen_resize[0] / 2)) + "," + \
+                str(int(self.screen_resize[1]))
+        os.system(comm)
+        time.sleep(2)
+
+    def reposition_earth_large(self):
+        # REPLACE with hotkey for ALT + F10 to toggle full screen
+        sidebar_coords = self.keyboard_commands.locate_image('fullscreen.png')
+
+        if sidebar_coords:
+            self.keyboard_commands.click_with_location(sidebar_coords)
+            time.sleep(2)
+
+        comm = "wmctrl -r 'Google Earth' -e 0,0,0," + str(int(self.screen_resize[0])) + "," + \
+                str(int(self.screen_resize[1]))
+        os.system(comm)
+        time.sleep(2)
 
     def toggle_buttons_off(self):
         """

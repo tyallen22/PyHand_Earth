@@ -14,16 +14,20 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 class QtCapture(QtWidgets.QWidget):
 
-    def __init__(self, earth, *args, **kwargs):
+    def __init__(self, earth, desktop, *args, **kwargs):
         super(QtCapture, self).__init__(*args, **kwargs)
         
         #Old Model Name
         #self.model = load_model('pyearth_cnn_model_200612_1744.h5')
         #New Model Name
-        self.model = load_model('pyearth_cnn_model_0724.h5')
+        #self.model = load_model('pyearth_cnn_model_0724.h5')
+        #Newest Model Name
+        self.model = load_model('pyearth_cnn_model_new_test2.h5')
         self.class_names = ['INDEX_UP', 'PALM', 'THUMB_LEFT', 'THUMB_RIGHT', 'FIST', 'FIVE_WIDE',
-                            'V_SIGN', 'SHAKA', 'NOTHING']
+                            'V_SIGN', 'SHAKA']
+                            #, 'NOTHING']
         self.earth = earth
+        self.desktop = desktop
 
         self.video_frame = QLabel(self)
         self.layout_one = QVBoxLayout()
@@ -40,7 +44,7 @@ class QtCapture(QtWidgets.QWidget):
         self.start_thread()
 
     def start_thread(self):
-        self.cap_thread = CaptureThread(self.earth, self.model, self.class_names, self.camera)
+        self.cap_thread = CaptureThread(self.earth, self.model, self.class_names, self.camera, self.desktop)
         self.cap_thread.updatePixmap.connect(self.setVideoFrame)
         self.cap_thread.updateOutput.connect(self.setOutput)
         self.cap_thread.start()

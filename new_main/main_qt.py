@@ -43,7 +43,7 @@ class MainWindow(QMainWindow):
         earth : GoogleEarth class object
 
     """
-    def __init__(self, earth, *args, **kwargs):
+    def __init__(self, earth, desk_geo, *args, **kwargs):
         """
         Please see help(MainWindow) for more info
         """
@@ -60,16 +60,22 @@ class MainWindow(QMainWindow):
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         # Get resolution, window size, and offsets for positioning
         self.google_earth = earth
-        self.new_position = self.google_earth.get_screen_position()
-        self.window_resize = self.google_earth.get_screen_resize()
+
+        self.desktop = desk_geo
+
         self.title_bar_offset = 35
+
+        self.qt_window_height = self.desktop.height() * 8/36
+
+        if self.desktop.height() <= 1053:
+            self.qt_window_height = self.desktop.height() * 7/36
         # Set geometry of Qt gesture icon window
         # (this window is the parent of all other Qt windows)
         self.setGeometry(QtWidgets.QStyle.alignedRect(
             QtCore.Qt.LeftToRight, QtCore.Qt.AlignCenter,
             # Width of Qt gesture window based on width of GE window
-            QtCore.QSize(int(self.window_resize[0]), 100),
-            QtWidgets.qApp.desktop().availableGeometry()))
+            QtCore.QSize(self.desktop.width(), int(self.qt_window_height)),
+            self.desktop))
         # Create empty worker object
         self.worker_one = None
         # Initialize threadpool object
@@ -92,7 +98,12 @@ class MainWindow(QMainWindow):
 
             self.label = QLabel(self)
             self.pixmap = QPixmap(self.image_list[num])
-            self.pixmap = self.pixmap.scaledToWidth(100)
+            
+            if self.desktop.height() > 1053:
+                self.pixmap = self.pixmap.scaledToWidth(200)
+            else:
+                self.pixmap = self.pixmap.scaledToWidth(150)
+
             self.label.setPixmap(self.pixmap)
 
             self.label_title = QLabel(self.title_list[num])
@@ -145,6 +156,7 @@ class MainWindow(QMainWindow):
         then starts and shows the window. Once the window is opened, starts worker thread to send
         commands to Google Earth.
         """
+        self.google_earth.reposition_earth_small()
         # If opencv window not created, create it
         if not self.capture:
             self.create_opencv()
@@ -162,13 +174,11 @@ class MainWindow(QMainWindow):
 
     def create_opencv(self):
         # Create QtCapture window for rendering opencv window
-        self.capture = QtCapture(self.google_earth)
+        self.capture = QtCapture(self.google_earth, self.desktop)
         self.capture.setParent(self.widget)
         self.capture.setWindowFlags(QtCore.Qt.Tool)
         self.capture.setWindowTitle("OpenCV Recording Window")
-        self.capture.setGeometry(int(self.window_resize[0] + self.new_position[0]),
-                                 int(self.window_resize[1] + self.title_bar_offset),
-                                 -1, -1)
+        self.capture.setGeometry(self.desktop.width() / 2 + 100, 0, -1, -1)
 
     def stop_opencv(self):
         """
@@ -186,6 +196,8 @@ class MainWindow(QMainWindow):
         self.commands.set_command("space")
         self.commands.send_command()
         self.commands.end_command()
+        
+        self.google_earth.reposition_earth_large()
 
     def exit(self):
         """
@@ -222,27 +234,21 @@ def main():
 
     # Get desktop resolution
     desktop_widget = app.desktop()
-    desktop_geometry = desktop_widget.screenGeometry()
+    desktop_geometry = desktop_widget.availableGeometry()
 
     # Start Google Earth
     google_earth = GoogleEarth(desktop_geometry)
     google_earth.initialize_google_earth()
 
     # Create Main Window and show it
-    window = MainWindow(google_earth)
+    window = MainWindow(google_earth, desktop_geometry)
     window.show()
 
-    # Reposition main window
-    screen_pos = google_earth.get_screen_position()
-    screen_res = google_earth.get_screen_resize()
+    x_position = 0
+    y_position = desktop_geometry.bottom()
 
-    x_position = int(screen_pos[0])
-    y_position = int(screen_res[1]) + int(screen_pos[1])
-    title_offset = 38
-
-    # Window moved to x position of GE window,
-    # y position of GE window + height of GE window
-    window.move(x_position, y_position + title_offset)
+    # Gesture window moved to bottom of screen
+    window.move(x_position, y_position)
 
     app.exec_()
 
