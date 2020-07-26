@@ -138,7 +138,7 @@ class CaptureThread(QThread):
                     self.updatePixmap.emit(pix)
 
                 #=======================================================
-                # Below code section is for output to pautogui keyboard shortcuts
+                # Below code section is for output to pyautogui keyboard shortcuts
 
                 if type_1_pred > 0.90:
                     self.updateOutput.emit('up')
@@ -153,9 +153,9 @@ class CaptureThread(QThread):
                 elif type_6_pred > 0.90:
                     self.updateOutput.emit('-')
                 elif type_7_pred > 0.90:
-                    self.updateOutput.emit('n')
+                    self.updateOutput.emit('tilt_up')
                 elif type_8_pred > 0.90:
-                    self.updateOutput.emit('u')
+                    self.updateOutput.emit('tilt_down')
                 # elif type_9_pred > 0.90:
                 #     pass
 
