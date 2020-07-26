@@ -3,6 +3,7 @@ Starts a Qt application that drives input and output from an opencv window to th
 program
 """
 import sys
+import time
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QHBoxLayout, QLabel, \
      QPushButton, QWidget, QApplication
@@ -168,7 +169,7 @@ class MainWindow(QMainWindow):
         self.capture.setParent(self.widget)
         self.capture.setWindowFlags(QtCore.Qt.Tool)
         self.capture.setWindowTitle("OpenCV Recording Window")
-        self.capture.setGeometry(self.desktop.width() / 2 + 100, 0, -1, -1)
+        self.capture.setGeometry(int(self.desktop.width() / 2 + 100), 0, -1, -1)
 
     def stop_opencv(self):
         """
@@ -177,15 +178,13 @@ class MainWindow(QMainWindow):
         """
         # Set flag to kill GE command thread
         self.command_thread.end_thread()
+        time.sleep(3)
+        
         # If capture object exists, end thread, release camera, and close window
         if self.capture:
             self.capture.stop_thread()
             self.capture.delete()
             self.capture.setParent(None)
-        # Send last command as space to prevent continuous command in GE
-        self.commands.set_command("space")
-        self.commands.send_command()
-        self.commands.end_command()
         
         self.google_earth.reposition_earth_large()
 
@@ -195,10 +194,11 @@ class MainWindow(QMainWindow):
         thread, then calls close_earth to close Google Earth window, and finally terminates
         the QApplication.
         """
+        self.command_thread.end_thread()
+        time.sleep(3)
         # Make sure a single command is sent and ended before exit
-        self.commands.set_command("space")
-        self.commands.send_command()
-        self.commands.end_command()
+        # self.commands.send_single_command("space")
+        # time.sleep(1)
         # Stop threads, close GE, and exit application
         if self.capture:
             self.capture.stop_thread()

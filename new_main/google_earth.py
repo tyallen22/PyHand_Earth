@@ -90,10 +90,10 @@ class GoogleEarth():
 
     def reposition_earth_small(self):
         # REPLACE with hotkey for ALT + F10 to toggle full screen
-        sidebar_coords = self.keyboard_commands.locate_image('fullscreen.png')
+        fullscreen = self.check_if_fullscreen()
 
-        if sidebar_coords:
-            self.keyboard_commands.click_with_location(sidebar_coords)
+        if (fullscreen):
+            self.keyboard_commands.click_with_location(fullscreen)
             time.sleep(2)
 
         comm = "wmctrl -r 'Google Earth' -e 0,0,0," + str(int(self.screen_resize[0] / 2)) + "," + \
@@ -103,10 +103,10 @@ class GoogleEarth():
 
     def reposition_earth_large(self):
         # REPLACE with hotkey for ALT + F10 to toggle full screen
-        sidebar_coords = self.keyboard_commands.locate_image('fullscreen.png')
+        fullscreen = self.check_if_fullscreen()
 
-        if sidebar_coords:
-            self.keyboard_commands.click_with_location(sidebar_coords)
+        if fullscreen:
+            self.keyboard_commands.click_with_location(fullscreen)
             time.sleep(2)
 
         comm = "wmctrl -r 'Google Earth' -e 0,0,0," + str(int(self.screen_resize[0])) + "," + \
@@ -130,6 +130,9 @@ class GoogleEarth():
         if sidebar_coords:
             self.keyboard_commands.click_with_location(sidebar_coords)
             time.sleep(2)
+
+    def check_if_fullscreen(self):
+        return self.keyboard_commands.locate_image('images/fullscreen.png')
 
     def get_screen_resize(self):
         """

@@ -10,6 +10,10 @@ class KeyboardCommands():
     def set_command(self, cmd):
         self.__current_command = cmd
 
+    def send_single_command(self, cmd):
+        os.system("wmctrl -a Google Earth Pro")
+        pyautogui.press(cmd)
+        
     def send_command(self):
         os.system("wmctrl -a Google Earth Pro")
         pyautogui.keyDown(self.__current_command)
@@ -17,6 +21,14 @@ class KeyboardCommands():
     def end_command(self):
         os.system("wmctrl -a Google Earth Pro")
         pyautogui.keyUp(self.__current_command)
+
+    def send_hotkey_two(self, first, second):
+        os.system("wmctrl -a Google Earth Pro")
+        pyautogui.hotkey(first, second)
+
+    def send_hotkey_three(self, first, second, third):
+        os.system("wmctrl -a Google Earth Pro")
+        pyautogui.hotkey(first, second, third)
 
     def locate_image(self, img):
         try:

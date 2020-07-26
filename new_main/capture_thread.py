@@ -129,12 +129,13 @@ class CaptureThread(QThread):
                 #             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
 
-                # Convert frame to PyQt format
-                img = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
-                pix = QPixmap.fromImage(img)
-                
-                # Emit PyQt signal, sending frame as a QPixmap
-                self.updatePixmap.emit(pix)
+                if self.thread_running:
+                    # Convert frame to PyQt format
+                    img = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
+                    pix = QPixmap.fromImage(img)
+                    
+                    # Emit PyQt signal, sending frame as a QPixmap
+                    self.updatePixmap.emit(pix)
 
                 #=======================================================
                 # Below code section is for output to pautogui keyboard shortcuts

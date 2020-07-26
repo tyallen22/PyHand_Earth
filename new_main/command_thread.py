@@ -22,6 +22,8 @@ class CommandThread(QThread):
                 self.commands.end_command()
                 self.commands.set_command(current_input)
                 self.commands.send_command()
+        
+        self.commands.send_single_command("space")
 
     def end_thread(self):
         self.issue_commands = False
