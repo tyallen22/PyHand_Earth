@@ -128,8 +128,7 @@ class GoogleEarth():
         sidebar_coords = self.keyboard_commands.locate_image('images/clicked_sidebar.png')
 
         if sidebar_coords:
-            self.keyboard_commands.click_with_location(sidebar_coords)
-            time.sleep(2)
+            self.keyboard_commands.close_sidebar()
 
     def check_if_fullscreen(self):
         return self.keyboard_commands.locate_image('images/fullscreen.png')
