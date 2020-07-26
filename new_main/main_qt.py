@@ -88,9 +88,9 @@ class MainWindow(QMainWindow):
         self.layout3 = QHBoxLayout()
 
         self.label_dict = dict()
-        self.image_list = ['images/index_up.png', 'images/palm.png', 'images/thumb_left.png',
+        self.image_list = ['images/index_up.png', 'images/v_sign.png', 'images/thumb_left.png',
                            'images/thumb_right.png', 'images/fist.png', 'images/five_wide.png',
-                           'images/placeholder1.png', 'images/placeholder2.png']
+                           'images/palm.png', 'images/shaka.png']
         self.title_list = ['Move Up', 'Move Down', 'Move Left', 'Move Right', 'Zoom In',
                            'Zoom Out', 'Tilt Up', 'Tilt Down']
         # Create and add 6 labels containing hand gesture image to layout2 and 6
