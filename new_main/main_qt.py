@@ -99,7 +99,7 @@ class MainWindow(QMainWindow):
 
             self.label = QLabel(self)
             self.pixmap = QPixmap(self.image_list[num])
-            
+
             if self.desktop.height() > 1053:
                 self.pixmap = self.pixmap.scaledToWidth(200)
             else:
@@ -179,13 +179,13 @@ class MainWindow(QMainWindow):
         # Set flag to kill GE command thread
         self.command_thread.end_thread()
         time.sleep(3)
-        
+
         # If capture object exists, end thread, release camera, and close window
         if self.capture:
             self.capture.stop_thread()
             self.capture.delete()
             self.capture.setParent(None)
-        
+
         self.google_earth.reposition_earth_large()
 
     def exit(self):

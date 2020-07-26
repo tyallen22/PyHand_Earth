@@ -76,7 +76,7 @@ class CaptureThread(QThread):
 
                 # Add text
                 type_1_text = '{}: {}%'.format(self.class_names[0], int(type_1_pred*100))
-                
+
                 cv2.putText(frame, type_1_text, self.text_start,
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
@@ -133,7 +133,7 @@ class CaptureThread(QThread):
                     # Convert frame to PyQt format
                     img = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
                     pix = QPixmap.fromImage(img)
-                    
+
                     # Emit PyQt signal, sending frame as a QPixmap
                     self.updatePixmap.emit(pix)
 

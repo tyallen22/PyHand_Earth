@@ -13,7 +13,7 @@ class KeyboardCommands():
     def send_single_command(self, cmd):
         os.system("wmctrl -a Google Earth Pro")
         pyautogui.press(cmd)
-        
+
     def send_command(self):
         os.system("wmctrl -a Google Earth Pro")
         pyautogui.keyDown(self.__current_command)
@@ -24,7 +24,7 @@ class KeyboardCommands():
 
     def close_sidebar(self):
         os.system("wmctrl -a Google Earth Pro")
-        pyautogui.hotkey('ctrlleft','Alt','b')
+        pyautogui.hotkey('ctrlleft', 'Alt', 'b')
 
     def send_hotkey_two(self, first, second):
         os.system("wmctrl -a Google Earth Pro")

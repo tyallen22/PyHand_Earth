@@ -92,7 +92,7 @@ class GoogleEarth():
         # REPLACE with hotkey for ALT + F10 to toggle full screen
         fullscreen = self.check_if_fullscreen()
 
-        if (fullscreen):
+        if fullscreen:
             self.keyboard_commands.click_with_location(fullscreen)
             time.sleep(2)
 

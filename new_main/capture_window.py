@@ -3,9 +3,9 @@ and test TensorFlow model predictions using saved model"""
 import os
 import cv2
 from PyQt5 import QtWidgets
-from PyQt5.QtCore import QTimer, QThread, pyqtSignal, pyqtSlot
+from PyQt5.QtCore import pyqtSignal, pyqtSlot
 from PyQt5.QtWidgets import QVBoxLayout, QLabel
-from PyQt5.QtGui import QPixmap, QImage
+from PyQt5.QtGui import QPixmap
 from keras.models import load_model
 from capture_thread import CaptureThread
 
@@ -16,7 +16,7 @@ class QtCapture(QtWidgets.QWidget):
 
     def __init__(self, earth, desktop, *args, **kwargs):
         super(QtCapture, self).__init__(*args, **kwargs)
-        
+
         #Old Model Name
         #self.model = load_model('pyearth_cnn_model_200612_1744.h5')
         #New Model Name
