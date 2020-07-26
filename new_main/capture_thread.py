@@ -55,7 +55,7 @@ class CaptureThread(QThread):
                             self.rectangle_start[0]:self.rectangle_end[0]]
 
                 # Parse BRG to RGB
-                roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
+                #roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
 
                 # Resize
                 roi = cv2.resize(roi, (self.width, self.height))
@@ -132,7 +132,7 @@ class CaptureThread(QThread):
                 self.updatePixmap.emit(pix)
 
                 #=======================================================
-                # Below code section is for output to pautogui keyboard shortcuts
+                # Below code section is for output to pyautogui keyboard shortcuts
 
                 if type_1_pred > 0.90:
                     self.updateOutput.emit('up')
@@ -147,9 +147,9 @@ class CaptureThread(QThread):
                 elif type_6_pred > 0.90:
                     self.updateOutput.emit('-')
                 elif type_7_pred > 0.90:
-                    pass
+                    self.updateOutput.emit('tilt-up')
                 elif type_8_pred > 0.90:
-                    pass
+                    self.updateOutput.emit('tilt-down')
                 elif type_9_pred > 0.90:
                     pass
 

@@ -12,11 +12,25 @@ class KeyboardCommands():
 
     def send_command(self):
         os.system("wmctrl -a Google Earth Pro")
-        pyautogui.keyDown(self.__current_command)
+        if self.__current_command == 'tilt-up':
+            pyautogui.keyDown('shift')
+            pyautogui.keyDown('up')
+        elif self.__current_command == 'tilt-down':
+            pyautogui.keyDown('shift')
+            pyautogui.keyDown('down')
+        else:
+            pyautogui.keyDown(self.__current_command)
 
     def end_command(self):
         os.system("wmctrl -a Google Earth Pro")
-        pyautogui.keyUp(self.__current_command)
+        if self.__current_command == 'tilt-up':
+            pyautogui.keyUp('shift')
+            pyautogui.keyUp('up')
+        elif self.__current_command == 'tilt-down':
+            pyautogui.keyUp('shift')
+            pyautogui.keyUp('down')
+        else:
+            pyautogui.keyUp(self.__current_command)
 
     def locate_image(self, img):
         try:
