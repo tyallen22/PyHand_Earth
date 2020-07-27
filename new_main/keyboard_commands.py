@@ -56,9 +56,6 @@ class KeyboardCommands():
             print(img + " Not Found")
             return False
 
-    def click_with_location(self, location):
-        pyautogui.click(location)
-
     def click_without_location(self):
         pyautogui.click()
 

@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QHBoxLayout, QLabel, \
      QPushButton, QWidget, QApplication
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import QThreadPool, QStateMachine, QState
+import pyautogui
 
 from keyboard_commands import KeyboardCommands
 from google_earth import GoogleEarth
@@ -147,21 +148,26 @@ class MainWindow(QMainWindow):
         then starts and shows the window. Once the window is opened, starts worker thread to send
         commands to Google Earth.
         """
-        self.google_earth.reposition_earth_small()
-        # If opencv window not created, create it
-        if not self.capture:
-            self.create_opencv()
+        if (self.google_earth.toggle_buttons_off()):
+            pyautogui.alert('Please make sure the Start-up Tips window is closed', "Info Message") 
+            return
+
         else:
-            self.capture = None
-            self.create_opencv()
-        # Start video capture and show it
-        self.capture.show()
-        # If command thread exists, remove it
-        if self.command_thread:
-            self.command_thread = None
-        # Start command thread for sending commands to GE
-        self.command_thread = CommandThread(self.capture, self.commands)
-        self.command_thread.start()
+            self.google_earth.reposition_earth_small()
+            # If opencv window not created, create it
+            if not self.capture:
+                self.create_opencv()
+            else:
+                self.capture = None
+                self.create_opencv()
+            # Start video capture and show it
+            self.capture.show()
+            # If command thread exists, remove it
+            if self.command_thread:
+                self.command_thread = None
+            # Start command thread for sending commands to GE
+            self.command_thread = CommandThread(self.capture, self.commands)
+            self.command_thread.start()
 
     def create_opencv(self):
         # Create QtCapture window for rendering opencv window
