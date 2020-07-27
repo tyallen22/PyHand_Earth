@@ -59,6 +59,9 @@ class KeyboardCommands():
     def click_without_location(self):
         pyautogui.click()
 
+    def click_with_location(self, location):
+        pyautogui.click(location)
+
     def drag_mouse(self, x_offset, y_offset, duration):
         pyautogui.dragRel(x_offset, y_offset, duration)
 
