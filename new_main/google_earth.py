@@ -116,7 +116,7 @@ class GoogleEarth():
 
     def toggle_buttons_off(self):
         """
-        Toggles two toolbars in Google Earth that cause problems when sending commands
+        Toggles sidebar in Google Earth that cause problems when sending commands
         to the Google Earth window.
         """
         sidebar_coords = self.keyboard_commands.locate_image('images/clicked_sidebar.png')
@@ -124,9 +124,13 @@ class GoogleEarth():
         if sidebar_coords:
             self.keyboard_commands.close_sidebar()
 
-        sidebar_coords = self.keyboard_commands.locate_image('images/close.png')
+    def start_up_tips(self):
+        """
+        Returns True/False flag to pop-up message to close Start-up Tips Google Earth Pro window.
+        """       
+        start_up_tips_coords = self.keyboard_commands.locate_image('images/close.png')
 
-        if sidebar_coords:
+        if start_up_tips_coords:
             return True
         else: 
             return False

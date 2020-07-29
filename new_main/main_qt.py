@@ -148,8 +148,11 @@ class MainWindow(QMainWindow):
         then starts and shows the window. Once the window is opened, starts worker thread to send
         commands to Google Earth.
         """
-        if (self.google_earth.toggle_buttons_off()):
+        if (self.google_earth.start_up_tips()):  
             pyautogui.alert('Please make sure the Start-up Tips window is closed', "Info Message") 
+            #os.system('zenity --info --text="Please make sure the Start-up Tips window is closed"')
+            #messagebox.showinfo("Title Here", "Message Here")
+            #messagebox.showwarning('Info Message', 'Please make sure the Start-up Tips window is closed')
             return
 
         else:
