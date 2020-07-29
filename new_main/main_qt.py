@@ -6,7 +6,7 @@ import sys
 import time
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QHBoxLayout, QLabel, \
-     QPushButton, QWidget, QApplication
+     QPushButton, QWidget, QApplication, QMessageBox
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import QThreadPool, QStateMachine, QState
 import pyautogui
@@ -142,6 +142,15 @@ class MainWindow(QMainWindow):
         # Set widget with layouts as central widget
         self.setCentralWidget(self.widget)
 
+    def show_popup(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Gesture Navigation Warning Message")
+        msg.setText("Please make sure the Start-up Tips window is closed before starting gesture navigation")
+        msg.setIcon(QMessageBox.Warning)
+        msg.setStandardButtons(QMessageBox.Ok)
+        #print("here") Debug
+        msg.exec()
+
     def start_opencv(self):
         """
         Slot function for the start button signal. Instantiates Qt opencv window if not created,
@@ -149,7 +158,8 @@ class MainWindow(QMainWindow):
         commands to Google Earth.
         """
         if (self.google_earth.start_up_tips()):  
-            pyautogui.alert('Please make sure the Start-up Tips window is closed', "Info Message") 
+            self.show_popup()
+            #pyautogui.alert('Please make sure the Start-up Tips window is closed', "Info Message") 
             #os.system('zenity --info --text="Please make sure the Start-up Tips window is closed"')
             #messagebox.showinfo("Title Here", "Message Here")
             #messagebox.showwarning('Info Message', 'Please make sure the Start-up Tips window is closed')
