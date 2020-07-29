@@ -89,9 +89,30 @@ while(True):
     roi = frame[y1:y2, x1:x2]
     roi = cv2.resize(roi, (96, 96))
 
+    #define skin color range
+    lower_skin = np.array([140,110,110], dtype=np.uint8)
+    upper_skin = np.array([200,160,150], dtype=np.uint8)
+    
+    #grant rgb [110-200,60-140,30-140
+    
+    #extract skin color
+    mask = cv2.inRange(roi, lower_skin, upper_skin)
+    
+    
+    
+    #fill dark spots
+    kernel = np.ones((3,3),np.uint8)
+    mask = cv2.dilate(mask,kernel,iterations = 4)
+    
+    #blur
+    mask = cv2.GaussianBlur(mask,(5,5),200)
+    
     # Show the frame
     cv2.imshow('Capturing dataset', frame)
+    cv2.imshow('mask',mask)
+    
 
+	
     # # Image processing
     # roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
     # roi = cv2.GaussianBlur(roi, (7, 7), 0)
