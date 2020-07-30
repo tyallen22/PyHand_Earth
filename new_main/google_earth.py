@@ -69,6 +69,7 @@ class GoogleEarth():
         Gets the current screen resolution and starts Google Earth. Repositions Google Earth
         in the center of the screen with a size determined by the current screen resolution.
         """
+        self.check_if_fullscreen()
         self.set_screen_resolution()
         comm = "wmctrl -r 'Google Earth' -e 0,0,0," + str(int(self.screen_resize[0])) + "," + \
                 str(int(self.screen_resize[1]))
@@ -90,11 +91,7 @@ class GoogleEarth():
 
     def reposition_earth_small(self):
         # REPLACE with hotkey for ALT + F10 to toggle full screen
-        fullscreen = self.check_if_fullscreen()
-
-        if fullscreen:
-            self.keyboard_commands.click_with_location(fullscreen)
-            time.sleep(2)
+        self.check_if_fullscreen()
 
         comm = "wmctrl -r 'Google Earth' -e 0,0,0," + str(int(self.screen_resize[0] / 2)) + "," + \
                 str(int(self.screen_resize[1]))
@@ -103,11 +100,7 @@ class GoogleEarth():
 
     def reposition_earth_large(self):
         # REPLACE with hotkey for ALT + F10 to toggle full screen
-        fullscreen = self.check_if_fullscreen()
-
-        if fullscreen:
-            self.keyboard_commands.click_with_location(fullscreen)
-            time.sleep(2)
+        self.check_if_fullscreen()
 
         comm = "wmctrl -r 'Google Earth' -e 0,0,0," + str(int(self.screen_resize[0])) + "," + \
                 str(int(self.screen_resize[1]))
@@ -136,7 +129,11 @@ class GoogleEarth():
             return False
 
     def check_if_fullscreen(self):
-        return self.keyboard_commands.locate_image('images/fullscreen.png')
+        fullscreen = self.keyboard_commands.locate_image('images/fullscreen.png')
+
+        if fullscreen:
+            self.keyboard_commands.click_with_location(fullscreen)
+            time.sleep(2)
 
     def get_screen_resize(self):
         """

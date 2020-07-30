@@ -45,7 +45,7 @@ class MainWindow(QMainWindow):
         earth : GoogleEarth class object
 
     """
-    def __init__(self, earth, desk_geo, *args, **kwargs):
+    def __init__(self, earth, desk_geo, screen_geo, *args, **kwargs):
         """
         Please see help(MainWindow) for more info
         """
@@ -64,20 +64,18 @@ class MainWindow(QMainWindow):
         self.google_earth = earth
 
         self.desktop = desk_geo
+        self.screen = screen_geo
 
         self.title_bar_offset = 35
 
         self.qt_window_height = self.desktop.height() * 1/4
-
-        # if self.desktop.height() <= 1053:
-        #     self.qt_window_height = self.desktop.height() * 7/36
 
         # Set geometry of Qt gesture icon window
         # (this window is the parent of all other Qt windows)
         self.setGeometry(QtWidgets.QStyle.alignedRect(
             QtCore.Qt.LeftToRight, QtCore.Qt.AlignCenter,
             # Width of Qt gesture window based on width of GE window
-            QtCore.QSize(self.desktop.width(), self.qt_window_height),
+            QtCore.QSize(self.desktop.width(), int(self.qt_window_height)),
             self.desktop))
         # Create empty worker object
         self.worker_one = None
@@ -102,10 +100,18 @@ class MainWindow(QMainWindow):
             self.label = QLabel(self)
             self.pixmap = QPixmap(self.image_list[num])
 
-            # if self.desktop.height() > 1053:
-            self.pixmap = self.pixmap.scaledToWidth(200)
-            # else:
-            #     self.pixmap = self.pixmap.scaledToWidth(150)
+            if self.screen.width() >= 2560:
+                self.pixmap = self.pixmap.scaledToWidth(225)
+            elif self.screen.width() >= 1920:
+                self.pixmap = self.pixmap.scaledToWidth(185)
+            elif self.screen.width() > 1280 and self.screen.height() >= 1200:
+                self.pixmap = self.pixmap.scaledToWidth(175)
+            elif self.screen.width() > 800 and self.screen.height() >= 1024:
+                self.pixmap = self.pixmap.scaledToWidth(125)
+            elif self.screen.width() > 800:
+                self.pixmap = self.pixmap.scaledToWidth(100)
+            else:
+                self.pixmap = self.pixmap.scaledToWidth(50)
 
             self.label.setPixmap(self.pixmap)
 
@@ -214,8 +220,9 @@ class MainWindow(QMainWindow):
         thread, then calls close_earth to close Google Earth window, and finally terminates
         the QApplication.
         """
-        self.command_thread.end_thread()
-        time.sleep(3)
+        if self.command_thread:
+            self.command_thread.end_thread()
+            time.sleep(3)
         # Make sure a single command is sent and ended before exit
         # self.commands.send_single_command("space")
         # time.sleep(1)
@@ -245,6 +252,8 @@ def main():
     # Get desktop resolution
     desktop_widget = app.desktop()
     desktop_geometry = desktop_widget.availableGeometry()
+
+    screen_geometry = desktop_widget.screenGeometry()
     print(desktop_geometry)
 
     # Start Google Earth
@@ -252,11 +261,11 @@ def main():
     google_earth.initialize_google_earth()
 
     # Create Main Window and show it
-    window = MainWindow(google_earth, desktop_geometry)
+    window = MainWindow(google_earth, desktop_geometry, screen_geometry)
     window.show()
 
-    x_position = 0
-    y_position = desktop_geometry.bottom()
+    x_position = screen_geometry.width() - desktop_geometry.width()
+    y_position = desktop_geometry.bottom() - window.height()
 
     # Gesture window moved to bottom of screen
     window.move(x_position, y_position)
