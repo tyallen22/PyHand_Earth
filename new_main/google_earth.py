@@ -81,7 +81,7 @@ class GoogleEarth():
         """
         #print(self.desktop_geometry.width(), self.desktop_geometry.height())
         self.screen_resize.append(self.desktop_geometry.width())
-        self.screen_resize.append(self.desktop_geometry.height() * (3/4))
+        self.screen_resize.append((self.desktop_geometry.height() * (3/4)) - 35)
 
         #print(self.screen_resize[0], self.screen_resize[1])
 
