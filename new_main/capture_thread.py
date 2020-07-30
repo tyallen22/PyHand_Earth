@@ -7,10 +7,11 @@ class CaptureThread(QThread):
     updatePixmap = pyqtSignal(QPixmap)
     updateOutput = pyqtSignal(str)
 
-    def __init__(self, earth, model, class_names, camera, desktop):
+    def __init__(self, earth, model, class_names, camera, desktop, screen):
         super(CaptureThread, self).__init__()
 
-        self.desktop = desktop
+        self.desktop_geometry = desktop
+        self.screen_geometry = screen
         self.camera = camera
         self.output = ""
         self.thread_running = True
@@ -20,9 +21,16 @@ class CaptureThread(QThread):
 
         self.earth_commands = earth
 
-        self.new_width = desktop.width() * 1/2
-        self.new_height = desktop.height() * 3/4
-        self.toolbar_offset = 50
+        self.new_height = (self.desktop_geometry.height() * 3/4) - 35
+
+        if self.screen_geometry.width() > 1280:
+            self.new_width = int(self.desktop_geometry.width() / 2)
+        elif self.screen_geometry.width() > 1152:
+            self.new_width = int((self.desktop_geometry.width() * 28/64))
+        elif self.screen_geometry.width() > 1024:
+            self.new_width = int((self.desktop_geometry.width() * 23/64))
+        else:
+            self.new_width = int((self.desktop_geometry.width() * 17/64))
 
         self.frame_width = int(self.new_width)
         self.frame_height = int(self.new_height)
@@ -32,7 +40,6 @@ class CaptureThread(QThread):
 
         self.text_start = (int(self.frame_width * 1/32), int(self.frame_height * 1/4))
 
-        self.camera_height = 500
         self.width = 96
         self.height = 96
         self.output = ''

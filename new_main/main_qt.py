@@ -88,9 +88,9 @@ class MainWindow(QMainWindow):
         self.layout3 = QHBoxLayout()
 
         self.label_dict = dict()
-        self.image_list = ['images/index_up.png', 'images/palm.png', 'images/thumb_left.png',
+        self.image_list = ['images/index_up.png', 'images/v_sign.png', 'images/thumb_left.png',
                            'images/thumb_right.png', 'images/fist.png', 'images/five_wide.png',
-                           'images/v_sign.png', 'images/shaka.png']
+                           'images/palm.png', 'images/shaka.png']
         self.title_list = ['Move Up', 'Move Down', 'Move Left', 'Move Right', 'Zoom In',
                            'Zoom Out', 'Tilt Up', 'Tilt Down']
         # Create and add 6 labels containing hand gesture image to layout2 and 6
@@ -126,7 +126,7 @@ class MainWindow(QMainWindow):
         # Create start button and connect it to start_opencv function
         self.start_button = QPushButton("Start Gesture Navigation")
         self.start_button.setStyleSheet("QPushButton { background-color: silver }"
-                                        "QPushButton:pressed { background-color: silver }" )
+                                        "QPushButton:pressed { background-color: silver }")
         self.start_button.setCheckable(True)
         #self.start_button.pressed.connect(self.start_opencv)
         self.start_button.pressed.connect(self.buttonChecker)
@@ -163,13 +163,13 @@ class MainWindow(QMainWindow):
     def buttonChecker(self):
         if self.start_button.isChecked():
             self.stop_opencv()
-            self.start_button.setText("Start Gesture Navigation") 
+            self.start_button.setText("Start Gesture Navigation")
             self.start_button.setStyleSheet("background-color: silver")
 
         else:
             self.start_opencv()
             self.start_button.setText("Stop Gesture Navigation")
-            self.start_button.setStyleSheet("background-color: silver") 
+            self.start_button.setStyleSheet("background-color: silver")
 
     def start_opencv(self):
         """
@@ -177,7 +177,7 @@ class MainWindow(QMainWindow):
         then starts and shows the window. Once the window is opened, starts worker thread to send
         commands to Google Earth.
         """
-        if (self.google_earth.start_up_tips()):  
+        if (self.google_earth.start_up_tips()):
             self.show_popup("Gesture Navigation Warning Message", "Please make sure the Start-up Tips window is closed before starting gesture navigation", QMessageBox.Warning)
             return
 
@@ -197,22 +197,40 @@ class MainWindow(QMainWindow):
             else:
                 self.capture = None
                 self.create_opencv()
-            # Start video capture and show it
-            self.capture.show()
             # If command thread exists, remove it
             if self.command_thread:
                 self.command_thread = None
             # Start command thread for sending commands to GE
             self.command_thread = CommandThread(self.capture, self.commands)
             self.command_thread.start()
+            # Show video capture
+            self.capture.show()
 
     def create_opencv(self):
         # Create QtCapture window for rendering opencv window
-        self.capture = QtCapture(self.google_earth, self.desktop)
+        self.capture = QtCapture(self.google_earth, self.desktop, self.screen)
         self.capture.setParent(self.widget)
         self.capture.setWindowFlags(QtCore.Qt.Tool)
         self.capture.setWindowTitle("OpenCV Recording Window")
-        self.capture.setGeometry(int(self.desktop.width() / 2 + 100), 0, -1, -1)
+        
+        new_height = int((self.desktop.height() * 3/4) - 35)
+        half_width = int(self.desktop.width() / 2)
+
+        if self.screen.width() > 1280:
+            window_x = int(self.desktop.width() / 2) + (self.screen.width() - self.desktop.width())
+            self.capture.setGeometry(window_x, 0, half_width, new_height)
+        elif self.screen.width() > 1152:
+            new_width = int((self.desktop.width() * 29/64) + 3)
+            window_x = int(half_width + (half_width - new_width) + (self.screen.width() - self.desktop.width()))
+            self.capture.setGeometry(window_x, 0, new_width, new_height)
+        elif self.screen.width() > 1024:
+            new_width = int((self.desktop.width() * 25/64))
+            window_x = int(half_width + (half_width - new_width) + (self.screen.width() - self.desktop.width()))
+            self.capture.setGeometry(window_x, 0, new_width, new_height)
+        else:
+            new_width = int((self.desktop.width() * 20/64) - 3)
+            window_x = int(half_width + (half_width - new_width) + (self.screen.width() - self.desktop.width()))
+            self.capture.setGeometry(window_x, 0, new_width, new_height)
 
     def stop_opencv(self):
         """
@@ -274,7 +292,7 @@ def main():
     #print(desktop_geometry)
 
     # Start Google Earth
-    google_earth = GoogleEarth(desktop_geometry)
+    google_earth = GoogleEarth(desktop_geometry, screen_geometry)
     google_earth.initialize_google_earth()
 
     # Create Main Window and show it

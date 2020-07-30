@@ -14,7 +14,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 class QtCapture(QtWidgets.QWidget):
 
-    def __init__(self, earth, desktop, *args, **kwargs):
+    def __init__(self, earth, desktop, screen, *args, **kwargs):
         super(QtCapture, self).__init__(*args, **kwargs)
 
         #Old Model Name
@@ -29,6 +29,7 @@ class QtCapture(QtWidgets.QWidget):
                             #, 'NOTHING']
         self.earth = earth
         self.desktop = desktop
+        self.screen = screen
 
         self.video_frame = QLabel(self)
         self.layout_one = QVBoxLayout()
@@ -45,13 +46,14 @@ class QtCapture(QtWidgets.QWidget):
         self.start_thread()
 
     def start_thread(self):
-        self.cap_thread = CaptureThread(self.earth, self.model, self.class_names, self.camera, self.desktop)
+        self.cap_thread = CaptureThread(self.earth, self.model, self.class_names, self.camera, self.desktop, self.screen)
         self.cap_thread.updatePixmap.connect(self.setVideoFrame)
         self.cap_thread.updateOutput.connect(self.setOutput)
         self.cap_thread.start()
 
     def stop_thread(self):
-        self.cap_thread.stop_thread()
+        if self.cap_thread:
+            self.cap_thread.stop_thread()
 
     @pyqtSlot(QPixmap)
     def setVideoFrame(self, frame):
