@@ -152,13 +152,12 @@ class MainWindow(QMainWindow):
         # Set widget with layouts as central widget
         self.setCentralWidget(self.widget)
 
-    def show_popup(self):
+    def show_popup(self, title, message, icon):
         msg = QMessageBox()
-        msg.setWindowTitle("Gesture Navigation Warning Message")
-        msg.setText("Please make sure the Start-up Tips window is closed before starting gesture navigation")
-        msg.setIcon(QMessageBox.Warning)
+        msg.setWindowTitle(title)
+        msg.setText(message)
+        msg.setIcon(icon)
         msg.setStandardButtons(QMessageBox.Ok)
-        #print("here") Debug
         msg.exec()
 
     def buttonChecker(self):
@@ -179,14 +178,18 @@ class MainWindow(QMainWindow):
         commands to Google Earth.
         """
         if (self.google_earth.start_up_tips()):  
-            self.show_popup()
-            #pyautogui.alert('Please make sure the Start-up Tips window is closed', "Info Message") 
-            #os.system('zenity --info --text="Please make sure the Start-up Tips window is closed"')
-            #messagebox.showinfo("Title Here", "Message Here")
-            #messagebox.showwarning('Info Message', 'Please make sure the Start-up Tips window is closed')
+            self.show_popup("Gesture Navigation Warning Message", "Please make sure the Start-up Tips window is closed before starting gesture navigation", QMessageBox.Warning)
             return
 
         else:
+            self.show_popup("Welcome to PyHand Earth!",      "\n\nThis program allows you to navigate the Google Earth Pro desktop application using only your Webcam and eight hand gestures." +
+                                                             "\n\n\t       Instructions and Tips " +
+                                                             "\n\nFor the best experience, please read the instructions below and then close this window: " +                                                             
+                                                             "\n\n1. Position your webcam so that you have a blank, light-colored background behind you. " +
+                                                             "\n\n2. Position your right hand and desired gesture in front of the webcam so that it fills a good portion of the orange bounding rectangle in the live video window once it opens. " +
+                                                             "\n\n3. If the prediction is stuck on the wrong gesture, just shake your hand a little and let it reset. " +
+                                                             "\n\n4. Happy navigating! " ,
+                                                             QMessageBox.Information)
             self.google_earth.reposition_earth_small()
             # If opencv window not created, create it
             if not self.capture:
@@ -268,7 +271,7 @@ def main():
     desktop_geometry = desktop_widget.availableGeometry()
 
     screen_geometry = desktop_widget.screenGeometry()
-    print(desktop_geometry)
+    #print(desktop_geometry)
 
     # Start Google Earth
     google_earth = GoogleEarth(desktop_geometry)
