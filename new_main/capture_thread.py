@@ -58,7 +58,7 @@ class CaptureThread(QThread):
                             self.rectangle_start[0]:self.rectangle_end[0]]
 
                 # Parse BRG to RGB
-                roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
+                #roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
 
                 # Resize
                 roi = cv2.resize(roi, (self.width, self.height))
