@@ -125,19 +125,22 @@ class MainWindow(QMainWindow):
 
         # Create start button and connect it to start_opencv function
         self.start_button = QPushButton("Start Gesture Navigation")
-        self.start_button.setStyleSheet("background-color: silver")
-        self.start_button.pressed.connect(self.start_opencv)
+        self.start_button.setStyleSheet("QPushButton { background-color: silver }"
+                                        "QPushButton:pressed { background-color: silver }" )
+        self.start_button.setCheckable(True)
+        #self.start_button.pressed.connect(self.start_opencv)
+        self.start_button.pressed.connect(self.buttonChecker)
         # Create stop button and connect it to stop_opencv function
-        self.stop_button = QPushButton("Stop Gesture Navigation")
-        self.stop_button.setStyleSheet("background-color: silver")
-        self.stop_button.pressed.connect(self.stop_opencv)
+        #self.stop_button = QPushButton("Stop Gesture Navigation")
+        #self.stop_button.setStyleSheet("background-color: silver")
+        #self.stop_button.pressed.connect(self.stop_opencv)
         # Create stop button and connect it to stop_opencv function
         self.exit_button = QPushButton("Exit Program")
         self.exit_button.setStyleSheet("background-color: silver")
         self.exit_button.pressed.connect(self.exit)
         # Add start and stop button to layout 3
         self.layout3.addWidget(self.start_button)
-        self.layout3.addWidget(self.stop_button)
+       # self.layout3.addWidget(self.stop_button)
         self.layout3.addWidget(self.exit_button)
         # Add layout 1, 2, and 3 to layout
         self.layout.addLayout(self.layout1)
@@ -157,6 +160,17 @@ class MainWindow(QMainWindow):
         msg.setStandardButtons(QMessageBox.Ok)
         #print("here") Debug
         msg.exec()
+
+    def buttonChecker(self):
+        if self.start_button.isChecked():
+            self.stop_opencv()
+            self.start_button.setText("Start Gesture Navigation") 
+            self.start_button.setStyleSheet("background-color: silver")
+
+        else:
+            self.start_opencv()
+            self.start_button.setText("Stop Gesture Navigation")
+            self.start_button.setStyleSheet("background-color: silver") 
 
     def start_opencv(self):
         """
