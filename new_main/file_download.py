@@ -57,6 +57,8 @@ class FileDownload():
         if token:
             params = {'confirm' : token}
             self.response = self.session.get(self.model_url, params=params, stream=True)
+        # Notify user of .h5 model file download
+        print("Downloading Gesture Navigation Machine Learning Model")
         # Opens current directory and saves model to it
         with open(self.current_directory, "wb") as my_file:
             for chunk in self.response.iter_content(self.chunk_size):
@@ -87,6 +89,8 @@ class FileDownload():
             return
         # Sends get request and stores response object
         self.response = requests.get(self.earth_url)
+        # Notify user of Google Earth file download
+        print("Downloading Google Earth .deb file")
         # Saves Google Earth deb file to current working directory/google-earth
         with open(self.current_directory, "wb") as my_file:
             my_file.write(self.response.content)
@@ -102,6 +106,8 @@ class FileDownload():
         self.current_directory = os.getcwd()
         # Change to google-earth folder
         os.chdir('google-earth')
+        # Notify user of Google Earth installation
+        print("Installing Google Earth")
         # Use dpkg to install Google Earth
         os.system('sudo dpkg -i google-earth-stable*.deb')
         # Return to previous directory
