@@ -58,7 +58,7 @@ class FileDownload():
             params = {'confirm' : token}
             self.response = self.session.get(self.model_url, params=params, stream=True)
         # Notify user of .h5 model file download
-        print("Downloading Gesture Navigation Machine Learning Model")
+        print("Downloading PyHand Earth .h5 model file")
         # Opens current directory and saves model to it
         with open(self.current_directory, "wb") as my_file:
             for chunk in self.response.iter_content(self.chunk_size):
@@ -90,7 +90,7 @@ class FileDownload():
         # Sends get request and stores response object
         self.response = requests.get(self.earth_url)
         # Notify user of Google Earth file download
-        print("Downloading Google Earth .deb file")
+        print("Downloading Google Earth .deb package file")
         # Saves Google Earth deb file to current working directory/google-earth
         with open(self.current_directory, "wb") as my_file:
             my_file.write(self.response.content)
