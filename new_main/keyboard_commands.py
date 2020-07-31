@@ -69,7 +69,7 @@ class KeyboardCommands():
 
     def locate_image(self, img):
         try:
-            location = pyautogui.locateOnScreen(img)
+            location = pyautogui.locateOnScreen(img, confidence=0.9)
             return location
         except OSError:
             print(img + " Not Found")

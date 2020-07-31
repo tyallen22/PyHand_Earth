@@ -118,12 +118,12 @@ class GoogleEarth():
     def start_up_tips(self):
         """
         Returns True/False flag to pop-up message to close Start-up Tips Google Earth Pro window.
-        """       
+        """
         start_up_tips_coords = self.keyboard_commands.locate_image('images/close.png')
 
         if start_up_tips_coords:
             return True
-        else: 
+        else:
             return False
 
     def check_if_fullscreen(self):

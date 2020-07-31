@@ -8,8 +8,7 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QHBoxLayout, QLabel, \
      QPushButton, QWidget, QApplication, QMessageBox
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import QThreadPool, QStateMachine, QState
-import pyautogui
+from PyQt5.QtCore import QThreadPool, QStateMachine, QState, pyqtSignal
 
 from keyboard_commands import KeyboardCommands
 from google_earth import GoogleEarth
@@ -45,6 +44,9 @@ class MainWindow(QMainWindow):
         earth : GoogleEarth class object
 
     """
+    onSignal = pyqtSignal()
+    offSignal = pyqtSignal()
+
     def __init__(self, earth, desk_geo, screen_geo, *args, **kwargs):
         """
         Please see help(MainWindow) for more info
@@ -62,14 +64,15 @@ class MainWindow(QMainWindow):
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         # Get resolution, window size, and offsets for positioning
         self.google_earth = earth
-
+        # Variables for popup windows
+        self.popup_window = None
+        self.popup_title = ""
+        self.popup_text = ""
+        # Available desktop and screen geometry
         self.desktop = desk_geo
         self.screen = screen_geo
-
-        self.title_bar_offset = 35
-
+        # Sets gesture icon window to be 1/4 of available screen space
         self.qt_window_height = self.desktop.height() * 1/4
-
         # Set geometry of Qt gesture icon window
         # (this window is the parent of all other Qt windows)
         self.setGeometry(QtWidgets.QStyle.alignedRect(
@@ -123,24 +126,33 @@ class MainWindow(QMainWindow):
 
             self.layout1.addWidget(self.label_title, alignment=QtCore.Qt.AlignCenter)
 
-        # Create start button and connect it to start_opencv function
-        self.start_button = QPushButton("Start Gesture Navigation")
-        self.start_button.setStyleSheet("QPushButton { background-color: silver }"
-                                        "QPushButton:pressed { background-color: silver }")
-        self.start_button.setCheckable(True)
-        #self.start_button.pressed.connect(self.start_opencv)
-        self.start_button.pressed.connect(self.buttonChecker)
-        # Create stop button and connect it to stop_opencv function
-        #self.stop_button = QPushButton("Stop Gesture Navigation")
-        #self.stop_button.setStyleSheet("background-color: silver")
-        #self.stop_button.pressed.connect(self.stop_opencv)
+        # Create state machine to reliably handle state changes during threading
+        self.state_machine = QStateMachine()
+        self.state_button = QPushButton(self)
+        self.state_button.setStyleSheet("background-color: silver")
+        self.state_button.released.connect(self.check_state)
+        self.on = QState()
+        self.off = QState()
+        self.on.addTransition(self.offSignal, self.off)
+        self.on.addTransition(self.state_button.clicked, self.on)
+        self.off.addTransition(self.onSignal, self.on)
+        self.on.assignProperty(self.state_button, "text", "Start Gesture Navigation")
+        self.off.assignProperty(self.state_button, "text", "Stop Gesture Navigation")
+        self.state_machine.addState(self.off)
+        self.state_machine.addState(self.on)
+        self.state_machine.setInitialState(self.on)
+        self.state_machine.start()
+        # Create gesture tips button and connect it to
+        self.tips_button = QPushButton("Gesture Navigation Tips")
+        self.tips_button.setStyleSheet("background-color: silver")
+        self.tips_button.pressed.connect(self.start_gesture_tips)
         # Create stop button and connect it to stop_opencv function
         self.exit_button = QPushButton("Exit Program")
         self.exit_button.setStyleSheet("background-color: silver")
         self.exit_button.pressed.connect(self.exit)
         # Add start and stop button to layout 3
-        self.layout3.addWidget(self.start_button)
-       # self.layout3.addWidget(self.stop_button)
+        self.layout3.addWidget(self.tips_button)
+        self.layout3.addWidget(self.state_button)
         self.layout3.addWidget(self.exit_button)
         # Add layout 1, 2, and 3 to layout
         self.layout.addLayout(self.layout1)
@@ -152,24 +164,47 @@ class MainWindow(QMainWindow):
         # Set widget with layouts as central widget
         self.setCentralWidget(self.widget)
 
+    # Function to display pop up windows and block GUI loop until closed
     def show_popup(self, title, message, icon):
-        msg = QMessageBox()
-        msg.setWindowTitle(title)
-        msg.setText(message)
-        msg.setIcon(icon)
-        msg.setStandardButtons(QMessageBox.Ok)
-        msg.exec()
+        self.popup_window = QMessageBox()
+        self.popup_window.setWindowTitle(title)
+        self.popup_window.setText(message)
+        self.popup_window.setIcon(icon)
+        self.popup_window.setStandardButtons(QMessageBox.Ok)
+        self.popup_window.exec()
 
-    def buttonChecker(self):
-        if self.start_button.isChecked():
+    # Check state of state machine, take actions based on current state
+    def check_state(self):
+        current_state = self.state_machine.configuration()
+
+        if self.on in current_state:
+            self.check_earth_tips()
+        elif self.off in current_state:
             self.stop_opencv()
-            self.start_button.setText("Start Gesture Navigation")
-            self.start_button.setStyleSheet("background-color: silver")
 
+    def start_gesture_tips(self):
+        self.popup_title = "Welcome to PyHand Earth!"
+
+        self.popup_text = """\nThis program allows you to navigate the Google Earth Pro desktop application using only your Webcam and eight hand gestures.
+                             \n\t       Instructions and Tips 
+                             \n\nFor the best experience, please read the instructions below and then close this window: 
+                             \n\n1. Position your webcam so that you have a blank, light-colored background behind you. 
+                             \n\n2. Position your right hand and desired gesture in front of the webcam so that it fills a good portion of the orange bounding rectangle in the live video window once it opens. 
+                             \n\n3. If the prediction is stuck on the wrong gesture, just shake your hand a little and let it reset. 
+                             \n\n4. If you remove your hand completely and have a blank background, navigation should halt. 
+                             \n\n5. Happy navigating! """
+
+        self.show_popup(self.popup_title, self.popup_text, QMessageBox.Information)
+
+
+    def check_earth_tips(self):
+        if self.google_earth.start_up_tips():
+            self.popup_title = "Gesture Navigation Warning Message"
+            self.popup_text = "Please make sure the Start-up Tips window is closed before " + \
+                              "starting gesture navigation"
+            self.show_popup(self.popup_title, self.popup_text, QMessageBox.Warning)
         else:
             self.start_opencv()
-            self.start_button.setText("Stop Gesture Navigation")
-            self.start_button.setStyleSheet("background-color: silver")
 
     def start_opencv(self):
         """
@@ -177,35 +212,24 @@ class MainWindow(QMainWindow):
         then starts and shows the window. Once the window is opened, starts worker thread to send
         commands to Google Earth.
         """
-        if (self.google_earth.start_up_tips()):
-            self.show_popup("Gesture Navigation Warning Message", "Please make sure the Start-up Tips window is closed before starting gesture navigation", QMessageBox.Warning)
-            return
 
+        self.google_earth.reposition_earth_small()
+        # If opencv window not created, create it
+        if not self.capture:
+            self.create_opencv()
         else:
-            self.show_popup("Welcome to PyHand Earth!",      "\n\nThis program allows you to navigate the Google Earth Pro desktop application using only your Webcam and eight hand gestures." +
-                                                             "\n\n\t       Instructions and Tips " +
-                                                             "\n\nFor the best experience, please read the instructions below and then close this window: " +                                                             
-                                                             "\n\n1. Position your webcam so that you have a blank, light-colored background behind you. " +
-                                                             "\n\n2. Position your right hand and desired gesture in front of the webcam so that it fills a good portion of the orange bounding rectangle in the live video window once it opens. " +
-                                                             "\n\n3. If the prediction is stuck on the wrong gesture, just shake your hand a little and let it reset. " +
-                                                             "\n\n4. Happy navigating! " ,
-                                                             QMessageBox.Information)
-            self.google_earth.reposition_earth_small()
-            # If opencv window not created, create it
-            self.start_button.toggle()
-            if not self.capture:
-                self.create_opencv()
-            else:
-                self.capture = None
-                self.create_opencv()
-            # If command thread exists, remove it
-            if self.command_thread:
-                self.command_thread = None
-            # Start command thread for sending commands to GE
-            self.command_thread = CommandThread(self.capture, self.commands)
-            self.command_thread.start()
-            # Show video capture
-            self.capture.show()
+            self.capture = None
+            self.create_opencv()
+        # If command thread exists, remove it
+        if self.command_thread:
+            self.command_thread = None
+        # Start command thread for sending commands to GE
+        self.command_thread = CommandThread(self.capture, self.commands)
+        self.command_thread.start()
+        # Show video capture
+        self.capture.show()
+        # Ensure button in correct state after else statement
+        self.offSignal.emit()
 
     def create_opencv(self):
         # Create QtCapture window for rendering opencv window
@@ -213,7 +237,7 @@ class MainWindow(QMainWindow):
         self.capture.setParent(self.widget)
         self.capture.setWindowFlags(QtCore.Qt.Tool)
         self.capture.setWindowTitle("OpenCV Recording Window")
-        
+
         new_height = int((self.desktop.height() * 3/4) - 35)
         half_width = int(self.desktop.width() / 2)
 
@@ -222,15 +246,18 @@ class MainWindow(QMainWindow):
             self.capture.setGeometry(window_x, 0, half_width, new_height)
         elif self.screen.width() > 1152:
             new_width = int((self.desktop.width() * 29/64) + 3)
-            window_x = int(half_width + (half_width - new_width) + (self.screen.width() - self.desktop.width()))
+            window_x = int(half_width + (half_width - new_width) +
+                           (self.screen.width() - self.desktop.width()))
             self.capture.setGeometry(window_x, 0, new_width, new_height)
         elif self.screen.width() > 1024:
             new_width = int((self.desktop.width() * 25/64))
-            window_x = int(half_width + (half_width - new_width) + (self.screen.width() - self.desktop.width()))
+            window_x = int(half_width + (half_width - new_width) +
+                           (self.screen.width() - self.desktop.width()))
             self.capture.setGeometry(window_x, 0, new_width, new_height)
         else:
             new_width = int((self.desktop.width() * 20/64) - 3)
-            window_x = int(half_width + (half_width - new_width) + (self.screen.width() - self.desktop.width()))
+            window_x = int(half_width + (half_width - new_width) +
+                           (self.screen.width() - self.desktop.width()))
             self.capture.setGeometry(window_x, 0, new_width, new_height)
 
     def stop_opencv(self):
@@ -240,15 +267,17 @@ class MainWindow(QMainWindow):
         """
         # Set flag to kill GE command thread
         self.command_thread.end_thread()
-        time.sleep(3)
+        time.sleep(1)
 
         # If capture object exists, end thread, release camera, and close window
         if self.capture:
             self.capture.stop_thread()
+            time.sleep(1)
             self.capture.delete()
             self.capture.setParent(None)
 
         self.google_earth.reposition_earth_large()
+        self.onSignal.emit()
 
     def exit(self):
         """
@@ -258,14 +287,17 @@ class MainWindow(QMainWindow):
         """
         if self.command_thread:
             self.command_thread.end_thread()
-            time.sleep(3)
+            time.sleep(1)
         # Make sure a single command is sent and ended before exit
         # self.commands.send_single_command("space")
         # time.sleep(1)
         # Stop threads, close GE, and exit application
         if self.capture:
             self.capture.stop_thread()
+            time.sleep(1)
+
         self.google_earth.close_earth()
+
         QtCore.QCoreApplication.instance().quit()
 
 def main():
