@@ -36,7 +36,10 @@ class QtCapture(QtWidgets.QWidget):
         self.layout_one.addWidget(self.video_frame)
         self.setLayout(self.layout_one)
 
-        self.camera = cv2.VideoCapture(-1)
+        try:
+            self.camera = cv2.VideoCapture(-1)
+        except:
+            print("Camera not found!")
 
         self.output = ""
 

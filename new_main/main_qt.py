@@ -230,6 +230,7 @@ class MainWindow(QMainWindow):
         self.capture.show()
         # Ensure button in correct state after else statement
         self.offSignal.emit()
+        self.tips_button.setEnabled(False)
 
     def create_opencv(self):
         # Create QtCapture window for rendering opencv window
@@ -278,6 +279,7 @@ class MainWindow(QMainWindow):
 
         self.google_earth.reposition_earth_large()
         self.onSignal.emit()
+        self.tips_button.setEnabled(True)
 
     def exit(self):
         """

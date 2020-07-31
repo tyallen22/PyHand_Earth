@@ -46,7 +46,7 @@ class CaptureThread(QThread):
 
     def run(self):
 
-        while self.thread_running:
+        while (not self.isInterruptionRequested()):
             _, frame = self.camera.read()
 
             if frame is not None:
@@ -63,9 +63,6 @@ class CaptureThread(QThread):
                 # Get ROI
                 roi = frame[self.rectangle_start[1]:self.rectangle_end[1],
                             self.rectangle_start[0]:self.rectangle_end[0]]
-
-                # Parse BRG to RGB
-                #roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
 
                 # Resize
                 roi = cv2.resize(roi, (self.width, self.height))
@@ -134,7 +131,7 @@ class CaptureThread(QThread):
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
 
-                if self.thread_running:
+                if (not self.isInterruptionRequested()):
                     # Convert frame to PyQt format
                     img = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
                     pix = QPixmap.fromImage(img)
@@ -165,7 +162,10 @@ class CaptureThread(QThread):
                     self.updateOutput.emit('spacebar')
 
     def stop_thread(self):
-        self.thread_running = False
+        # self.thread_running = False
+        self.requestInterruption()
+        self.wait()
+        del self
 
     def release_camera(self):
         self.camera.release()
