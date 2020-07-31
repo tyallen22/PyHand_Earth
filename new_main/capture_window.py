@@ -19,14 +19,13 @@ class QtCapture(QtWidgets.QWidget):
 
         #Old Model Name
         #self.model = load_model('pyearth_cnn_model_200612_1744.h5')
-        #New Model Name
-        #self.model = load_model('pyearth_cnn_model_0724.h5')
-        #Newest Model Name
         #self.model = load_model('pyearth_cnn_model_new_test2.h5')
-        self.model = load_model('pyearth_cnn_model_without_nothing.h5')
+        #self.model = load_model('pyearth_cnn_model_without_nothing.h5')
+        #New Model Name
+        self.model = load_model('pyearth_cnn_model_0724.h5')
         self.class_names = ['INDEX_UP', 'V_SIGN', 'THUMB_LEFT', 'THUMB_RIGHT', 'FIST', 'FIVE_WIDE',
-                            'PALM', 'SHAKA']
-                            #, 'NOTHING']
+                            'PALM', 'SHAKA', 'NOTHING']
+
         self.earth = earth
         self.desktop = desktop
         self.screen = screen

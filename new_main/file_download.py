@@ -25,7 +25,7 @@ class FileDownload():
         """
         Please see help(FileDownload) for more info
         """
-        self.model_url = 'https://drive.google.com/uc?export=download&id=15VQXwMFKbTK1QXceyO9unFMT3PFN1rg8'
+        self.model_url = 'https://drive.google.com/uc?export=download&id=1k4QdDUidCckbX9bQ6JP-9oZ-dso74i8D'
         self.model_name = '/pyearth_cnn_model_new_test2.h5'
         self.earth_url = 'https://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb'
         self.earth_name = '/google-earth-stable_current_amd64.deb'

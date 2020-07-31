@@ -6,9 +6,14 @@ class KeyboardCommands():
 
     def __init__(self):
         self.__current_command = ''
+        self.__hotkey_command = ''
 
     def set_command(self, cmd):
         self.__current_command = cmd
+
+    def set_hotkey_command(self, first, second):
+        self.__current_command = first
+        self.__hotkey_command = second
 
     def send_single_command(self, cmd):
         os.system("wmctrl -a Google Earth Pro")
@@ -16,25 +21,39 @@ class KeyboardCommands():
 
     def send_command(self):
         os.system("wmctrl -a Google Earth Pro")
+        #pyautogui.keyDown(self.__current_command)
+        if self.__current_command == 'tilt_up':
+            pyautogui.keyDown('shift')
+            pyautogui.keyDown('up')
+        elif self.__current_command == 'tilt_down':
+            pyautogui.keyDown('shift')
+            pyautogui.keyDown('down')
+        else:
+            pyautogui.keyDown(self.__current_command)
+
+    def send_hotkey_command(self):
+        os.system("wmctrl -a Google Earth Pro")
         pyautogui.keyDown(self.__current_command)
-        # if self.__current_command == 'tilt_up':
-        #     pyautogui.keyDown('shift')
-        #     pyautogui.keyDown('up')
-        # elif self.__current_command == 'tilt_down':
-        #     pyautogui.keyDown('shift')
-        #     pyautogui.keyDown('down')
-        # else:
+        os.system("wmctrl -a Google Earth Pro")
+        pyautogui.keyDown(self.__hotkey_command)
 
     def end_command(self):
         os.system("wmctrl -a Google Earth Pro")
+        #pyautogui.keyUp(self.__current_command)
+        if self.__current_command == 'tilt_up':
+            pyautogui.keyUp('up')
+            pyautogui.keyUp('shift')
+        elif self.__current_command == 'tilt_down':
+            pyautogui.keyUp('down')
+            pyautogui.keyUp('shift')
+        else:
+            pyautogui.keyUp(self.__current_command)
+
+    def end_hotkey_command(self):
+        os.system("wmctrl -a Google Earth Pro")
         pyautogui.keyUp(self.__current_command)
-        # if self.__current_command == 'tilt_up':
-        #     pyautogui.keyUp('shift')
-        #     pyautogui.keyUp('up')
-        # elif self.__current_command == 'tilt_down':
-        #     pyautogui.keyUp('shift')
-        #     pyautogui.keyUp('down')
-        # else:
+        os.system("wmctrl -a Google Earth Pro")
+        pyautogui.keyUp(self.__hotkey_command)
 
     def close_sidebar(self):
         os.system("wmctrl -a Google Earth Pro")

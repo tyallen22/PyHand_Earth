@@ -19,9 +19,21 @@ class CommandThread(QThread):
         while self.issue_commands:
             current_input = self.capture.get_output()
             if current_input != initial_input:
+
+                #self.commands.end_hotkey_command()
                 self.commands.end_command()
                 self.commands.set_command(current_input)
                 self.commands.send_command()
+
+                # if current_input == 'tilt_up':
+                #     # self.commands.set_hotkey_command('shift', 'up')
+                #     # self.commands.send_hotkey_command()
+                #     self.commands.send_hotkey_two('shift', 'up')
+                # elif current_input == 'tilt_down':
+                #     # self.commands.set_hotkey_command('shift', 'down')
+                #     # self.commands.send_hotkey_command()
+                #     self.commands.send_hotkey_two('shift', 'down')
+                # else:
 
         self.commands.send_single_command("space")
 

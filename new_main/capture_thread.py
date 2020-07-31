@@ -77,9 +77,7 @@ class CaptureThread(QThread):
 
                 type_1_pred, type_2_pred, type_3_pred, \
                 type_4_pred, type_5_pred, type_6_pred, \
-                type_7_pred, type_8_pred = predictions[0]
-
-                #, type_9_pred
+                type_7_pred, type_8_pred, type_9_pred = predictions[0]
 
                 # Add text
                 type_1_text = '{}: {}%'.format(self.class_names[0], int(type_1_pred*100))
@@ -129,11 +127,11 @@ class CaptureThread(QThread):
                 cv2.putText(frame, type_8_text, (self.text_start[0], self.text_start[1] + 210),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
-                # # Add text
-                # type_9_text = '{}: {}%'.format(self.class_names[8], int(type_9_pred*100))
+                # Add text
+                type_9_text = '{}: {}%'.format(self.class_names[8], int(type_9_pred*100))
 
-                # cv2.putText(frame, type_9_text, (self.text_start[0], self.text_start[1] + 240),
-                #             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
+                cv2.putText(frame, type_9_text, (self.text_start[0], self.text_start[1] + 240),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (240, 240, 240), 2)
 
 
                 if self.thread_running:
@@ -160,15 +158,11 @@ class CaptureThread(QThread):
                 elif type_6_pred > 0.90:
                     self.updateOutput.emit('-')
                 elif type_7_pred > 0.90:
-                    self.updateOutput.emit('n')
-                    # This will not be implemented while model is being tested
-                    #self.updateOutput.emit('tilt_up')
+                    self.updateOutput.emit('tilt_up')
                 elif type_8_pred > 0.90:
-                    self.updateOutput.emit('u')
-                    # This will not be implemented while model is being tested
-                    # self.updateOutput.emit('tilt_down')
-                # elif type_9_pred > 0.90:
-                #     pass
+                    self.updateOutput.emit('tilt_down')
+                elif type_9_pred > 0.90:
+                    self.updateOutput.emit('spacebar')
 
     def stop_thread(self):
         self.thread_running = False
