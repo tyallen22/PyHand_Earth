@@ -192,6 +192,7 @@ class MainWindow(QMainWindow):
                                                              QMessageBox.Information)
             self.google_earth.reposition_earth_small()
             # If opencv window not created, create it
+            self.start_button.toggle()
             if not self.capture:
                 self.create_opencv()
             else:
