@@ -59,20 +59,35 @@ For a smooth experience, users should review the following special comments, whi
 
 ## Installation
 
- ### Requirements
+### Preliminary Matters
 
+This project's installation package, and its dependencies, is hosted on PyPI at:
+
+https://pypi.org/project/PyHand-Earth/
+
+
+#### Requirements
+
+- Linux machine with Webcam
+- Compatible with Ubuntu 20.04 installation
 - Python 3.8 or higher 
-- Compatible with Ubuntu 20.04
 
+#### Third-party pip installed library packages are included in setup.py as part of PyHand-Earth package install:
 
-### Dependencies needed:
+- TensorFlow 2.2.0
+- OpenCV 4.2.0.34
+- matplotlib 3.2.2
+- Keras 2.4.2
+- pyautogui 0.9.50
+- PyQt5
+- psutil 5.7.0
 
-- Google Earth desktop (will be installed automatically the first time the program is run if it is not already present in the environment)
-- apt-get dependencies required to make pip installed packages work together 
+#### Required dependencies that will be apt-get installed with setup.py as part of PyHand-Earth package install:
+
+Although the libraries listed above that provide high-performant optimization all can be pip installed, there are unavoidable dependencies that must be apt-get installed in order for these libraries to coexist.  Although the process is automated with the setup instructions given further below, to provide the user with advance notice of their installation, they are:
 
 ```shell
-$ sudo apt-get install python3-tk
-```
+$ sudo apt-get install python3-tk ```
 
 Needed for pip installed pyautogui
 
@@ -90,6 +105,12 @@ Necessary for us to manage certain windows
 $ sudo apt-get install scrot
 ```
 needed in order to locate images in the Google Earth application so that we can make sure it behaves properly
+
+
+- Google Earth desktop (will be installed automatically the first time the program is run if it is not already present in the environment)
+- apt-get dependencies required to make pip installed packages work together 
+
+
 
 ### Setup
 
@@ -133,7 +154,7 @@ $ PyHand-Earth
 
 OR
 
-change directories to the appropriate .../site-packages/PyHand_Earth folder for your install and run
+instead, you may navigate to the appropriate directory where the `site-packages` was installed, and run:
 
 ```shell
 
@@ -141,7 +162,7 @@ $ python3 main_qt.py
 
 ```
 
-If you used a virtual environment to pip3 install PyHand-Earth, this directory may look something like
+If you used a virtual environment to `pip3 install PyHand-Earth`, this directory may look something like
 
 ```shell
 
