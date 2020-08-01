@@ -44,6 +44,7 @@ For a smooth experience, users should review the following special comments, whi
 - As noted further below, due to dependencies that are required in order for the principal pip installed libraries to <i>play nice together</i>, certain other libraries will need to be apt-get installed (as previously cleared by J.B.).
 - This package requires Google Earth Pro desktop to be installed on the local machine.  If it is not already installed, the Google Earth Pro application automatically will be installed the first time you run the program.  A relatively large neural network learning model .h5 file also will be downloaded.  Consequently, please make allowances the first time you run the program.
 - This project requires many other pip3 installed high-performant libraries to work in unison, which due to all the threading involved, was not the easiest task to accomplish.  Therefore, please also be patient while these libraries load and initialize.  Whereas some projects may require only one or two such libraries, this one incorporates TensorFlow/Keras, OpenCV, PyQt, maplotlib, and numpy, among others.  Consequently, it may take a few seconds for the user interface to fully load, and for certain video windows to open and close.
+- Before all open applications should be closed, except for a terminal window.  For best performance, this terminal window should not be maximized and instead should be kept to a reasonable size so that it does not interfere with the user interface.
 - Because of the inherent physical limitations of an ordinary Webcam, the hand gesture prediction will work most accurately when a blank, light-colored (e.g., white or cream) wall is positioned behind the user.
 - There are eight available hand gestures to control navigation in Google Earth.  For a smoother experience, a few moments should be taken to familiarize yourself with these different gestures.  These gestures, together with their corresponding navigation motions, will be displayed once the program runs.
 - When starting gesture navigation, the user's hand should be positioned so that it fills a good portion of the orange bounding rectangle in the live video window once it opens.
@@ -121,15 +122,21 @@ As previously stated above, if you do not have the Google Earth Pro desktop appl
 
 After launching the Py-Earth program, the user's initial view consists of the top portion of the display being filled by Google Earth and a smaller area at the bottom of the display featuring a pictoral index of eight hand gestures and three user buttons.
 
-The eight hand gestures and their corresponding navigation motions on Google Earth are as follows:
+The eight hand gestures, together with a blank wall (e.g., no hand gesture), and their corresponding navigation motions on Google Earth, are as follows:
 
-| Hand Gesture		| Navigation Motion |
-| --------------------- |:-----------------:|
-| Index finger up	| Move Up	    |
-| Peace sign      	| Move Down    	    |
-| Left thumb extended	| Move Left    	    |
-| Right thumb extended  | Move Right   	    |
-| Closed fist		| Zoom In	    |
+<c>
+| Hand Gesture			| Navigation Motion |
+| ----------------------------- |:-----------------:|
+| Index finger up		| Move Up	    |
+| Peace sign      		| Move Down    	    |
+| Left thumb extended		| Move Left    	    |
+| Right thumb extended  	| Move Right   	    |
+| Closed fist			| Zoom In	    |
+| Five fingers opened wide  	| Move Right   	    |
+| Open palm with fingers tight	| Tilt Up	    |
+| Shaka "hang loose" sign  	| Tilt Down 	    |
+| Blank wall			| Tilt Up	    |
+</c>
 
 - The display should be filled with two areas:
 
