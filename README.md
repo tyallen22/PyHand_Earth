@@ -139,8 +139,8 @@ As previously stated above, if you do not have the Google Earth Pro desktop appl
 
 ## User Guide
 
-### Initial view	
-<img  src="https://i.ibb.co/k9MZSFp/two.png"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
+### Initial view upon start-up (with Google Earth Start up tips window closed)
+<img  src=https://i.ibb.co/B2tB9MD/initial-view.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
 
 After launching the PyHand-Earth program, the user's initial view consists of the top portion of the display being filled by Google Earth and a smaller area at the bottom of the display featuring a pictoral index of eight hand gestures and three user buttons.
 
@@ -185,9 +185,6 @@ To the left of the orange bounding rectangle, the neural network's prediction va
 
 
 ### Screenshots
-
-#### Initial view upon start-up (with Google Earth Start up tips window closed)
-<img  src=https://i.ibb.co/B2tB9MD/initial-view.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
 
 #### Gesture navigation with index finger pointing up - Move Up
 <img  src=https://i.ibb.co/BLDTXZx/index-up.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
