@@ -24,7 +24,7 @@
 ---
   
 
-## Overview
+## Project Description and Overview
 
 PyHand-Earth is a Python-based software project that incorporates and integrates multiple high-performant concepts, libraries, tools, and techniques to optimize and maximize user experience in navigating the Google Earth Pro Desktop application relying only on simple hand gestures and an ordinary Webcam.
 
@@ -66,7 +66,7 @@ This project's installation package, and its dependencies, is hosted on PyPI at:
 https://pypi.org/project/PyHand-Earth/
 
 
-#### Requirements
+#### General Requirements
 
 - Linux machine with Webcam
 - Compatible with Ubuntu 20.04 installation
@@ -92,56 +92,44 @@ Although the libraries listed above that provide high-performant optimization al
 - `apt-get install scrot`		(needed in order to locate images in the Google Earth application to ensure it behaves properly)
 
 
-### Installation
+### PyHand-Earth pip installation package name
 
-As documented at the PyPI repository page for PyHand-Earth, the entire software package can be installed from the command-line with:
+As documented at the PyPI repository page for PyHand-Earth, the entire software package can be installed from the command-line with the following pip installation:
 
 ```shell
 $ pip3 install PyHand-Earth==0.2.24
 ```
+Except as mentioned further below, this will install all the Python code developed for the project, third-party optimization libraries, and other required dependencies, as discussed above.
 
 
+### Executable command to run PyHand-Earth
 
-
-
-- Google Earth desktop (will be installed automatically the first time the program is run if it is not alreadypresent in the environment)
-- apt-get dependencies required to make pip installed packages work together
-
-
-
-## Start 
-
-
-#### To launch PyHand-Earth:
-
-From the command line, you can simply run:
-
+From the command line, simply run the following to execute the PyHand-Earth program:
 
 ```shell
-
 $ PyHand-Earth
-
 ```
 
 OR
 
-instead, you may navigate to the appropriate directory where the `site-packages` was installed, and run:
+alternatively, you may navigate to the appropriate directory where the `site-packages` were installed, and run:
 
 ```shell
-
 $ python3 main_qt.py
-
 ```
 
 If you used a virtual environment to `pip3 install PyHand-Earth`, this directory may look something like
 
 ```shell
-
 /home/username/Projects/myvirtualenv/lib/python3.8/site-packages/PyHand_Earth
-
 ```
+As previously stated above, if you do not have the Google Earth Pro desktop application already installed on your local machine, the first time you run `PyHand-Earth`, the program will install the .deb package for Google Earth Pro.  In addition, it automatically will download from a google drive link a Keras .h5 file where the training model for the hand gesture recognition neural network is stored.
 
-As previously stated above, if you do not have the Google Earth Pro desktop application already installed on your local machine, the first time you run PyHand-Earth
+
+
+
+
+
 
 - The display should be filled with two areas:
 
