@@ -49,6 +49,9 @@ For a smooth experience, users should review the following special comments, whi
 - If you remove your hand completely such that only a blank wall occupies the orange bounding rectangle, all navigation and motion should halt.
 - In case you need a refresher on the above, the program includes a "Gesture Navigation Tips" button that will display the most important tips.
 - For academic purposes (as discussed in advance with J.B.), the live video window also contains text displaying the deep learning model's prediction values for each of the available eight hand gestures, as well as that for a blank wall.  (A future, non-academic, deployment instead will just display the controlling navigation motion in order to simplify the user's experience.)
+- The GitHub root directory (under master) includes two folders:
+     - new_main:  Contains the most up-to-date files.
+     - old_code_structure:  Archived files.
 
 
 
