@@ -173,14 +173,14 @@ Below the hand gesture icons, the user is presented with three buttons.  Clickin
 
 - `Gesture Navigation Tips`:  A pop-up window appears that provides the user with a handy list of tips to enhance the user's experience.
 - `Start Gesture Navigation`:  Activates the Webcam, reduces the size of the Google Earth window to the left portion of the display, and opens a new live Webcam window to the right of the Google Earth window.  Clicking this button also alters the buttons as follows:
-   - The `Start Gesture Navigation` label for the button is replaced with `Stop Gesture Navigation` indicating a change of state for the button and providing the user with the means of closing the live Webcam window (upon which the state of the button reverts to its original one, and the size of the Google Earth window expands to occupy the display from left to right).
-   - The `Gesture Navigation Tips` button is grayed to mitigate the possibility of a pop-up window interfering with the hand gesture capturing process.
+   - The `Start Gesture Navigation` label for the button is replaced with `Stop Gesture Navigation`, indicating a change of state for the button and providing the user with the means of closing the live Webcam window (upon which the state of the button reverts to its original one, and the size of the Google Earth window expands to occupy the display from left to right).
+   - The `Gesture Navigation Tips` button is grayed out to mitigate the possibility of a pop-up window interfering with the hand gesture capturing process.
 - `Exit Program`: Terminates the program.
 
 
 Upon starting gesture navigation, an orange bounding rectangle is visible in the live Webcam video window.  By placing your <b><i>right</i></b> hand in the window and forming one of the eight gestures, you will be able to navigate Google Earth Pro.  One of the interesting features of this functionality is that Google Earth Pro's API was deprecated years ago, and so all navigation control is performed by optimized, threaded Python code.
 
-<b><i>Tip</i></b>:  As mentioned previously, due to the physical limitations of an ordinary Webcam, the prediction model works best when you have behind you a blank, light-colored wall.
+<b><i>Tip</i></b>:  As mentioned previously, due to the physical limitations of ordinary Webcams, the prediction model works best when you have behind you a blank, light-colored wall.
 
 To the left of the orange bounding rectangle, the neural network's prediction values for each of the motions (gestures) is displayed in text to the user (for academic evaluation purposes).
 
@@ -192,6 +192,9 @@ To the left of the orange bounding rectangle, the neural network's prediction va
 ---
 
 ## Screenshots
+
+#### Gesture Navigation Tips pop-up window with helpful instructions and tips
+<img  src=https://i.ibb.co/6vHqM3C/splash-tips.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
 
 
 #### Gesture navigation with index finger pointing up - Move Up
