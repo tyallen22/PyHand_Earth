@@ -6,12 +6,12 @@
 
   
 
->Welcome to <i>PyHand Earth</i>!
+>Welcome to <i>PyHand-Earth</i>!
 
 
   
 
-## Table of Contents 
+## Contents 
 
  -  [Overview](#overview)
  -  [Special Comments](#comments)
@@ -86,12 +86,7 @@ https://pypi.org/project/PyHand-Earth/
 
 Although the libraries listed above that provide high-performant optimization all can be pip installed, there are unavoidable dependencies that must be apt-get installed in order for these libraries to coexist.  (Prior approvals have been obtained from J.B.).  Although the process is automated with the setup instructions given in the next section below, to provide the user with advance notice of their installation, these apt-get dependencies are individually listed as follows:
 
-```shell
-
-$ sudo apt-get install python3-tk 
-
-```
-(The above is needed for pip installed pyautogui.)
+- `$ sudo apt-get install python3-tk` (needed for pip installed pyautogui)
 
 ```shell
 
@@ -116,9 +111,9 @@ $ sudo apt-get install scrot
 (The above is needed in order to locate images in the Google Earth application to ensure it behaves properly.)
 
 
-#### Setup
+### Installation
 
-  - This section will include all the `code` necessary to get  PyHand-Earth going
+
 
 
 
