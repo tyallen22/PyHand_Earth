@@ -75,6 +75,8 @@ https://pypi.org/project/PyHand-Earth/
 
 #### Third-party pip installed library packages are included in setup.py as part of PyHand-Earth package install:
 
+The following third-party packages automatically will be pip installed as part of the PyHand-Earth package pip install:
+
 - TensorFlow 2.2.0
 - OpenCV 4.2.0.34
 - matplotlib 3.2.2
@@ -83,14 +85,32 @@ https://pypi.org/project/PyHand-Earth/
 - PyQt5
 - psutil 5.7.0
 
-#### Required dependencies that will be apt-get installed with setup.py as part of PyHand-Earth package install:
+#### apt-get packages that must be independently installed due to required dependencies:
 
-Although the libraries listed above that provide high-performant optimization all can be pip installed, there are unavoidable dependencies that must be apt-get installed in order for these libraries to coexist.  (Prior approvals have been obtained from J.B.).  Although the process is automated with the setup instructions given in the next section below entitled <b>Installation</b>, to provide the user with advance notice of their installation, these apt-get dependencies are individually listed as follows:
+Although the libraries listed above that provide high-performant optimization all can be pip installed, there are unavoidable dependencies that the user must `apt-get` install in order for these libraries to coexist.  (Prior approvals have been obtained from J.B.).
 
-- `apt-get install python3-tk`		(needed for pip installed pyautogui)
-- `apt-get install libxcb-xinerama0`	(required in order to start PyQt, which is pip installed)
-- `apt-get install wmctrl`		(necessary to be able to manage certain windows)
-- `apt-get install scrot`		(needed in order to locate images in the Google Earth application to ensure it behaves properly)
+The apt-get install commands that the user must execute from the command line for a proper PyHand-Earth installation are as follows:
+
+```shell
+$ sudo apt-get install python3-tk
+```
+(needed for pip installed pyautogui)
+
+```shell
+$ sudo apt-get install libxcb-xinerama0
+```
+(required in order to start PyQt, which is pip installed)
+
+```shell
+$ sudo apt-get install wmctrl
+```
+(necessary to be able to manage certain windows)
+
+```shell
+$ sudo apt-get install scrot
+```
+(needed in order to locate images in the Google Earth application to ensure it behaves properly)
+
 
 
 ### PyHand-Earth pip installation package name
@@ -143,11 +163,11 @@ For a smooth experience, you should take a few moments to familiarize yourself w
 
 Below the hand gesture icons, the user is presented with three buttons.  Clicking on any of these three buttons with the mouse will have the following functionality:
 
-- ~Gesture Navigation Tips~:  A pop-up window appears that provides the user with a handy list of tips to enhance the user's experience.
-- ~Start Gesture Navigation~:  Activates the Webcam, reduces the size of the Google Earth window to the left portion of the display, and opens a new live Webcam window to the right of the Google Earth window.  Clicking this button also alters the buttons as follows:
+- `Gesture Navigation Tips`:  A pop-up window appears that provides the user with a handy list of tips to enhance the user's experience.
+- `Start Gesture Navigation`:  Activates the Webcam, reduces the size of the Google Earth window to the left portion of the display, and opens a new live Webcam window to the right of the Google Earth window.  Clicking this button also alters the buttons as follows:
    - The `Start Gesture Navigation` label for the button is replaced with `Stop Gesture Navigation` indicating a change of state for the button and providing the user with the means of closing the live Webcam window (upon which the state of the button reverts to its original one).
    - The `Gesture Navigation Tips` button is grayed to mitigate the possibility of a pop-up window interfering with the hand gesture capturing process.
-- ~Exit Program~: Terminates the program.
+- `Exit Program`: Terminates the program.
 
 
 
@@ -163,12 +183,11 @@ Below the hand gesture icons, the user is presented with three buttons.  Clickin
  
 - This section will go over all menu buttons and functionalities.
 
-### DISCLAIMER: Optimization of both of the programs has to be improved in order to make Google Earth more responsive. Model must be further developed to improve accuracy. 
 
  ### Buttons
 <img  src="https://i.ibb.co/JqjgZPP/menu.png"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
 
-### DISCLAIMER: These are only preliminary hand gestures to demonstrate something in ... something out
+
 
  #### To Start Video:
 
