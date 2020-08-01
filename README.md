@@ -124,7 +124,7 @@ After launching the Py-Earth program, the user's initial view consists of the to
 
 Note:  In the event Google Earth Pro launches a "Startup tips window", the user should close this window before proceeding.  Notwithstanding, in the event you forget to do so, you will be prompted at the appropriate time with a warning message.
 
-The eight hand gestures, together with a blank wall (e.g., no hand gesture), and their corresponding navigation motions on Google Earth, are as follows:
+The eight hand gestures, together with a blank wall (i.e., no hand gesture), and their corresponding navigation motions on Google Earth, are as follows:
 
 | Hand Gesture			| Navigation Motion |
 | ----------------------------- |:-----------------:|
