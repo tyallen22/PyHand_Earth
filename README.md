@@ -136,11 +136,11 @@ After launching the Py-Earth program, the user's initial view consists of the to
 
 The eight hand gestures and their corresponding navigation motions on Google Earth are as follows:
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| Hand Gesture		| Navigation Motion |
+| --------------------- |:-----------------:|
+| Index finger up	| Move Up	    |
+| Peace sign      	| Move Down    	    |
+| Left thumb extended	| Move Left    	    |
 
 - The display should be filled with two areas:
 
