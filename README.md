@@ -75,7 +75,7 @@ https://pypi.org/project/PyHand-Earth/
 
 #### Third-party pip installed library packages are included in setup.py as part of PyHand-Earth package install:
 
-The following third-party packages automatically will be pip installed as part of the PyHand-Earth package pip install:
+The following third-party packages automatically will be pip installed as part of the PyHand-Earth package pip install (as described further below):
 
 - TensorFlow 2.2.0
 - OpenCV 4.2.0.34
@@ -85,11 +85,12 @@ The following third-party packages automatically will be pip installed as part o
 - PyQt5
 - psutil 5.7.0
 
-#### apt-get packages that must be independently installed due to required dependencies:
+
+#### Apt-get packages that must be independently installed due to required dependencies:
 
 Although the libraries listed above that provide high-performant optimization all can be pip installed, there are unavoidable dependencies that the user must `apt-get` install in order for these libraries to coexist.  (Prior approvals have been obtained from J.B.).
 
-The apt-get install commands that the user must execute from the command line for a proper PyHand-Earth installation are as follows:
+The `apt-get` install commands that the user must execute from the command line for a proper PyHand-Earth installation are as follows:
 
 ```shell
 $ sudo apt-get install python3-tk
@@ -115,12 +116,13 @@ $ sudo apt-get install scrot
 
 ### PyHand-Earth pip installation package name
 
-As documented at the PyPI repository page for PyHand-Earth, the entire software package can be installed from the command-line with the following pip installation:
+As documented at the PyPI repository page for PyHand-Earth, after the required dependencies described immediately above are installed, the software package can be installed from the command line with the following pip installation command:
 
 ```shell
 $ pip3 install PyHand-Earth==0.2.24
 ```
-Except as mentioned further below, this will install all the Python code developed for the project, third-party optimization libraries, and other required dependencies, as discussed above.
+Except as mentioned further below, this will install all the Python code developed for the project and third-party optimization libraries, as discussed previously above.
+
 
 
 ### Executable command to run PyHand-Earth
@@ -142,7 +144,7 @@ As previously stated above, if you do not have the Google Earth Pro desktop appl
 
 After launching the Py-Earth program, the user's initial view consists of the top portion of the display being filled by Google Earth and a smaller area at the bottom of the display featuring a pictoral index of eight hand gestures and three user buttons.
 
-Note:  In the event Google Earth Pro launches a "Startup tips window", the user should close this window before proceeding.  Notwithstanding, in the event you forget to do so, you will be prompted at the appropriate time with a warning message.
+<i>Note</i>:  In the event Google Earth Pro launches a "Startup tips window", the user should close this window before proceeding.  Notwithstanding, in the event you forget to do so, you will be prompted at the appropriate time with a warning message.
 
 The eight hand gestures, together with a blank wall (i.e., no hand gesture), and their corresponding navigation motions on Google Earth, are as follows:
 
@@ -165,11 +167,20 @@ Below the hand gesture icons, the user is presented with three buttons.  Clickin
 
 - `Gesture Navigation Tips`:  A pop-up window appears that provides the user with a handy list of tips to enhance the user's experience.
 - `Start Gesture Navigation`:  Activates the Webcam, reduces the size of the Google Earth window to the left portion of the display, and opens a new live Webcam window to the right of the Google Earth window.  Clicking this button also alters the buttons as follows:
-   - The `Start Gesture Navigation` label for the button is replaced with `Stop Gesture Navigation` indicating a change of state for the button and providing the user with the means of closing the live Webcam window (upon which the state of the button reverts to its original one).
+   - The `Start Gesture Navigation` label for the button is replaced with `Stop Gesture Navigation` indicating a change of state for the button and providing the user with the means of closing the live Webcam window (upon which the state of the button reverts to its original one, and the size of the Google Earth window expands to occupy the display from left to right).
    - The `Gesture Navigation Tips` button is grayed to mitigate the possibility of a pop-up window interfering with the hand gesture capturing process.
 - `Exit Program`: Terminates the program.
 
 
+Upon starting gesture navigation, an orange bounding rectangle is visible in the live Webcam video window.  By placing your <b><i>right</i></b> hand in the window and forming one of the eight gestures, you will be able to navigate Google Earth Pro.  One of the interesting features of this functionality is that Google Earth Pro's API was deprecated years ago, and so all navigation control is performed by optimized, threaded Python code.
+
+<i>Tip</i>:  As mentioned previously, due to the physical limitations of an ordinary Webcam, the prediction model works best when you have behind you a blank, light-colored wall.
+
+To the left of the orange bounding rectangle, the neural network's prediction values for each of the motions (gestures) is displayed in text to the user (for academic evaluation purposes).
+
+<i>Tip</i>:  In the event the prediction gets stuck on the wrong motion (gesture), simply shake your hand for a moment to allow the prediction to reset until the desired motion is achieved.
+
+<i>Tip</i>:  If you remove your hand entirely so that the only thing in the orange bounding rectangle is a blank wall, all navigation and motion should stop.
 
 
 
@@ -178,10 +189,6 @@ Below the hand gesture icons, the user is presented with three buttons.  Clickin
 <img  src="https://i.ibb.co/X8KY0Ry/TopImg.png"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
 
 
-## Usage 
-
- 
-- This section will go over all menu buttons and functionalities.
 
 
  ### Buttons
