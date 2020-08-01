@@ -34,7 +34,7 @@ As a programming language, Python owes much of its popularity to its predilectio
 
 Despite advances in computer vision and deep learning neural networks, there are not many open-source software deployments that advance hand-gesture recognition in any appreciable direction towards the kinds of user interfaces depicted in movies such as those in the Marvel universe ... think Tony Stark navigating a holographic interface.  Those that do exist seem to require the use of special hardware that includes depth sensors (e.g., Microsoft's Xbox Kinect and ultraleap's Leap Motion controllers).
 
-This project serves as an attempt to take a first step towards user interfaces of the future but without such specialized hardware.
+This project serves as an attempt to take a first step towards user interfaces of the future but without having to rely on such specialized hardware.
 
 ---
 
@@ -43,15 +43,15 @@ This project serves as an attempt to take a first step towards user interfaces o
 For a smooth experience, users should review the following special comments, which include important instructions, tips, and suggestions.
 
 - This project is designed to run on a dedicated Linux (Ubuntu 20.04) machine.  Because of certain limitations that are inherent with Virtual Boxes and Microsoft's Windows Subsystem for Linux (WSL), Webcams cannot be counted on to reliably operate on these substitute platforms.
-- During the setup installation, multiple libraries upon which the program is dependendent will be downloaded, and so please be a little patient during this process.
+- During the setup, installation, and startup, multiple libraries upon which the program is dependent will have to be downloaded, and so please be a little patient during this process.
 - As noted further below, due to dependencies that are required in order for the principal pip installed libraries to <i>play nice together</i>, certain other libraries will need to be apt-get installed (as previously cleared by J.B.).
 - This package requires Google Earth Pro desktop to be installed on the local machine.  If it is not already installed, the Google Earth Pro application automatically will be installed the first time you run the program.  A relatively large neural network learning model .h5 file also will be downloaded.  Consequently, please make allowances the first time you run the program.
 - This project requires many other pip3 installed high-performant libraries to work in unison, which due to all the threading involved, was not the easiest task to accomplish.  Therefore, please also be patient while these libraries load and initialize.  Whereas some projects may require only one or two such libraries, this one incorporates TensorFlow/Keras, OpenCV, PyQt, maplotlib, and numpy, among others.  Consequently, it may take a few seconds for the user interface to fully load, and for certain video windows to open and close.
-- Before all open applications should be closed, except for a terminal window.  For best performance, this terminal window should not be maximized and instead should be kept to a reasonable size so that it does not interfere with the user interface.
-- Because of the inherent physical limitations of an ordinary Webcam, the hand gesture prediction will work most accurately when a blank, light-colored (e.g., white or cream) wall is positioned behind the user.
+- Before running the program, all open applications should be closed, except for a terminal window, of course.  For best performance, this terminal window should not be maximized and instead should be kept to a reasonable size so that it does not interfere with the user interface.
+- Because of the inherent physical limitations of ordinary Webcams, the hand gesture prediction will work most accurately when a blank, light-colored (e.g., white or cream) wall is positioned behind the user.
 - There are eight available hand gestures to control navigation in Google Earth.  For a smoother experience, a few moments should be taken to familiarize yourself with these different gestures.  These gestures, together with their corresponding navigation motions, will be displayed once the program runs.
 - When starting gesture navigation, the user's hand should be positioned so that it fills a good portion of the orange bounding rectangle in the live video window once it opens.
-- In the event the prediction gets stuck on the wrong gesture, merely shake your hand a little and let it reset until the desired motion is achieved.  The learning model is based on over 26,000 images, but the limitation of ordinary Webcams, when coupled with varied lighting, and backgrounds, and skin tones, can sometimes result in incorrect predictions, which easily can be reset as described.
+- In the event the prediction gets stuck on the wrong gesture, merely shake your hand a little and let it reset until the desired motion is achieved.  The learning model is based on over 26,000 images, but the limitation of ordinary Webcams, when coupled with varied lighting, backgrounds, and skin tones, can sometimes result in incorrect predictions, which easily can be reset as described.
 - If you remove your hand completely such that only a blank wall occupies the orange bounding rectangle, all navigation and motion should halt.
 - In case you need a refresher on the above, the program includes a "Gesture Navigation Tips" button that will display the most important tips.
 - For academic purposes (as discussed in advance with J.B.), the live video window also contains text displaying the deep learning model's prediction values for each of the available eight hand gestures, as well as that for a blank wall.  (A future, non-academic, deployment instead will just display the controlling navigation motion in order to simplify the user's experience.)
@@ -132,7 +132,7 @@ Except as mentioned further below, this will install all the Python code develop
 
 ## Executable Command to Run PyHand-Earth
 
-From the command line, simply run the following to execute the PyHand-Earth program:
+Once everything is installed, from the command line, simply run the following command to execute the PyHand-Earth program:
 
 ```shell
 $ PyHand-Earth
@@ -148,7 +148,7 @@ As previously stated above, if you do not have the Google Earth Pro desktop appl
 ### Initial view upon start-up (with Google Earth Start up tips window closed)
 <img  src=https://i.ibb.co/B2tB9MD/initial-view.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
 
-After launching the PyHand-Earth program, the user's initial view consists of the top portion of the display being filled by Google Earth and a smaller area at the bottom of the display featuring a pictoral index of eight hand gestures and three user buttons.
+After launching the PyHand-Earth program, the user's initial view consists of the top portion of the display being filled by Google Earth and a smaller area at the bottom of the display featuring a graphical legend of eight hand gestures, as well as three user buttons.
 
 <b><i>Tip</i></b>:  In the event Google Earth Pro launches a "Startup tips window", the user should close this window before proceeding.  Notwithstanding, in the event you forget to do so, you will be prompted at the appropriate time with a warning message.
 
@@ -161,10 +161,10 @@ The eight hand gestures, together with a blank wall (i.e., no hand gesture), and
 | Left thumb extended		| Move Left    	    |
 | Right thumb extended  	| Move Right   	    |
 | Closed fist			| Zoom In	    |
-| Five fingers opened wide  	| Move Right   	    |
+| Five fingers opened wide  	| Zoom Out   	    |
 | Open palm with fingers tight	| Tilt Up	    |
 | Shaka "hang loose" sign  	| Tilt Down 	    |
-| Blank wall			| No motion	    |
+| Blank wall			| No Motion	    |
 
 
 For a smooth experience, you should take a few moments to familiarize yourself with these hand gestures and their motions.
