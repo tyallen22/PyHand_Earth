@@ -110,19 +110,6 @@ From the command line, simply run the following to execute the PyHand-Earth prog
 $ PyHand-Earth
 ```
 
-OR
-
-alternatively, you may navigate to the appropriate directory where the `site-packages` were installed, and run:
-
-```shell
-$ python3 main_qt.py
-```
-
-If you used a virtual environment to `pip3 install PyHand-Earth`, this directory may look something like
-
-```shell
-/home/username/Projects/myvirtualenv/lib/python3.8/site-packages/PyHand_Earth
-```
 As previously stated above, if you do not have the Google Earth Pro desktop application already installed on your local machine, the first time you run `PyHand-Earth`, the program will install the .deb package for Google Earth Pro.  In addition, it automatically will download from a google drive link a Keras .h5 file where the training model for the hand gesture recognition neural network is stored.
 
 
@@ -141,6 +128,8 @@ The eight hand gestures and their corresponding navigation motions on Google Ear
 | Index finger up	| Move Up	    |
 | Peace sign      	| Move Down    	    |
 | Left thumb extended	| Move Left    	    |
+| Right thumb extended  | Move Right   	    |
+| Closed fist		| Zoom In	    |
 
 - The display should be filled with two areas:
 
