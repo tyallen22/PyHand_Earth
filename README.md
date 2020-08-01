@@ -257,4 +257,4 @@ Access has been furnished to J.B., N.S., and J.C.
 
 -  **[MIT license](http://opensource.org/licenses/mit-license.php)**
 
-- Copyright 2020 © 
+- Copyright © 2020  
