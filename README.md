@@ -186,7 +186,7 @@ To the left of the orange bounding rectangle, the neural network's prediction va
 
 ### Screenshots
 
-<img  src="https://drive.google.com/file/d/1SALrG3-PrGo3omP2jbCU2ZUMYgzhL8Dy/view?usp=sharing"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
+<img  src=https://photos.app.goo.gl/9fZRWvC2Xs3fxo46A  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
 
 
 
