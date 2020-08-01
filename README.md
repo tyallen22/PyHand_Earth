@@ -13,7 +13,7 @@
 
 ## Contents 
 
- -  [Project Description and Overview](#Project Description and Overview)
+ -  [Project Description and Overview](##Project Description and Overview)
  -  [Special Comments](#comments)
  -  [Setup and Installation](#installation)
  -  [## Executable Command to Run PyHand-Earth](#run)
