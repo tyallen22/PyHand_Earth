@@ -142,9 +142,9 @@ As previously stated above, if you do not have the Google Earth Pro desktop appl
 ### Initial view	
 <img  src="https://i.ibb.co/k9MZSFp/two.png"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
 
-After launching the Py-Earth program, the user's initial view consists of the top portion of the display being filled by Google Earth and a smaller area at the bottom of the display featuring a pictoral index of eight hand gestures and three user buttons.
+After launching the PyHand-Earth program, the user's initial view consists of the top portion of the display being filled by Google Earth and a smaller area at the bottom of the display featuring a pictoral index of eight hand gestures and three user buttons.
 
-<i>Note</i>:  In the event Google Earth Pro launches a "Startup tips window", the user should close this window before proceeding.  Notwithstanding, in the event you forget to do so, you will be prompted at the appropriate time with a warning message.
+<b><i>Tip</i></b>:  In the event Google Earth Pro launches a "Startup tips window", the user should close this window before proceeding.  Notwithstanding, in the event you forget to do so, you will be prompted at the appropriate time with a warning message.
 
 The eight hand gestures, together with a blank wall (i.e., no hand gesture), and their corresponding navigation motions on Google Earth, are as follows:
 
@@ -174,17 +174,17 @@ Below the hand gesture icons, the user is presented with three buttons.  Clickin
 
 Upon starting gesture navigation, an orange bounding rectangle is visible in the live Webcam video window.  By placing your <b><i>right</i></b> hand in the window and forming one of the eight gestures, you will be able to navigate Google Earth Pro.  One of the interesting features of this functionality is that Google Earth Pro's API was deprecated years ago, and so all navigation control is performed by optimized, threaded Python code.
 
-<i>Tip</i>:  As mentioned previously, due to the physical limitations of an ordinary Webcam, the prediction model works best when you have behind you a blank, light-colored wall.
+<b><i>Tip</i></b>:  As mentioned previously, due to the physical limitations of an ordinary Webcam, the prediction model works best when you have behind you a blank, light-colored wall.
 
 To the left of the orange bounding rectangle, the neural network's prediction values for each of the motions (gestures) is displayed in text to the user (for academic evaluation purposes).
 
-<i>Tip</i>:  In the event the prediction gets stuck on the wrong motion (gesture), simply shake your hand for a moment to allow the prediction to reset until the desired motion is achieved.
+<b><i>Tip</i></b>:  In the event the prediction gets stuck on the wrong motion (gesture), simply shake your hand for a moment to allow the prediction to reset until the desired motion is achieved.
 
-<i>Tip</i>:  If you remove your hand entirely so that the only thing in the orange bounding rectangle is a blank wall, all navigation and motion should stop.
+<b><i>Tip</i></b>:  If you remove your hand entirely so that the only thing in the orange bounding rectangle is a blank wall, all navigation and motion should stop.
 
 
 
-### Starting VIdeo
+### Screenshots
 
 <img  src="https://i.ibb.co/X8KY0Ry/TopImg.png"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
 
