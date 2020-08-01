@@ -128,7 +128,7 @@ $ sudo apt-get install scrot
 As documented at the PyPI repository page for PyHand-Earth, after the required dependencies described immediately above are installed, the software package can be installed from the command line with the following pip installation command:
 
 ```shell
-$ pip3 install PyHand-Earth==1.0.0
+$ pip3 install PyHand-Earth==1.0.1
 ```
 Except as mentioned further below, this will install all the Python code developed for the project and third-party optimization libraries, as discussed previously above.
 
