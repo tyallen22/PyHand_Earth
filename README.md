@@ -99,7 +99,12 @@ The `apt-get` install commands that the user must execute from the command line 
 ```shell
 $ sudo apt-get install python3-tk
 ```
-(needed for pip installed pyautogui)
+(needed to pip install pyautogui)
+
+```shell
+$ sudo apt-get install python3-dev
+```
+(header files needed to pip install psutil)
 
 ```shell
 $ sudo apt-get install libxcb-xinerama0
