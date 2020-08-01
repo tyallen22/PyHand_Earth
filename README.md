@@ -158,7 +158,7 @@ The eight hand gestures, together with a blank wall (i.e., no hand gesture), and
 | Five fingers opened wide  	| Move Right   	    |
 | Open palm with fingers tight	| Tilt Up	    |
 | Shaka "hang loose" sign  	| Tilt Down 	    |
-| Blank wall			| Tilt Up	    |
+| Blank wall			| No motion	    |
 
 
 For a smooth experience, you should take a few moments to familiarize yourself with these hand gestures and their motions.
@@ -186,32 +186,37 @@ To the left of the orange bounding rectangle, the neural network's prediction va
 
 ### Screenshots
 
+#### Initial view upon start-up (with Google Earth Start up tips window closed)
 <img  src=https://i.ibb.co/B2tB9MD/initial-view.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
 
+#### Gesture navigation with index finger pointing up - Move Up
+<img  src=https://i.ibb.co/BLDTXZx/index-up.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
+
+#### Gesture navigation with peace sign - Move Down
+<img  src=https://i.ibb.co/FJg7Yx9/move-down.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
+
+#### Gesture navigation with left thumb extended - Move Left
+<img  src=https://i.ibb.co/fQ4KQnM/move-left.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
+
+#### Gesture navigation with right thumb extended - Move Right
+<img  src=https://i.ibb.co/NtVd115/move-right.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
+
+#### Gesture navigation with closed fist - Zoom In
+<img  src=https://i.ibb.co/h7qtL1w/zoom-in.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
+
+#### Gesture navigation with five fingers opened wide - Zoom Out
+<img  src=https://i.ibb.co/8YHMbFB/zoom-out.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
+
+#### Gesture navigation with open palm with fingers tight - Tilt Up
+<img  src=https://i.ibb.co/bmJK82K/tilt-up.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
+
+#### Gesture navigation with Shaka "hang loose" sign - Tilt Down
+<img  src=https://i.ibb.co/K2R9Czr/tilt-down.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
+
+#### Gesture navigation with blank wall (i.e., no hand gesture) - No Motion
+<img  src=https://i.ibb.co/mybpvkF/blank-wall.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
 
 
-
- ### Buttons
-<img  src="https://i.ibb.co/JqjgZPP/menu.png"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
-
-
-
- #### To Start Video:
-
-![](https://s7.gifyu.com/images/start05a813aea53fe405.gif)
-
- #### To Stop Video:
-
-![](https://s7.gifyu.com/images/stop6ee4ca56ae58c6da.gif)
-
-
-  #### To Exit the Program:
- 
-![](https://s7.gifyu.com/images/end3dbe56bddb5bedae.gif)
-
----
-
-  
 
 ## Team
 
