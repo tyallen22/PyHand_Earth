@@ -127,9 +127,20 @@ As previously stated above, if you do not have the Google Earth Pro desktop appl
 
 
 
+## User Guide
 
+### Initial view	
+<img  src="https://i.ibb.co/k9MZSFp/two.png"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
 
+After launching the Py-Earth program, the user's initial view consists of the top portion of the display being filled by Google Earth and a smaller area at the bottom of the display featuring a pictoral index of eight hand gestures and three user buttons.
 
+The eight hand gestures and their corresponding navigation motions on Google Earth are as follows:
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
 
 - The display should be filled with two areas:
 
@@ -137,8 +148,7 @@ As previously stated above, if you do not have the Google Earth Pro desktop appl
 	
 	- Gestures and buttons area : Demonstrating different possible gestures and buttons to start the OpenCV window video, Stop it and Exit the program which closes all the windows. 
 	
-### Initial view	
-<img  src="https://i.ibb.co/k9MZSFp/two.png"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
+
 
 ### Starting VIdeo
 
@@ -179,7 +189,7 @@ As previously stated above, if you do not have the Google Earth Pro desktop appl
 
 - The PyHandlers team was formed for "CIS4930 - Performant Python Programming" from the University of Florida.
 
-### Formed by:
+### Project team members:
 - Grant H. Wise
 - Tyler Allen
 - Vanessa Orantes Murillo
@@ -187,7 +197,17 @@ As previously stated above, if you do not have the Google Earth Pro desktop appl
 - Ying Xu
  
 ---
-  
+
+
+## GitHub Repository
+
+This README.md file and all other files and source code is located at the following GitHub Repository:
+
+https://github.com/liujohnj/PyHand_Earth
+
+Access has been furnished to J.B., N.S., and J.C.
+
+
 
 ## License
 
