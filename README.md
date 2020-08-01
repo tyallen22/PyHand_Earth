@@ -84,31 +84,12 @@ https://pypi.org/project/PyHand-Earth/
 
 #### Required dependencies that will be apt-get installed with setup.py as part of PyHand-Earth package install:
 
-Although the libraries listed above that provide high-performant optimization all can be pip installed, there are unavoidable dependencies that must be apt-get installed in order for these libraries to coexist.  (Prior approvals have been obtained from J.B.).  Although the process is automated with the setup instructions given in the next section below, to provide the user with advance notice of their installation, these apt-get dependencies are individually listed as follows:
+Although the libraries listed above that provide high-performant optimization all can be pip installed, there are unavoidable dependencies that must be apt-get installed in order for these libraries to coexist.  (Prior approvals have been obtained from J.B.).  Although the process is automated with the setup instructions given in the next section below entitled <b>Installation</b>, to provide the user with advance notice of their installation, these apt-get dependencies are individually listed as follows:
 
-- `$ sudo apt-get install python3-tk` (needed for pip installed pyautogui)
-
-```shell
-
-$ sudo apt-get install libxcb-xinerama0
-
-```
-(The above is required in order to start PyQt, which is pip installed)
-
-```shell
-
-$ sudo apt-get install wmctrl
-
-
-```
-(The above is necessary to be able to manage certain windows.)
-
-```shell
-
-$ sudo apt-get install scrot
-
-```
-(The above is needed in order to locate images in the Google Earth application to ensure it behaves properly.)
+- `apt-get install python3-tk`		(needed for pip installed pyautogui)
+- `apt-get install libxcb-xinerama0`	(required in order to start PyQt, which is pip installed)
+- `apt-get install wmctrl`		(necessary to be able to manage certain windows)
+- `apt-get install scrot`		(needed in order to locate images in the Google Earth application to ensure it behaves properly)
 
 
 ### Installation
