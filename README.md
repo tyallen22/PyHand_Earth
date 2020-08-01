@@ -14,12 +14,12 @@
 ## Contents 
 
  -  [Project Description and Overview](#project-description-and-overview)
- -  [Special Comments](#comments)
- -  [Setup and Installation](#installation)
- -  [## Executable Command to Run PyHand-Earth](#run)
- -  [User Guide](#userguide)
+ -  [Special Comments](#special-comments)
+ -  [Setup and Installation](#setup-and-installation)
+ -  [Executable Command to Run PyHand-Earth](#executable-command-to-run-pyhand-earth)
+ -  [User Guide](#user-guide)
  -  [Screenshots](#screenshots)
- -  [GitHub Repository](#gitrepo)
+ -  [GitHub Repository](#github-repository)
  -  [Team](#team)
  -  [License](#license)
 
