@@ -14,14 +14,9 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 class QtCapture(QtWidgets.QWidget):
 
-    def __init__(self, earth, desktop, screen, *args, **kwargs):
+    def __init__(self, earth, desktop, screen, camera, *args, **kwargs):
         super(QtCapture, self).__init__(*args, **kwargs)
 
-        #Old Model Name
-        #self.model = load_model('pyearth_cnn_model_200612_1744.h5')
-        #self.model = load_model('pyearth_cnn_model_new_test2.h5')
-        #self.model = load_model('pyearth_cnn_model_without_nothing.h5')
-        #New Model Name
         self.model = load_model('pyearth_cnn_model_0724.h5')
         self.class_names = ['INDEX_UP', 'V_SIGN', 'THUMB_LEFT', 'THUMB_RIGHT', 'FIST', 'FIVE_WIDE',
                             'PALM', 'SHAKA', 'NOTHING']
@@ -36,10 +31,11 @@ class QtCapture(QtWidgets.QWidget):
         self.layout_one.addWidget(self.video_frame)
         self.setLayout(self.layout_one)
 
-        try:
-            self.camera = cv2.VideoCapture(-1)
-        except:
-            print("Camera not found!")
+
+        self.camera = camera
+        
+        # if self.camera is None or not self.camera.isOpened():
+        #     print("Unable to find webcam. Please connect a camera.")
 
         self.output = ""
 

@@ -39,7 +39,6 @@ class KeyboardCommands():
 
     def end_command(self):
         os.system("wmctrl -a Google Earth Pro")
-        #pyautogui.keyUp(self.__current_command)
         if self.__current_command == 'tilt_up':
             pyautogui.keyUp('up')
             pyautogui.keyUp('shift')

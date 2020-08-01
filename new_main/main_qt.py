@@ -4,6 +4,7 @@ program
 """
 import sys
 import time
+import cv2
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QHBoxLayout, QLabel, \
      QPushButton, QWidget, QApplication, QMessageBox
@@ -58,6 +59,8 @@ class MainWindow(QMainWindow):
         self.stop_commands = False
         # Will hold hand_recognition QtCapture class
         self.capture = None
+        # Will hold camera object for OpenCV
+        self.camera = None
         # Will hold thread for issuing GE commands
         self.command_thread = None
         # Make Qt gesture icon window frameless
@@ -204,6 +207,17 @@ class MainWindow(QMainWindow):
                               "starting gesture navigation"
             self.show_popup(self.popup_title, self.popup_text, QMessageBox.Warning)
         else:
+            self.open_camera()
+
+    def open_camera(self):
+        self.camera = cv2.VideoCapture(-1)
+        
+        if self.camera is None or not self.camera.isOpened():
+            self.popup_title = "No Camera Found Warning Message"
+            self.popup_text = "No camera has been detected. \n\nPlease connect a camera before " + \
+                              "starting gesture navigation.\n"
+            self.show_popup(self.popup_title, self.popup_text, QMessageBox.Warning)
+        else:
             self.start_opencv()
 
     def start_opencv(self):
@@ -234,7 +248,7 @@ class MainWindow(QMainWindow):
 
     def create_opencv(self):
         # Create QtCapture window for rendering opencv window
-        self.capture = QtCapture(self.google_earth, self.desktop, self.screen)
+        self.capture = QtCapture(self.google_earth, self.desktop, self.screen, self.camera)
         self.capture.setParent(self.widget)
         self.capture.setWindowFlags(QtCore.Qt.Tool)
         self.capture.setWindowTitle("OpenCV Recording Window")
@@ -290,9 +304,7 @@ class MainWindow(QMainWindow):
         if self.command_thread:
             self.command_thread.end_thread()
             time.sleep(1)
-        # Make sure a single command is sent and ended before exit
-        # self.commands.send_single_command("space")
-        # time.sleep(1)
+
         # Stop threads, close GE, and exit application
         if self.capture:
             self.capture.stop_thread()
