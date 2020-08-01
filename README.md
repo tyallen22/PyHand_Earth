@@ -40,8 +40,8 @@ This project serves as an attempt to take a first step towards user interfaces o
 For a smooth experience, users should review the following special comments, which include important instructions, tips, and suggestions.
 
 - This project is designed to run on a dedicated Linux (Ubuntu 20.04) machine.  Because of certain limitations that are inherent with Virtual Boxes and Microsoft's Windows Subsystem for Linux (WSL), Webcams cannot be counted on to reliably operate on these substitute platforms.
-- During the setup installation, multiple libraries upon which the program is dependendent will be download, and so please be a little patient during this process.
-- Also, please note, as explained further below, that due to dependencies that are required in order for the other pip installed libraries to <i>play nice together</i>, certain libraries will need to be sudo-apt installed (as previously cleared by J.B.).
+- During the setup installation, multiple libraries upon which the program is dependendent will be downloaded, and so please be a little patient during this process.
+- As noted further below, due to dependencies that are required in order for the principal pip installed libraries to <i>play nice together</i>, certain other libraries will need to be apt-get installed (as previously cleared by J.B.).
 - This package requires Google Earth Pro desktop to be installed on the local machine.  If it is not already installed, the Google Earth Pro application automatically will be installed the first time you run the program.  A relatively large neural network learning model .h5 file also will be downloaded.  Consequently, please make allowances the first time you run the program.
 - This project requires many other pip3 installed high-performant libraries to work in unison, which due to all the threading involved, was not the easiest task to accomplish.  Therefore, please also be patient while these libraries load and initialize.  Whereas some projects may require only one or two such libraries, this one incorporates TensorFlow/Keras, OpenCV, PyQt, maplotlib, and numpy, among others.  Consequently, it may take a few seconds for the user interface to fully load, and for certain video windows to open and close.
 - Because of the inherent physical limitations of an ordinary Webcam, the hand gesture prediction will work most accurately when a blank, light-colored (e.g., white or cream) wall is positioned behind the user.
@@ -51,10 +51,10 @@ For a smooth experience, users should review the following special comments, whi
 - If you remove your hand completely such that only a blank wall occupies the orange bounding rectangle, all navigation and motion should halt.
 - In case you need a refresher on the above, the program includes a "Gesture Navigation Tips" button that will display the most important tips.
 - For academic purposes (as discussed in advance with J.B.), the live video window also contains text displaying the deep learning model's prediction values for each of the available eight hand gestures, as well as that for a blank wall.  (A future, non-academic, deployment instead will just display the controlling navigation motion in order to simplify the user's experience.)
-- The GitHub repository root folder (under master branch) includes two sub-folders:
+- The GitHub repository root folder (under `master` branch) includes two sub-folders:
   - `new_main`:  Contains the most up-to-date files.
   - `old_code_structure`:  Archived files.
-
+- A PDF file detailing contributions made outside of GitHub to this project is included in the `master` branch of the root folder.
 
 
 ## Installation
@@ -67,7 +67,7 @@ For a smooth experience, users should review the following special comments, whi
 
 ### Dependencies needed:
 
-- Google Earth desktop (will be installed automatically if it is not already present in the environment)
+- Google Earth desktop (will be installed automatically the first time the program is run if it is not already present in the environment)
 - apt-get dependencies required to make pip installed packages work together 
 
 ```shell
@@ -111,7 +111,7 @@ needed in order to locate images in the Google Earth application so that we can 
 
 ```shell
 
-$ pip3 install PyHand-Earth==0.2.23
+$ pip3 install PyHand-Earth==0.2.24
 
 ```
 
@@ -127,15 +127,24 @@ From the command line, run:
 
 ```shell
 
-$ python3 main_qt.py
+$ PyHand-Earth
 
 ```
 
-- Two windows will show up:
+OR
+
+navigate to ....... and run:
+
+```shell
+
+$ python3 main_qt.py
+```
+
+- The display should be filled with two areas:
 
 	- Google Earth Pro: Targeted window to control with hand gestures
 	
-	- Gestures and buttons window : Demonstrating different possible gestures and buttons to start the OpenCV window video, Stop it and Exit the program which closes all the windows. 
+	- Gestures and buttons area : Demonstrating different possible gestures and buttons to start the OpenCV window video, Stop it and Exit the program which closes all the windows. 
 	
 ### Initial view	
 <img  src="https://i.ibb.co/k9MZSFp/two.png"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
