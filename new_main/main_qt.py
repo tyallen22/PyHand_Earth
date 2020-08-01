@@ -353,6 +353,7 @@ def main():
     window.move(x_position, y_position)
 
     app.exec_()
+    sys.exit()
 
 if __name__ == '__main__':
     main()
