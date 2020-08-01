@@ -122,9 +122,10 @@ As previously stated above, if you do not have the Google Earth Pro desktop appl
 
 After launching the Py-Earth program, the user's initial view consists of the top portion of the display being filled by Google Earth and a smaller area at the bottom of the display featuring a pictoral index of eight hand gestures and three user buttons.
 
+Note:  In the event Google Earth Pro launches a "Startup tips window", the user should close this window before proceeding.  Notwithstanding, in the event you forget to do so, you will be prompted at the appropriate time with a warning message.
+
 The eight hand gestures, together with a blank wall (e.g., no hand gesture), and their corresponding navigation motions on Google Earth, are as follows:
 
-<c>
 | Hand Gesture			| Navigation Motion |
 | ----------------------------- |:-----------------:|
 | Index finger up		| Move Up	    |
@@ -136,14 +137,20 @@ The eight hand gestures, together with a blank wall (e.g., no hand gesture), and
 | Open palm with fingers tight	| Tilt Up	    |
 | Shaka "hang loose" sign  	| Tilt Down 	    |
 | Blank wall			| Tilt Up	    |
-</c>
 
-- The display should be filled with two areas:
 
-	- Google Earth Pro: Targeted window to control with hand gestures
-	
-	- Gestures and buttons area : Demonstrating different possible gestures and buttons to start the OpenCV window video, Stop it and Exit the program which closes all the windows. 
-	
+For a smooth experience, you should take a few moments to familiarize yourself with these hand gestures and their motions.
+
+Below the hand gesture icons, the user is presented with three buttons.  Clicking on any of these three buttons with the mouse will have the following functionality:
+
+- ~Gesture Navigation Tips~:  A pop-up window appears that provides the user with a handy list of tips to enhance the user's experience.
+- ~Start Gesture Navigation~:  Activates the Webcam, reduces the size of the Google Earth window to the left portion of the display, and opens a new live Webcam window to the right of the Google Earth window.  Clicking this button also alters the buttons as follows:
+   - The `Start Gesture Navigation` label for the button is replaced with `Stop Gesture Navigation` indicating a change of state for the button and providing the user with the means of closing the live Webcam window (upon which the state of the button reverts to its original one).
+   - The `Gesture Navigation Tips` button is grayed to mitigate the possibility of a pop-up window interfering with the hand gesture capturing process.
+- ~Exit Program~: Terminates the program.
+
+
+
 
 
 ### Starting VIdeo
