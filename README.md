@@ -94,23 +94,18 @@ Although the libraries listed above that provide high-performant optimization al
 
 ### Installation
 
+As documented at the PyPI repository page for PyHand-Earth, the entire software package can be installed from the command-line with:
 
+```shell
+$ pip3 install PyHand-Earth==0.2.24
+```
 
 
 
 
 
 - Google Earth desktop (will be installed automatically the first time the program is run if it is not alreadypresent in the environment)
-- apt-get dependencies required to make pip installed packages work together 
-
-
-> install all the requirements for PyHand-Earth from a terminal command line with:
-
-```shell
-
-$ pip3 install PyHand-Earth==0.2.24
-
-```
+- apt-get dependencies required to make pip installed packages work together
 
 
 
