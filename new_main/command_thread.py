@@ -11,17 +11,17 @@ class CommandThread(QThread):
     @pyqtSlot()
     def run(self):
 
-        initial_input = self.capture.get_output()
-        self.commands.set_command(initial_input)
-        self.commands.send_command()
         # While stop command false, get commands from hand_recognition
         # and send commands to Google Earth window
-        while self.issue_commands:
+        while (not self.isInterruptionRequested()):
             current_input = self.capture.get_output()
-            if current_input != initial_input:
-                self.commands.end_command()
-                self.commands.set_command(current_input)
-                self.commands.send_command()
+
+            self.commands.end_command()
+            self.commands.set_command(current_input)
+            self.commands.send_command()
 
     def end_thread(self):
-        self.issue_commands = False
+        self.requestInterruption()
+        self.wait()
+        self.commands.send_single_command("space")
+        del self

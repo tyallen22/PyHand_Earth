@@ -96,6 +96,7 @@ class GoogleEarth():
         self.screen_position.append((self.desktop_geometry.height() / 2))
 
     def reposition_earth_small(self):
+        # REPLACE with hotkey for ALT + F10 to toggle full screen
         sidebar_coords = self.keyboard_commands.locate_image('fullscreen.png')
 
         if sidebar_coords:
@@ -108,6 +109,7 @@ class GoogleEarth():
         time.sleep(2)
 
     def reposition_earth_large(self):
+        # REPLACE with hotkey for ALT + F10 to toggle full screen
         sidebar_coords = self.keyboard_commands.locate_image('fullscreen.png')
 
         if sidebar_coords:

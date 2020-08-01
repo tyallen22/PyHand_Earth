@@ -18,14 +18,17 @@ class GoogleEarth():
             on screen resolution
         resolution (string) : Resolution of the current monitor
     """
-    def __init__(self, desktop_geometry):
+    def __init__(self, desktop_geo, screen_geo):
         """
         Please see help(GoogleEarth) for more info
         """
         self.keyboard_commands = KeyboardCommands()
-        self.screen_position = []
-        self.screen_resize = []
-        self.desktop_geometry = desktop_geometry
+
+        self.new_width = None
+        self.new_height = None
+
+        self.desktop_geometry = desktop_geo
+        self.screen_geometry = screen_geo
 
     def check_process_running(self, process_name):
         """
@@ -69,10 +72,10 @@ class GoogleEarth():
         Gets the current screen resolution and starts Google Earth. Repositions Google Earth
         in the center of the screen with a size determined by the current screen resolution.
         """
+        self.check_if_fullscreen()
         self.set_screen_resolution()
-        comm = "wmctrl -r 'Google Earth' -e 0," + str(int(self.screen_position[0])) + "," + \
-                str(int(self.screen_position[1])) + "," + str(int(self.screen_resize[0])) + "," + \
-                str(int(self.screen_resize[1]))
+        comm = "wmctrl -r 'Google Earth' -e 0,0,0," + str(int(self.new_width)) + "," + \
+                str(int(self.new_height))
         os.system(comm)
         time.sleep(2)
 
@@ -80,51 +83,55 @@ class GoogleEarth():
         """
         Sets the Google Earth window resize and screen position based on monitor resolution.
         """
-        #print(self.desktop_geometry.width(), self.desktop_geometry.height())
-        self.screen_resize.append(self.desktop_geometry.width() * (2/5))
-        self.screen_resize.append(self.desktop_geometry.height() * (2/5))
 
-        #print(self.screen_resize[0], self.screen_resize[1])
+        self.new_width = self.desktop_geometry.width()
+        self.new_height = ((self.desktop_geometry.height() * (3/4)) - 37)
 
-        self.screen_position.append((self.desktop_geometry.width()/2)-(self.screen_resize[0]/2))
-        self.screen_position.append((self.desktop_geometry.height()/2)-(self.screen_resize[1]/2))
+    def reposition_earth_small(self):
+        # REPLACE with hotkey for ALT + F10 to toggle full screen
+        self.check_if_fullscreen()
 
+        comm = "wmctrl -r 'Google Earth' -e 0,0,0," + str(int(self.new_width / 2)) + "," + \
+                str(int(self.new_height))
+        os.system(comm)
+        time.sleep(2)
 
+    def reposition_earth_large(self):
+        # REPLACE with hotkey for ALT + F10 to toggle full screen
+        self.check_if_fullscreen()
+
+        comm = "wmctrl -r 'Google Earth' -e 0,0,0," + str(int(self.new_width)) + "," + \
+                str(int(self.new_height))
+        os.system(comm)
+        time.sleep(2)
 
     def toggle_buttons_off(self):
         """
-        Toggles two toolbars in Google Earth that cause problems when sending commands
+        Toggles sidebar in Google Earth that cause problems when sending commands
         to the Google Earth window.
         """
-        sidebar_coords = self.keyboard_commands.locate_image('images/close.png')
-
-        if sidebar_coords:
-            self.keyboard_commands.click_with_location(sidebar_coords)
-            time.sleep(2)
-
         sidebar_coords = self.keyboard_commands.locate_image('images/clicked_sidebar.png')
 
         if sidebar_coords:
-            self.keyboard_commands.click_with_location(sidebar_coords)
+            self.keyboard_commands.close_sidebar()
+
+    def start_up_tips(self):
+        """
+        Returns True/False flag to pop-up message to close Start-up Tips Google Earth Pro window.
+        """
+        start_up_tips_coords = self.keyboard_commands.locate_image('images/close.png')
+
+        if start_up_tips_coords:
+            return True
+        else:
+            return False
+
+    def check_if_fullscreen(self):
+        fullscreen = self.keyboard_commands.locate_image('images/fullscreen.png')
+
+        if fullscreen:
+            self.keyboard_commands.click_with_location(fullscreen)
             time.sleep(2)
-
-    def get_screen_resize(self):
-        """
-        Returns the values used to resize the Google Earth window.
-
-        Returns:
-            resolution (str) : Current Google Earth window size.
-        """
-        return self.screen_resize
-
-    def get_screen_position(self):
-        """
-        Returns the Google Earth window X and Y positions.
-
-        Returns:
-            screen_position (list) : X and Y positions determined by current screen resolution.
-        """
-        return self.screen_position
 
     def close_earth(self):
         """

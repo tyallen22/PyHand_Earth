@@ -1,4 +1,5 @@
 
+
 <a  href="https://pypi.org/project/PyHand-Earth"><img  src="https://i.ibb.co/X8KY0Ry/TopImg.png"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
   
 
@@ -128,7 +129,7 @@ $ python3 main_qt.py
 	- Gestures and buttons window : Demonstrating different possible gestures and buttons to start the OpenCV window video, Stop it and Exit the program which closes all the windows. 
 	
 ### Initial view	
-<img  src="https://i.ibb.co/k9MZSFp/two.png"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
+<img  src="https://i.ibb.co/nr569WM/Initial.png"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
 
 ### Starting VIdeo
 
@@ -137,15 +138,8 @@ $ python3 main_qt.py
 
 ## Usage 
 
- 
-- This section will go over all menu buttons and functionalities.
-
-### DISCLAIMER: Optimization of both of the programs has to be improved in order to make Google Earth more responsive. Model must be further developed to improve accuracy. 
-
  ### Buttons
-<img  src="https://i.ibb.co/JqjgZPP/menu.png"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
-
-### DISCLAIMER: These are only preliminary hand gestures to demonstrate something in ... something out
+<img  src="https://i.ibb.co/7S4mL34/Gestures.png"  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
 
  #### To Start Video:
 

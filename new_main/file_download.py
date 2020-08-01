@@ -25,8 +25,8 @@ class FileDownload():
         """
         Please see help(FileDownload) for more info
         """
-        self.model_url = 'https://drive.google.com/uc?export=download&id=18oXums8kjOF6iPw9iMwdXVlqqxswEiRm'
-        self.model_name = '/pyearth_cnn_model_200612_1744.h5'
+        self.model_url = 'https://drive.google.com/uc?export=download&id=1k4QdDUidCckbX9bQ6JP-9oZ-dso74i8D'
+        self.model_name = '/pyearth_cnn_model_0724.h5'
         self.earth_url = 'https://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb'
         self.earth_name = '/google-earth-stable_current_amd64.deb'
         self.current_directory = ''
@@ -57,6 +57,8 @@ class FileDownload():
         if token:
             params = {'confirm' : token}
             self.response = self.session.get(self.model_url, params=params, stream=True)
+        # Notify user of .h5 model file download
+        print("Downloading PyHand Earth .h5 model file")
         # Opens current directory and saves model to it
         with open(self.current_directory, "wb") as my_file:
             for chunk in self.response.iter_content(self.chunk_size):
@@ -87,6 +89,8 @@ class FileDownload():
             return
         # Sends get request and stores response object
         self.response = requests.get(self.earth_url)
+        # Notify user of Google Earth file download
+        print("Downloading Google Earth .deb package file")
         # Saves Google Earth deb file to current working directory/google-earth
         with open(self.current_directory, "wb") as my_file:
             my_file.write(self.response.content)
@@ -102,6 +106,8 @@ class FileDownload():
         self.current_directory = os.getcwd()
         # Change to google-earth folder
         os.chdir('google-earth')
+        # Notify user of Google Earth installation
+        print("Installing Google Earth")
         # Use dpkg to install Google Earth
         os.system('sudo dpkg -i google-earth-stable*.deb')
         # Return to previous directory
