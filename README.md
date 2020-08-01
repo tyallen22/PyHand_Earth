@@ -122,7 +122,7 @@ $ pip3 install PyHand-Earth==0.2.24
 
 #### To launch PyHand-Earth:
 
-From the command line, run:
+From the command line, you can simply run:
 
 
 ```shell
@@ -133,12 +133,23 @@ $ PyHand-Earth
 
 OR
 
-navigate to ....... and run:
+change directories to the appropriate .../site-packages/PyHand_Earth folder for your install and run
 
 ```shell
 
 $ python3 main_qt.py
+
 ```
+
+If you used a virtual environment to pip3 install PyHand-Earth, this directory may look something like
+
+```shell
+
+/home/username/Projects/myvirtualenv/lib/python3.8/site-packages/PyHand_Earth
+
+```
+
+As previously stated above, if you do not have the Google Earth Pro desktop application already installed on your local machine, the first time you run PyHand-Earth
 
 - The display should be filled with two areas:
 
