@@ -26,7 +26,7 @@
 
 ## Overview
 
-PyHand Earth is a Python-based software project that incorporates and integrates multiple high-performant concepts, libraries, tools, and techniques to optimize and maximize user experience in navigating the Google Earth Pro Desktop application relying only on simple hand gestures and an ordinary Webcam.
+PyHand-Earth is a Python-based software project that incorporates and integrates multiple high-performant concepts, libraries, tools, and techniques to optimize and maximize user experience in navigating the Google Earth Pro Desktop application relying only on simple hand gestures and an ordinary Webcam.
 
 As a programming language, Python owes much of its popularity to its predilection for rapid deployment and to the ever-growing ecosystem of third-party open-source libraries and tools that add scalability, thereby freeing up precious time to more directly focus energies on solving the problems around us.  Yet, that type of flexibility comes with a price - which is paid in the currency of performance.  However, there is no shortage of high-performant tools and libraries that leverage all that Python has to offer with the inherent speed of these optimized solutions, many of which are written in high-performing languages such as C++.
 
@@ -84,48 +84,48 @@ https://pypi.org/project/PyHand-Earth/
 
 #### Required dependencies that will be apt-get installed with setup.py as part of PyHand-Earth package install:
 
-Although the libraries listed above that provide high-performant optimization all can be pip installed, there are unavoidable dependencies that must be apt-get installed in order for these libraries to coexist.  Although the process is automated with the setup instructions given further below, to provide the user with advance notice of their installation, they are:
+Although the libraries listed above that provide high-performant optimization all can be pip installed, there are unavoidable dependencies that must be apt-get installed in order for these libraries to coexist.  (Prior approvals have been obtained from J.B.).  Although the process is automated with the setup instructions given in the next section below, to provide the user with advance notice of their installation, these apt-get dependencies are individually listed as follows:
 
 ```shell
-$ sudo apt-get install python3-tk ```
 
-Needed for pip installed pyautogui
+$ sudo apt-get install python3-tk 
+
+```
+(The above is needed for pip installed pyautogui.)
 
 ```shell
+
 $ sudo apt-get install libxcb-xinerama0
+
 ```
-Required in order to start PyQt, which is pip installed
+(The above is required in order to start PyQt, which is pip installed)
 
 ```shell
+
 $ sudo apt-get install wmctrl
+
+
 ```
-Necessary for us to manage certain windows
+(The above is necessary to be able to manage certain windows.)
 
 ```shell
+
 $ sudo apt-get install scrot
+
 ```
-needed in order to locate images in the Google Earth application so that we can make sure it behaves properly
+(The above is needed in order to locate images in the Google Earth application to ensure it behaves properly.)
 
 
-- Google Earth desktop (will be installed automatically the first time the program is run if it is not already present in the environment)
-- apt-get dependencies required to make pip installed packages work together 
-
-
-
-### Setup
+#### Setup
 
   - This section will include all the `code` necessary to get  PyHand-Earth going
-  
-  #### Requirements: 
-  
-- TensorFlow 2.2.0
-- OpenCV 4.2.0.34
-- matplotlib 3.2.2
-- Keras 2.4.2
-- pyautogui 0.9.50
-- PyQt5
-- psutil 5.7.0
 
+
+
+
+
+- Google Earth desktop (will be installed automatically the first time the program is run if it is not alreadypresent in the environment)
+- apt-get dependencies required to make pip installed packages work together 
 
 
 > install all the requirements for PyHand-Earth from a terminal command line with:
