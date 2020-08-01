@@ -13,11 +13,13 @@
 
 ## Contents 
 
- -  [Overview](#overview)
+ -  [Project Description and Overview](#overview)
  -  [Special Comments](#comments)
- -  [Installation](#installation)
- -  [Start](#start)
- -  [Usage](#usage)
+ -  [Setup and Installation](#installation)
+ -  [## Executable Command to Run PyHand-Earth](#run)
+ -  [User Guide](#userguide)
+ -  [Screenshots](#screenshots)
+ -  [GitHub Repository](#gitrepo)
  -  [Team](#team)
  -  [License](#license)
 
@@ -125,7 +127,7 @@ Except as mentioned further below, this will install all the Python code develop
 
 
 
-### Executable command to run PyHand-Earth
+## Executable Command to Run PyHand-Earth
 
 From the command line, simply run the following to execute the PyHand-Earth program:
 
@@ -184,7 +186,7 @@ To the left of the orange bounding rectangle, the neural network's prediction va
 
 
 
-### Screenshots
+## Screenshots
 
 #### Gesture navigation with index finger pointing up - Move Up
 <img  src=https://i.ibb.co/BLDTXZx/index-up.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
