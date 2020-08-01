@@ -36,6 +36,7 @@ Despite advances in computer vision and deep learning neural networks, there are
 
 This project serves as an attempt to take a first step towards user interfaces of the future but without such specialized hardware.
 
+---
 
 ## Special Comments
 
@@ -59,8 +60,9 @@ For a smooth experience, users should review the following special comments, whi
   - `old_code_structure`:  Archived files.
 - A PDF file detailing contributions made outside of GitHub to this project is included in the `master` branch of the root folder.
 
+---
 
-## Installation
+## Setup and Installation
 
 ### Preliminary Matters
 
@@ -126,6 +128,7 @@ $ pip3 install PyHand-Earth==0.2.24
 Except as mentioned further below, this will install all the Python code developed for the project and third-party optimization libraries, as discussed previously above.
 
 
+---
 
 ## Executable Command to Run PyHand-Earth
 
@@ -138,6 +141,7 @@ $ PyHand-Earth
 As previously stated above, if you do not have the Google Earth Pro desktop application already installed on your local machine, the first time you run `PyHand-Earth`, the program will install the .deb package for Google Earth Pro.  In addition, it automatically will download from a google drive link a Keras .h5 file where the training model for the hand gesture recognition neural network is stored.
 
 
+---
 
 ## User Guide
 
@@ -185,6 +189,7 @@ To the left of the orange bounding rectangle, the neural network's prediction va
 <b><i>Tip</i></b>:  If you remove your hand entirely so that the only thing in the orange bounding rectangle is a blank wall, all navigation and motion should stop.
 
 
+---
 
 ## Screenshots
 
@@ -215,7 +220,7 @@ To the left of the orange bounding rectangle, the neural network's prediction va
 #### Gesture navigation with blank wall (i.e., no hand gesture) - No Motion
 <img  src=https://i.ibb.co/mybpvkF/blank-wall.png  title="# PyHand-Earth"  alt="# PyHand-Earth"></a>
 
-
+---
 
 ## Team
 
@@ -240,7 +245,7 @@ https://github.com/liujohnj/PyHand_Earth
 
 Access has been furnished to J.B., N.S., and J.C.
 
-
+---
 
 ## License
 
